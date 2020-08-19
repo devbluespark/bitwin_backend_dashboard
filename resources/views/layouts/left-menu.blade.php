@@ -12,6 +12,9 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
 
+                <li>
+                    <a href="#"><i class="menu-icon fa fa-laptop ">Sample</i></a>
+                </li>
                 {{-- {!!  $htmlMenu !!} --}}
             </ul>
         </div><!-- /.navbar-collapse -->
