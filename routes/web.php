@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('layouts/backEndMain');
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('backend/dashboard');
 });

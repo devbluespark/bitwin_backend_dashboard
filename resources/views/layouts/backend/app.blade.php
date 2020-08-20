@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Admin</title>
-    @include('layouts.backEndstylesheets')
+    @include('layouts.backend.header')
 
 </head>
 
@@ -17,9 +17,9 @@
 
 
 {{--@if (Sentinel::check() == true)--}}
-@include('layouts.left-menu')
+@include('layouts.backend.slider')
 <div id="right-panel" class="right-panel">
-@include('layouts.top-menu')
+@include('layouts.backend.nav')
 {{--@endif--}}
 
 @yield('content')
@@ -27,6 +27,6 @@
 </div>
 
 
-@include('layouts.backEndjavascript')
+@include('layouts.backend.footer')
 </body>
 </html>
