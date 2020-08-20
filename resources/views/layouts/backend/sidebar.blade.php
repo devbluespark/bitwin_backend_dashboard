@@ -15,6 +15,9 @@
                 <li>
                     <a href="#"><i class="menu-icon fa fa-laptop ">Sample</i></a>
                 </li>
+                <li class="">
+                <a href="{{ route('packages.index')}}"> <i class="menu-icon fa fa-dashboard"></i>Packages </a>
+                </li>
                 {{-- {!!  $htmlMenu !!} --}}
             </ul>
         </div><!-- /.navbar-collapse -->

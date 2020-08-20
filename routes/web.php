@@ -18,3 +18,25 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('backend/dashboard');
 });
+
+
+//**************  All   Backends Routes     */
+Route::prefix('backend')->group(function () {
+
+
+
+    //Route::get('/packages', 'Backend\PackagesController@index')->name('packages.index');
+    //Route::get('/packages/{package}', 'Admin\PackagesController@show');
+    // Route::get('/packages/{package}/edit', 'Admin\PackagesController@edit');
+    // Route::get('/packages/change_state', 'Admin\PackagesController@change_state');
+
+    Route::resources([
+        'packages' => 'Backend\PackagesController',
+        // 'posts' => 'PostController'
+    ]);
+
+    Route::get('package', 'Backend\PackagesController@get_packages')->name('get.packages');
+
+
+    
+});
