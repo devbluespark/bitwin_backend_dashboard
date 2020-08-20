@@ -70,8 +70,12 @@ class PackagesController extends Controller
     }
 
     
-    public function destroy($id){
-        //
+    public function destroy(Package $package){
+
+        $package->delete();
+        $request->session()->flash('delete_package', 'Package has been successfully Delete');
+        return redirect('/backend/packages');
+        
     }
 
    
