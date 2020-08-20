@@ -15,18 +15,15 @@
 
 <body>
 
-
-{{--@if (Sentinel::check() == true)--}}
-@include('layouts.backend.slider')
+    @include('layouts.backend.sidebar')
 <div id="right-panel" class="right-panel">
-@include('layouts.backend.nav')
-{{--@endif--}}
 
-@yield('content')
+    @include('layouts.backend.nav')
+    @yield('content')
 
 </div>
 
 
-@include('layouts.backend.footer')
+    @include('layouts.backend.footer')
 </body>
 </html>
