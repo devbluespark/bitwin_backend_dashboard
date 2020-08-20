@@ -11,46 +11,63 @@
 
 
 
-                <div class="form-row">
+          
+            <form class="form-horizontal" >
+
+              <div class="form-row" >
+
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Package Name</label>
+                  <input type="text" class="form-control" id="package_name" name="package_name" value="{{ $package['package_name'] }}" disabled>
+                  
+              </div>
+                
+                
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Package Descriptions</label>
+                  <textarea id="package_description" type="text" class="form-control" name="package_description" disabled>{{ $package['package_description'] }}</textarea>
+                </div>
+                
+
+              </div>
+              <div class="form-row">
 
                   <div class="form-group col-md-6">
-                  <label for="inputEmail4">Package Name: {{ $package['package_name'] }} </label>
-                </div>
-                  
-                  
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword4">Package Descriptions: {{ $package['package_description'] }}</label> 
-                  </div>
-                  
-                </div>
-
-                <div class="form-row">
-
-                    <div class="form-group col-md-6">
-                    <label for="inputEmail4">Package Price: {{ $package['package_price'] }}</label>
-                    </div>
-
-                    <div class="form-group col-md-6">
-                      <label for="inputPassword4">Package Rolls: {{ $package['package_rolls'] }}</label>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="inputState">Active/Deactive : @if ($package['package_active'] === 1)
-                            <p>Active</p>
-                        @else
-                            <p>Deactive</p>
-                        @endif</label>
+                    <label for="inputEmail4">Package Price</label>
+                    <input type="number" class="form-control" id="package_price" value="{{ $package['package_price']  }}" name="package_price" disabled>
     
-
-                        @if ($errors->has('package_active'))
-                      <span class="help-block">
-                          <strong>{{ $errors->first('package_active') }}</strong>
-                      </span>
-                  @endif
-                      </div>
-
                   </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Package Rolls</label>
+                    <input type="number" name="package_rolls" class="form-control"  value="{{ $package['package_rolls'] }}" id="package_rolls" disabled>
+                    
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                      <label for="inputState">Active/Deactive</label>
+  
+                      <select class="form-control" id="package_active" name="package_active" value="{{ $package['package_active'] }}" disabled >
+                          @if ($package['package_active']===1)
+                          <option value="1">Active</option>
+                          <option value="0">Deactive</option>
+                          @else
+                          <option value="0">Deactive</option> 
+                          <option value="1">Active</option>
+                          @endif
+                           
+                      </select>
+
+                      
+                    </div>
+
+                </div>
+
+
+
+            </form>
 
 
                 
