@@ -5,6 +5,7 @@
 <div class="container">
 
     <h1>Pckages</h1><br><br>
+<a href="{{ route('packages.create') }}"><button class="btn btn-primary mb-3">Add Package</button></a>
   <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
@@ -17,9 +18,7 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Rolls</th>
-                <th>Show</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,12 +30,10 @@
                 <td>{{ $package->package_price }}</td>
                 <td>{{ $package->package_rolls }}</td>
                 <td>
-                    <a href='{{ route("packages.show",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Details</button></a>
-                </td>
-                <td>
-                    <a href='{{ route("packages.edit",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Edit</button></a>
-                </td>
-                <th>
+                    <a class="mr-3" href='{{ route("packages.show",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Details</button></a>
+                
+                    <a class="mr-3" href='{{ route("packages.edit",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Edit</button></a>
+                
                     <a href='{{ route("packages.destroy",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Delete</button></a>
                 </th>
             </tr>
@@ -52,9 +49,7 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Coins</th>
-                <th>Show</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Actions</th>
             </tr>
         </tfoot>
     </table>

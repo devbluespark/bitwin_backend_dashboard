@@ -12,7 +12,7 @@
 
 
             <form class="form-horizontal" method="POST" action='{{ route("packages.update",[ "package" => $package['package_id']])}}'>
-                {{ csrf_field() }}  {{ method_field('PUT') }}
+                {{ csrf_field() }}  
                 <div class="form-row" >
 
                   <div class="form-group col-md-6">
@@ -20,7 +20,7 @@
                     <input type="text" class="form-control" id="package_name" name="package_name" placeholder="Package Name" value="{{ $package['package_name'] ?? old('package_name') }}" required autofocus>
                     @if ($errors->has('package_name'))
                       <span class="help-block">
-                          <strong class="text-danger">{{ $errors->first('package_name') }}</strong>
+                          <strong>{{ $errors->first('package_name') }}</strong>
                       </span>
                     @endif
                 </div>
@@ -31,7 +31,7 @@
                     <textarea id="package_description" type="text" class="form-control" name="package_description"  required autofocus>{{ $package['package_description'] ?? old('package_description') }}</textarea>
                     @if ($errors->has('package_description'))
                         <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('package_description') }}</strong>
+                            <strong>{{ $errors->first('package_description') }}</strong>
                         </span>
                      @endif
                   </div>
@@ -45,7 +45,7 @@
                       <input type="number" class="form-control" id="package_price" value="{{ $package['package_price'] ?? old('package_price') }}" name="package_price" placeholder="Package price" autofocus required>
                       @if ($errors->has('package_price'))
                       <span class="help-block">
-                          <strong class="text-danger">{{ $errors->first('package_price') }}</strong>
+                          <strong>{{ $errors->first('package_price') }}</strong>
                       </span>
                      @endif
                     </div>
@@ -55,7 +55,7 @@
                       <input type="number" name="package_rolls" class="form-control"  value="{{ $package['package_rolls'] ?? old('package_rolls') }}" id="package_rolls" placeholder="Package Rolls" required autofocus>
                       @if ($errors->has('package_rolls'))
                       <span class="help-block">
-                          <strong class="text-danger">{{ $errors->first('package_rolls') }}</strong>
+                          <strong>{{ $errors->first('package_rolls') }}</strong>
                       </span>
                   @endif
                     </div>
@@ -77,7 +77,7 @@
 
                         @if ($errors->has('package_active'))
                       <span class="help-block">
-                          <strong class="text-danger">{{ $errors->first('package_active') }}</strong>
+                          <strong>{{ $errors->first('package_active') }}</strong>
                       </span>
                   @endif
                       </div>

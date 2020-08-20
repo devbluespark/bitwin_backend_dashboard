@@ -14,15 +14,12 @@ class PackagesController extends Controller
         return view('backend.packages.index',compact('packages'));
     }
 
+    public function create(){
+        return view('backend/packages/create');
+    }
 
-     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+
+    public function store(Request $request){
 
        // var_dump($request->all());
        $data=$request->all();
@@ -48,55 +45,37 @@ class PackagesController extends Controller
         return redirect('/admin/packages');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Package $package)
-    {
+   
+    public function show(Package $package){
         return view('backend.packages.show',compact('package'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Package $package)
-    {
+   
+    public function edit(Package $package){
         return view('backend.packages.edit',compact('package'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Package $package )
-    {
-       // echo "updated";
-        $package->update($request->all());
-        return redirect('admin/packages');
+    
+    public function update(Request $request, Package $package ){
+    
+
+        $validate_data=$request->validate([
+            'package_name' => 'required|min:5',
+            'package_description'=> 'required|min:5',
+            'package_rolls' => 'required',
+            'package_price'=> 'required',
+            'package_active' => 'required',
+        ]);
+
+       
+       $package->update($request->all());
+    
+       return redirect('backend/packages');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+    
+    public function destroy($id){
         //
-    }
-
-    public function change_state(Request $request){
-        echo $request->all();
     }
 
    
