@@ -2,9 +2,23 @@
 
 @section('content')
 
+@if(session()->has('message'))
+
+    <div class="card-body">
+      <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
+          <span class="badge badge-pill badge-primary">Success</span>
+          {{ session()->get('message') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+      </div>
+@endif
+
+
+
 <div class="container">
 
-    <h1>Pckages Edit</h1><br><br>
+    <h1>Pckages Create</h1><br><br>
   <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
@@ -20,7 +34,7 @@
                     <input type="text" class="form-control" id="package_name" name="package_name" placeholder="Package Name" value="{{  old('package_name') }}" required autofocus>
                     @if ($errors->has('package_name'))
                       <span class="help-block">
-                          <strong>{{ $errors->first('package_name') }}</strong>
+                          <strong class="text-danger">{{ $errors->first('package_name') }}</strong>
                       </span>
                     @endif
                 </div>
@@ -31,7 +45,7 @@
                     <textarea id="package_description" type="text" class="form-control" name="package_description"  required autofocus>{{  old('package_description') }}</textarea>
                     @if ($errors->has('package_description'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('package_description') }}</strong>
+                            <strong class="text-danger">{{ $errors->first('package_description') }}</strong>
                         </span>
                      @endif
                   </div>
@@ -45,7 +59,7 @@
                       <input type="number" class="form-control" id="package_price" value="{{ old('package_price') }}" name="package_price" placeholder="Package price" autofocus required>
                       @if ($errors->has('package_price'))
                       <span class="help-block">
-                          <strong>{{ $errors->first('package_price') }}</strong>
+                          <strong class="text-danger">{{ $errors->first('package_price') }}</strong>
                       </span>
                      @endif
                     </div>
@@ -55,7 +69,7 @@
                       <input type="number" name="package_rolls" class="form-control"  value="{{  old('package_rolls') }}" id="package_rolls" placeholder="Package Rolls" required autofocus>
                       @if ($errors->has('package_rolls'))
                       <span class="help-block">
-                          <strong>{{ $errors->first('package_rolls') }}</strong>
+                          <strong class="text-danger">{{ $errors->first('package_rolls') }}</strong>
                       </span>
                   @endif
                     </div>
@@ -73,7 +87,7 @@
 
                         @if ($errors->has('package_active'))
                       <span class="help-block">
-                          <strong>{{ $errors->first('package_active') }}</strong>
+                          <strong class="text-danger">{{ $errors->first('package_active') }}</strong>
                       </span>
                   @endif
                       </div>

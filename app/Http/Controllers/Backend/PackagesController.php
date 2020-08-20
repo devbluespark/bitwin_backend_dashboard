@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Package;
+use Carbon\Carbon;
 use PhpParser\Node\Expr\FuncCall;
 
 class PackagesController extends Controller
@@ -21,28 +22,23 @@ class PackagesController extends Controller
 
     public function store(Request $request){
 
-       // var_dump($request->all());
-       $data=$request->all();
 
-    /*    $data=$request->validate([
-            'package_name' => 'required',
-            'package_decription'=> 'required',
-            'package_coins' => 'required',
+        $data=$request->validate([
+            'package_name' => 'required|min:5',
+            'package_description'=> 'required|min:5',
+            'package_rolls' => 'required',
             'package_price'=> 'required',
-        
             'package_active' => 'required',
-          //  'package_create_by'=> 'min:3|required',
     
-        ]);*/
+        ]);
 
        $data['package_create_by'] = 'Kasun';
        $data['created_at'] = Carbon::now()->timestamp;
        $data['updated_at'] = null;
 
-        var_dump($data);
-
-        Package::create($data);
-        return redirect('/admin/packages');
+       Package::create($data);
+       $request->session()->flash('message', 'Package has been successfully add..');
+       return view('backend.packages.create');
     }
 
    
