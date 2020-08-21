@@ -29,8 +29,9 @@
 
             @foreach ($packages as $package)
             <tr>
-                <td>{{ $package->package_id }}</td>
+                <td>{{ $package->id }}</td>
                 <td>{{ $package->package_name }}</td>
+                <td  style="display:none;" id="{{ $package->id }}-name">{{ $package->package_name }}</td>
                 <td>{{ $package->package_price }}</td>
                 <td>{{ $package->package_rolls }}</td>
                 <td>
@@ -42,18 +43,13 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                    <a class="mr-3" href='{{ route("packages.show",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Details</button></a>
+                    <a class="mr-3" href='{{ route("packages.show",[ 'package' => $package->id ]) }}' > <button class="btn btn-primary">Details</button></a>
                 
-                    <a class="mr-3" href='{{ route("packages.edit",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Edit</button></a>
+                    <a class="mr-3" href='{{ route("packages.edit",[ 'package' => $package->id ]) }}' > <button class="btn btn-primary">Edit</button></a>
                 
-                 <!--   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                   <button type="button" onclick="delete_package({{ $package->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Delete
-                         </button>
-                        <form action="{{ route('packages.destroy',['package'=>$package->package_id]) }}" method="post">
-                            {{csrf_field()}}
-                            <input name="_method" type="hidden" value="DELETE">
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form> -->
+                    </button>
                     </div>
                     
                 </th>
@@ -91,17 +87,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete Packge</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Delete Packge(<b><span id="delete_package_name"></span></b>)</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body"> 
           Are you Sure...?
         </div>
-        <form action="{{ route('packages.destroy',['package'=>$package->package_id]) }}" method="post">
+        <form action="{{ route('packages.delete') }}" method="post">
             {{csrf_field()}}
-            <input name="_method" type="hidden" value="DELETE">
+            <input  type="hidden" name="id" id="id">
          
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -120,6 +116,19 @@
     $(document).ready(function() {
             $('#example').DataTable();
         } );
+
+
+    //Delete button scirpt
+    function delete_package(id) {
+        //Preparing the values
+        let delete_package_name = document.getElementById(id+'-name').innerHTML;
+
+        //Setting the values
+        document.getElementById("delete_package_name").innerHTML = delete_package_name;
+        document.getElementById('id').value = id;
+    }
+
+    
 
 </script>
 

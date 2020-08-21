@@ -11,7 +11,7 @@
 
 
 
-            <form class="form-horizontal" method="POST" action='{{ route("packages.update",[ "package" => $package['package_id']])}}'>
+            <form class="form-horizontal" method="POST" action='{{ route("packages.update",[ "package" => $package['id']])}}'>
                 {{ csrf_field() }}  {{ method_field('PUT') }}
                 <div class="form-row" >
 

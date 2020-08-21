@@ -12,7 +12,7 @@ class PackagesController extends Controller
     public function index(){
 
         try {
-            $packages= Package::all();
+            $packages= Package::where('package_delete_status', 0)->get();
             return view('backend.packages.index',compact('packages'));
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -27,59 +27,90 @@ class PackagesController extends Controller
 
     public function store(Request $request){
 
-
-        $data=$request->validate([
-            'package_name' => 'required|min:5',
-            'package_description'=> 'required|min:5',
-            'package_rolls' => 'required|numeric|min:1|max:1000',
-            'package_price'=> 'required|numeric|min:1|max:1000',
-            'package_active' => 'required',
+            
+            $data=$request->validate([
+                'package_name' => 'required|min:5',
+                'package_description'=> 'required|min:5',
+                'package_rolls' => 'required|numeric|min:1|max:1000',
+                'package_price'=> 'required|numeric|min:1|max:1000',
+                'package_active' => 'required',
+        
+            ]);
     
-        ]);
+           $data['package_delete_status'] = 0;
+           $data['package_create_by'] = 'Kasun';
+           $data['created_at'] = Carbon::now()->timestamp;
+           $data['updated_at'] = null;
+    
+           Package::create($data);
+           $request->session()->flash('message', 'Package has been successfully add..');
+           return view('backend.packages.create');
 
-       $data['package_create_by'] = 'Kasun';
-       $data['created_at'] = Carbon::now()->timestamp;
-       $data['updated_at'] = null;
-
-       Package::create($data);
-       $request->session()->flash('message', 'Package has been successfully add..');
-       return view('backend.packages.create');
+        
     }
 
    
     public function show(Package $package){
-        return view('backend.packages.show',compact('package'));
+
+        try {
+            return view('backend.packages.show',compact('package'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        
     }
 
    
     public function edit(Package $package){
-        return view('backend.packages.edit',compact('package'));
+
+        try {
+            return view('backend.packages.edit',compact('package'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        
     }
 
     
     public function update(Request $request, Package $package ){
-    
 
-        $validate_data=$request->validate([
-            'package_name' => 'required|min:5',
-            'package_description'=> 'required|min:5',
-            'package_rolls' => 'required|numeric|min:1|max:1000',
-            'package_price'=> 'required|numeric|min:1|max:1000',
-            'package_active' => 'required',
-        ]);
-
-       
-       $package->update($request->all());
+  
+            
+            $validate_data=$request->validate([
+                'package_name' => 'required|min:5',
+                'package_description'=> 'required|min:5',
+                'package_rolls' => 'required|numeric|min:1|max:1000',
+                'package_price'=> 'required|numeric|min:1|max:1000',
+                'package_active' => 'required',
+            ]);
     
-       return redirect('backend/packages');
+           
+           $package->update($validate_data);
+        
+           return redirect('backend/packages');
+        
     }
 
     
     public function destroy(Package $package ,Request $request){
+        //No need
+    }
 
-        $package->delete();
-        $request->session()->flash('delete_package', 'Package has been successfully Delete');
-        return redirect('/backend/packages');
+    public function delete(Request $request){
+
+        try {
+            
+        $package_id= $request->id;
+        $delete_package=Package::find($package_id);
+        $delete_package->package_delete_status = 1;
+
+        $delete_package->save();
+        return redirect('backend/packages');
+
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+      
         
     }
 

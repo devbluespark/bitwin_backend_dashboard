@@ -35,7 +35,7 @@ Route::prefix('backend')->group(function () {
         // 'posts' => 'PostController'
     ]);
 
-    Route::get('package', 'Backend\PackagesController@get_packages')->name('get.packages');
+    Route::post('package-delete', 'Backend\PackagesController@delete')->name('packages.delete');
 
 
     
