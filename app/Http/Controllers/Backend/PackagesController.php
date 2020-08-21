@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class PackagesController extends Controller
 {
     public function index(){
-        
+
         try {
             $packages= Package::all();
             return view('backend.packages.index',compact('packages'));
@@ -31,8 +31,8 @@ class PackagesController extends Controller
         $data=$request->validate([
             'package_name' => 'required|min:5',
             'package_description'=> 'required|min:5',
-            'package_rolls' => 'required',
-            'package_price'=> 'required',
+            'package_rolls' => 'required|numeric|min:1|max:1000',
+            'package_price'=> 'required|numeric|min:1|max:1000',
             'package_active' => 'required',
     
         ]);
@@ -63,8 +63,8 @@ class PackagesController extends Controller
         $validate_data=$request->validate([
             'package_name' => 'required|min:5',
             'package_description'=> 'required|min:5',
-            'package_rolls' => 'required',
-            'package_price'=> 'required',
+            'package_rolls' => 'required|numeric|min:1|max:1000',
+            'package_price'=> 'required|numeric|min:1|max:1000',
             'package_active' => 'required',
         ]);
 
