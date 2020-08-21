@@ -12,9 +12,17 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
 
-                <li>
-                    <a href="#"><i class="menu-icon fa fa-laptop ">Sample</i></a>
+                
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-unlock-alt"></i>Management</a>
+                    <ul class="sub-menu children dropdown-menu">
+                    <li><i class="menu-icon fa fa-users"></i><a href="{{ route('users.index')}}">Users Management</a></li>
+                        <li><i class="menu-icon fa fa-wrench"></i><a href="{{ route('permissions.index')}}">Permissions Managenet</a></li>
+                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="{{ route('roles.index')}}">Roles Management</a></li>
+                    </ul>
                 </li>
+
+                
                 <li class="">
                 <a href="{{ route('packages.index')}}"> <i class="menu-icon fa fa-dashboard"></i>Packages </a>
                 </li>

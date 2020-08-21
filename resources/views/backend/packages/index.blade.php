@@ -24,6 +24,8 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Add Permission View Packages-->
+            @can('viewPackage')
 
             <?php if(isset($packages)) {  ?>
 
@@ -45,11 +47,16 @@
                     <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="mr-3" href='{{ route("packages.show",[ 'package' => $package->id ]) }}' > <button class="btn btn-primary">Details</button></a>
                 
+                <!-- Add Permission Edit Packages-->
+                @can('viewPackage')
                     <a class="mr-3" href='{{ route("packages.edit",[ 'package' => $package->id ]) }}' > <button class="btn btn-primary">Edit</button></a>
+                @endcan   
                 
+                @can('deletePackage')
                    <button type="button" onclick="delete_package({{ $package->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Delete
                     </button>
+                @endcan
                     </div>
                     
                 </th>
@@ -57,6 +64,8 @@
             @endforeach
          
         <?php } ?> 
+
+        @endcan
             
         </tbody>
         <tfoot>

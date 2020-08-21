@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -21,18 +21,17 @@ Route::get('/dashboard', function () {
 
 
 //**************  All   Backends Routes     */
-Route::prefix('backend')->group(function () {
+Route::group(['prefix' => 'backend', 'middleware' => ['auth','has_permission']], function() {
 
-
-
-    //Route::get('/packages', 'Backend\PackagesController@index')->name('packages.index');
-    //Route::get('/packages/{package}', 'Admin\PackagesController@show');
-    // Route::get('/packages/{package}/edit', 'Admin\PackagesController@edit');
-    // Route::get('/packages/change_state', 'Admin\PackagesController@change_state');
 
     Route::resources([
         'packages' => 'Backend\PackagesController',
-        // 'posts' => 'PostController'
+        
+
+        //User Rolls.Permissions, Management Routes
+        'users' =>  'Backend\UserController',
+        'roles' =>  'Backend\RoleController',
+	    'permissions' => 'Backend\PermissionController',
     ]);
 
     Route::post('package-delete', 'Backend\PackagesController@delete')->name('packages.delete');
@@ -46,5 +45,10 @@ Route::prefix('backend')->group(function () {
     Route::get('/editproducts/{id}','ProductController@editproductindex');//edit page
     Route::put('/editproducts/{id}','ProductController@edit');//edit 
     Route::post('/addproducts','ProductController@productstore');//store
+
     
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

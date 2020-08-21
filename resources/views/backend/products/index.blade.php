@@ -47,8 +47,9 @@
                     {{-- <a class="mr-3" href='{{ route("product.show",[ 'package' => $package->package_id ]) }}' > <button class="btn btn-primary">Details</button></a> --}}
                 
                     <a class="mr-3" href='/backend/editproducts/{{$product->id}}' > <button class="btn btn-primary">Edit</button></a>
-                
+                  
                     <a href='#' > <button class="btn btn-primary">Delete</button></a>
+              
                 </th>
             </tr>
             @endforeach
