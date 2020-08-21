@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Package;
 use Carbon\Carbon;
-use PhpParser\Node\Expr\FuncCall;
 
 class PackagesController extends Controller
 {
     public function index(){
-        $packages= Package::all();
-        return view('backend.packages.index',compact('packages'));
+        
+        try {
+            $packages= Package::all();
+            return view('backend.packages.index',compact('packages'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        
     }
 
     public function create(){
@@ -70,7 +75,7 @@ class PackagesController extends Controller
     }
 
     
-    public function destroy(Package $package){
+    public function destroy(Package $package ,Request $request){
 
         $package->delete();
         $request->session()->flash('delete_package', 'Package has been successfully Delete');

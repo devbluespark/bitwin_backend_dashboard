@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h1>Pckages</h1><br><br>
+    <h1>Packages</h1><br><br>
    
 <a href="{{ route('packages.create') }}"><button class="btn btn-primary mb-3">Add Package</button></a>
   <div class="row justify-content-center">
@@ -24,7 +24,9 @@
             </tr>
         </thead>
         <tbody>
-            
+
+            <?php if(isset($packages)) {  ?>
+
             @foreach ($packages as $package)
             <tr>
                 <td>{{ $package->package_id }}</td>
@@ -57,9 +59,8 @@
                 </th>
             </tr>
             @endforeach
-            
-           
-            
+         
+        <?php } ?> 
             
         </tbody>
         <tfoot>
@@ -82,6 +83,8 @@
 </div>
 </div>
 
+
+<?php if(isset($package)) {  ?>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,6 +111,8 @@
       </div>
     </div>
   </div>
+
+<?php } ?>
 
 
 <script>

@@ -18,7 +18,7 @@
 
 <div class="container">
 
-    <h1>Pckages Create</h1><br><br>
+    <h1>Packages Create</h1><br><br>
   <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
