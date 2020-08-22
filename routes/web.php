@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
     return view('home');
@@ -18,6 +21,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('backend/dashboard');
 });
+
+
 
 
 //**************  All   Backends Routes     */
@@ -34,9 +39,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','has_permission']],
 	    'permissions' => 'Backend\PermissionController',
     ]);
 
-    Route::post('package-delete', 'Backend\PackagesController@delete')->name('packages.delete');
-
-
+   
     
     //***************************Product Routes*********************
 
@@ -48,7 +51,3 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','has_permission']],
 
     
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

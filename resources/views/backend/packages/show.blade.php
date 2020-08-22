@@ -4,7 +4,7 @@
 
 <div class="container">
 
-    <h1>Package Details</h1><br><br>
+<h1>Package Details {{ $user->name }}</h1><br><br>
   <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
@@ -41,12 +41,12 @@
                   <div class="form-group col-md-6">
                     <label for="inputPassword4">Package Rolls</label>
                     <input type="number" name="package_rolls" class="form-control"  value="{{ $package['package_rolls'] }}" id="package_rolls" disabled>
-                    
+                  
                   </div>
                 </div>
 
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                       <label for="inputState">Active/Deactive</label>
   
                       <select class="form-control" id="package_active" name="package_active" value="{{ $package['package_active'] }}" disabled >
@@ -59,8 +59,12 @@
                           @endif
                            
                       </select>
+                    </div>
 
-                      
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Created user</label>
+                      <input type="text" name="create_user" class="form-control"  value="{{ $user->name }}" id="package_rolls" disabled>
+                    
                     </div>
 
                 </div>

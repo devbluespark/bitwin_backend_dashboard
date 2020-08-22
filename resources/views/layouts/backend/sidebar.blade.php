@@ -24,7 +24,7 @@
 
                 
                 <li class="">
-                <a href="{{ route('packages.index')}}"> <i class="menu-icon fa fa-dashboard"></i>Packages </a>
+                <a href="{{ route('packages.index')}}"> <i class="menu-icon fa fa-briefcase"></i>Packages </a>
                 </li>
                 {{-- {!!  $htmlMenu !!} --}}
 

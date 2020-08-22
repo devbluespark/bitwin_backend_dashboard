@@ -5,9 +5,10 @@
 <div class="container">
 
     <h1>Packages</h1><br><br>
-   
-<a href="{{ route('packages.create') }}"><button class="btn btn-primary mb-3">Add Package</button></a>
-  <div class="row justify-content-center">
+ @can('addPackage') 
+<a href="{{ route('packages.create') }}" class="btn btn-success px-4 mb-3" ><i class="fa fa-plus"></i></a>
+@endcan
+<div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
 
@@ -36,7 +37,7 @@
                 <td>{{ $package->id }}</td>
                 <td>{{ $package->package_name }}</td>
                 <td>{{ $package->package_price }}</td>
-                <td>{{ $package->package_rolls }}</td>
+            <td>{{ $package->package_rolls }}</td>
                 <td>
                     <?php if (($package->package_active) === 1) { ?>
                         <b>Active</b>
@@ -46,16 +47,16 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                    <a class="mr-3" href='{{ route("packages.show",[ 'package' => $package->id ]) }}' > <button class="btn btn-primary">Details</button></a>
+                    <a class="mr-3 px-3 btn btn-primary" href='{{ route("packages.show",[ 'package' => $package->id ]) }}' ><i class="fa fa-info mx-2"></i></a>
                 
                 <!-- Add Permission Edit Packages-->
-                @can('viewPackage')
-                    <a class="mr-3" href='{{ route("packages.edit",[ 'package' => $package->id ]) }}' > <button class="btn btn-primary">Edit</button></a>
+                @can('editPackage')
+                    <a class="mr-3 btn btn-warning" href='{{ route("packages.edit",[ 'package' => $package->id ]) }}' ><i class="fa fa-pencil mx-2"></i></a>
                 @endcan   
                 
                 @can('deletePackage')
-                   <button type="button" onclick="delete_package({{ $package->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                        Delete
+                    <button class="btn btn-danger btn-flat btn-sm delete-confirm" data-id="{{ $package->id }}" data-action="{{ route('packages.destroy',$package->id) }}">
+                        <i class="fa fa-trash mx-3"></i>
                     </button>
                  @endcan
                     </div>
@@ -90,35 +91,6 @@
 </div>
 
 
-<?php if(isset($package)) {  ?>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete Packge(<b><span id="delete_package_name"></span></b>)</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body"> 
-          Are you Sure...?
-        </div>
-        <form action="{{ route('packages.delete') }}" method="post">
-            {{csrf_field()}}
-            <input  type="hidden" name="id" id="id">
-         
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Delete</button>
-        </div>
-    </form>
-      </div>
-    </div>
-  </div>
-
-<?php } ?>
 
 
 <script>
@@ -128,16 +100,33 @@
         } );
 
 
-    //Delete button scirpt
-    function delete_package(id) {
-        //Preparing the values
-        let delete_package_name = document.getElementById(id+'-name').innerHTML;
+    
 
-        //Setting the values
-        document.getElementById("delete_package_name").innerHTML = delete_package_name;
-        document.getElementById('id').value = id;
-    }
 
+
+        $('.delete-confirm').on('click', function (event) {
+    event.preventDefault();
+    const url = $(this).attr('href');
+    var current_object = $(this);
+    swal({
+        title: 'Are you sure?',
+        text: 'This record and it`s details will be permanantly deleted!',
+        icon: 'warning',
+        buttons: ["Cancel", "Yes!"],
+    }).then(function(result) {
+        if (result) {
+            var action = current_object.attr('data-action');
+            var token = jQuery('meta[name="csrf-token"]').attr('content');
+            var id = current_object.attr('data-id');
+
+            $('body').html("<form class='form-inline remove-form' method='post' action='"+action+"'></form>");
+            $('body').find('.remove-form').append('<input name="_method" type="hidden" value="delete">');
+            $('body').find('.remove-form').append('<input name="_token" type="hidden" value="'+token+'">');
+            $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
+            $('body').find('.remove-form').submit();
+        }
+    });
+});
     
 
 </script>

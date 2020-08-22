@@ -36,6 +36,10 @@ class User extends Authenticatable
     }
 
 
+    public function packages(){
+        return $this->hasMany(Package::class);
+    }
+
 
 
 }
