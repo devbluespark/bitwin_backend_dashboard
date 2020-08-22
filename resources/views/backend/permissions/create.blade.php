@@ -11,6 +11,11 @@
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
         {{ Form::text('name', '', array('class' => 'form-control')) }}
+        @if ($errors->has('name'))
+        <span class="help-block">
+            <strong class="text-danger">{{ $errors->first('name') }}</strong>
+        </span>
+        @endif
     </div><br>
     @if(!$roles->isEmpty()) 
         <h3>Assign Permission to Roles</h3>

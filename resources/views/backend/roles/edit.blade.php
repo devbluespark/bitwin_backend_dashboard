@@ -11,6 +11,11 @@
     <div class="form-group">
         {{ Form::label('name', 'Role Name') }}
         {{ Form::text('name', null, array('class' => 'form-control')) }}
+        @if ($errors->has('name'))
+        <span class="help-block">
+            <strong class="text-danger">{{ $errors->first('name') }}</strong>
+        </span>
+        @endif
     </div>
     <h3>Assign Permissions</h3>
     @foreach ($permissions as $permission)

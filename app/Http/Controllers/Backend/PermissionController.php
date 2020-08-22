@@ -15,81 +15,93 @@ class PermissionController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
-    {
-        $permissions = Permission::all();
-        return view('backend.permissions.index', compact('permissions'));
+
+    public function index(){
+        try {
+            $permissions = Permission::all();
+            return view('backend.permissions.index', compact('permissions'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $roles = Role::get(); //Get all roles
-        return view('backend.permissions.create', compact('roles'));
-    }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+
+
+    public function create(){
+        try {
+
+            $roles = Role::get(); //Get all roles
+            return view('backend.permissions.create', compact('roles'));
+
+        }catch (\Exception $e) {
+            return $e->getMessage();
+        }
+     }
+
+   
+    public function store(Request $request){
+
         $this->validate($request, [
-            'name' => 'required|max:40',
-        ]);
-        $permission = new Permission();
-        $permission->name = $request->name;
-        $permission->save();
+            'name' => 'required|max:20|min:3',
+            ]);
+
+         try {
+            
+            $permission = new Permission();
+            $permission->name = $request->name;
+            $permission->save();
+
         if ($request->roles <> '') {
             foreach ($request->roles as $key => $value) {
                 $role = Role::find($value);
                 $role->permissions()->attach($permission);
             }
         }
+
         return redirect()->route('permissions.index')->with('success', 'Permission added successfully');
+            
+         }catch (\Exception $e) {
+            return $e->getMessage();
+        }  
+        
     }
 
-    public function edit(Permission $permission)
-    {
+    public function edit(Permission $permission){
         return view('backend.permissions.edit', compact('permission'));
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Permission $permission)
-    {
+    
+
+    public function update(Request $request, Permission $permission){
+       
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|max:20|min:3',
         ]);
-        $permission->name = $request->name;
-        $permission->save();
-        return redirect()->route('permissions.index')
-            ->with(
-                'success',
-                'Permission' . $permission->name . ' updated!'
-            );
+
+        try {
+            
+            $permission->name = $request->name;
+            $permission->save();
+            return redirect()->route('permissions.index')
+            ->with('success','Permission' . $permission->name . ' updated!');
+
+        }catch (\Exception $e) {
+            return $e->getMessage();
+         } 
+        
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Permission $permission)
-    {
-        $permission->delete();
-        return redirect()->route('permissions.index')
-            ->with(
-                'success',
-                'Permission deleted successfully!'
-            );
+   
+
+    public function destroy(Permission $permission){
+
+        try {
+            
+            $permission->delete();
+            return back()->with('success','Permission deleted successfully!');
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+         } 
     }
+
+
 }
