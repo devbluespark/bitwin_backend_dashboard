@@ -12,6 +12,8 @@
     </h1>
     <hr>
     <div class="table-responsive">
+       
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -25,7 +27,7 @@
                 <tr>
                     <td>{{ $role->name }}</td>
                     <td>{{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}</td>
-                    <td class="">
+                    <td class="btn-group">
                     <a href="{{ URL::to('backend/roles/'.$role->id.'/edit') }}" class="btn btn-warning pull-left  mr-3">Edit</a>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id] ]) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}

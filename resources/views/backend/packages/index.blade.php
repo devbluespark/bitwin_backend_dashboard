@@ -24,6 +24,8 @@
             </tr>
         </thead>
         <tbody>
+
+            
             <!-- Add Permission View Packages-->
             @can('viewPackage')
 
@@ -33,7 +35,6 @@
             <tr>
                 <td>{{ $package->id }}</td>
                 <td>{{ $package->package_name }}</td>
-                <td  style="display:none;" id="{{ $package->id }}-name">{{ $package->package_name }}</td>
                 <td>{{ $package->package_price }}</td>
                 <td>{{ $package->package_rolls }}</td>
                 <td>
@@ -56,10 +57,10 @@
                    <button type="button" onclick="delete_package({{ $package->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Delete
                     </button>
-                @endcan
+                 @endcan
                     </div>
                     
-                </th>
+                </td>
             </tr>
             @endforeach
          

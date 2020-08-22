@@ -11,10 +11,20 @@
     <div class="form-group @if ($errors->has('name')) has-error @endif">
         {{ Form::label('name', 'Name') }}
         {{ Form::text('name', null, array('class' => 'form-control')) }}
+        @if ($errors->has('name'))
+                      <span class="help-block">
+                          <strong class="text-danger">{{ $errors->first('name') }}</strong>
+                      </span>
+         @endif
     </div>
     <div class="form-group @if ($errors->has('email')) has-error @endif">
         {{ Form::label('email', 'Email') }}
         {{ Form::email('email', null, array('class' => 'form-control')) }}
+        @if ($errors->has('email'))
+        <span class="help-block">
+            <strong class="text-danger">{{ $errors->first('email') }}</strong>
+        </span>
+        @endif
     </div>
     <h5><b>Assign Role</b></h5>
     <div class="form-group @if ($errors->has('roles')) has-error @endif">
@@ -22,10 +32,20 @@
             {{ Form::checkbox('roles[]',  $role->id, $user->roles ) }}
             {{ Form::label($role->name, ucfirst($role->name)) }}<br>
         @endforeach
+        @if ($errors->has('roles'))
+        <span class="help-block">
+            <strong class="text-danger">{{ $errors->first('roles') }}</strong>
+        </span>
+        @endif
     </div>
     <div class="form-group @if ($errors->has('password')) has-error @endif">
         {{ Form::label('password', 'Password') }}<br>
         {{ Form::password('password', array('class' => 'form-control')) }}
+        @if ($errors->has('password'))
+        <span class="help-block">
+            <strong class="text-danger">{{ $errors->first('password') }}</strong>
+        </span>
+        @endif
     </div>
     <div class="form-group @if ($errors->has('password')) has-error @endif">
         {{ Form::label('password', 'Confirm Password') }}<br>

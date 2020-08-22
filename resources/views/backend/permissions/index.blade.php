@@ -2,17 +2,17 @@
 
 @section('content')
 
-<div class="container">
+<div class="container justify-content-md-center">
     
 <div class="col-md-10 col-md-offset-1">
     <h1><i class="fa fa-key"></i>Permissions Management
     <a href="{{ route('users.index') }}" class="btn btn-default pull-right"><button class="btn btn-primary">Users</button></a>
     <a href="{{ route('roles.index') }}" class="btn btn-default pull-right"><button class="btn btn-primary">Roles</button></a>
-    <a href="{{ URL::to('backend/permissions/create') }}" class="btn btn-success">Add Permission</a>
+    <a href="{{ route('permissions.create') }}" class="btn btn-success"><i class="fa fa-plus"></i></a>
     </h1>
     <hr>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+        <table id="example" class="display" style="width:100%" class="table">
             <thead>
                 <tr>
                     <th>Permissions</th>
@@ -35,4 +35,17 @@
         </table>
     </div>
 </div>
+
+
+
+<script>
+
+    //DataTable Script
+    $(document).ready(function() {
+            $('#example').DataTable();
+    } );
+
+</script>
+
+
 @endsection

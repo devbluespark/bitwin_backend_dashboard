@@ -19,66 +19,108 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $users = User::latest()->paginate();
-        return view('backend.users.index', compact('users'));
+    
+
+    public function index(){
+       try {
+            $users = User::all();
+            return view('backend.users.index', compact('users'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }    
+
     }
-    public function create()
-    {
-        $roles = Role::get();        
-        return view('backend.users.create', compact('roles'));
+
+
+    public function create(){
+        try {
+            $roles = Role::get();        
+             return view('backend.users.create', compact('roles'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        } 
+        
     }
-    public function store(Request $request)
-    {
+
+
+    public function store(Request $request){
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|max:20|min:3',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'roles' => 'required'
+            'password' => 'required|string|min:6|confirmed',
         ]);
-        $user = User::create($request->except('roles'));
-        
-        if($request->roles <> ''){
-            $user->roles()->attach($request->roles);
-        }
-        return redirect()->route('users.index')->with('success','User has been created');            
+
+        try {
+            
+            $user = User::create($request->except('roles'));
+            
+            if($request->roles <> ''){
+                $user->roles()->attach($request->roles);
+            }
+            return redirect()->route('users.index')->with('success','User has been created');            
+ 
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        } 
         
     }
+
+    
     public function edit($id) {
+
+        try {
+            
         $user = User::findOrFail($id);
         $roles = Role::get(); 
-        return view('backend.users.edit', compact('user', 'roles')); 
+        return view('backend.users.edit', compact('user', 'roles'));
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        } 
+
     }
+
     public function update(Request $request, $id) {
-        $user = User::findOrFail($id);   
+           
         $this->validate($request, [
-            'name'=>'required|max:120',
+            'name'=>'required|max:20|min:3',
             'email'=>'required|email|unique:users,email,'.$id,
-            'password'=>'required|min:6|confirmed'
+            'password'=>'required|string|min:6|confirmed',
+            'roles' => 'required'
         ]);
-        $input = $request->except('roles');
-        $user->fill($input)->save();
-        if ($request->roles <> '') {
-            $user->roles()->sync($request->roles);        
-        }        
-        else {
-            $user->roles()->detach(); 
-        }
-        return redirect()->route('users.index')->with('success',
-             'User successfully updated.');
+
+        try {
+            $user = User::findOrFail($id);
+            $input = $request->except('roles');
+            $user->fill($input)->save();
+            if ($request->roles <> '') {
+                $user->roles()->sync($request->roles);        
+            }        
+            else {
+                $user->roles()->detach(); 
+            }
+            return redirect()->route('users.index')->with('success',
+                 'User successfully updated.');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }    
     }
+    
+
     public function destroy($id) {
  
-        $user = User::findOrFail($id); 
-        $user->delete();
-        return back();
-        //return redirect()->route('users.index')->with('success',
-          //   'User successfully deleted.');
+        try {
+            
+            $user = User::findOrFail($id); 
+            $user->delete();
+            return redirect()->route('users.index');
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        } 
+        
+    
     }
+
+
 }

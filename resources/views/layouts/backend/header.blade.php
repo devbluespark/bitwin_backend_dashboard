@@ -16,3 +16,6 @@
 <!--  Links For DataTable  -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+<!--  Sweet alert CDN     -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
