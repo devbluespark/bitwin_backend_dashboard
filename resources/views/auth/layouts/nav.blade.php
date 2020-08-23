@@ -75,14 +75,11 @@
 
                     <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
 
-                   
-                    <a href="{{ route('logout') }}"onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                        <i class="fa fa-power-off"></i> Logout
-                    
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
+                    <a class="nav-link" href="#"><i class="fa fa-power-off"></i>
+                        <form action="/logout" method="post" id="logout-form">
+                            {{ csrf_field()  }}
+                            <a href="#" onclick="document.getElementById('logout-form').submit()">Logout</a>
+                        </form>
                     </a>
                 </div>
             </div>

@@ -1,21 +1,10 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
-    return view('home');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -26,18 +15,26 @@ Route::get('/dashboard', function () {
 
 
 //**************  All   Backends Routes     */
-Route::group(['prefix' => 'backend', 'middleware' => ['auth','has_permission']], function() {
+Route::group(['prefix' => 'backend'], function() {
 
+    Auth::routes();
 
-    Route::resources([
-        'packages' => 'Backend\PackagesController',
+    Route::middleware(['auth', 'has_permission'])->group(function () {
         
 
-        //User Rolls.Permissions, Management Routes
-        'users' =>  'Backend\UserController',
-        'roles' =>  'Backend\RoleController',
-	    'permissions' => 'Backend\PermissionController',
-    ]);
+        Route::resources([
+            'packages' => 'Backend\PackagesController',
+            
+    
+            //User Rolls.Permissions, Management Routes
+            'users' =>  'Backend\UserController',
+            'roles' =>  'Backend\RoleController',
+            'permissions' => 'Backend\PermissionController',
+        ]);
+
+
+        });
+   
 
    
     
