@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function index(){
        try {
-            $users = User::all();
+            $users = User::where('user_delete_status', 0)->get();
             return view('backend.users.index', compact('users'));
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -107,9 +107,11 @@ class UserController extends Controller
  
         try {
             
-            $user = User::findOrFail($id); 
-            $user->delete();
-            return redirect()->route('users.index');
+            $delete_user=User::find($id);
+            $delete_user->user_delete_status = 1;
+    
+            $delete_user->save();
+            return redirect('backend/users');
 
         } catch (\Exception $e) {
             return $e->getMessage();
