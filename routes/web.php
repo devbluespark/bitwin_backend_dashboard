@@ -42,11 +42,15 @@ Route::group(['prefix' => 'backend'], function() {
     
     //***************************Product Routes*********************
 
-    Route::get('/products','ProductController@index');//index page
-    Route::get('/addproducts','ProductController@addproductindex');//index page
-    Route::get('/editproducts/{id}','ProductController@editproductindex');//edit page
-    Route::put('/editproducts/{id}','ProductController@edit');//edit 
-    Route::post('/addproducts','ProductController@productstore');//store
+     //***************************Product Routes*********************
+     Route::resources([
+        'products'=>'Backend\ProductsController'
+        ]);
+    
+    Route::post('/productdelete', 'Backend\ProductsController@delete');
+    Route::post('/productpublish', 'Backend\ProductsController@publish');
+    Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
+    
 
     
 });

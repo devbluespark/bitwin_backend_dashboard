@@ -31,20 +31,10 @@
                 <a href="{{ route('packages.index')}}"> <i class="menu-icon fa fa-briefcase"></i>Packages </a>
                 </li>
                 {{-- {!!  $htmlMenu !!} --}}
-
-                {{-- Products side bar items --}}
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Products</a>
-                    <ul class="sub-menu children dropdown-menu animated fadeIn">
-                        <li>
-                            <a href="/backend/products">VIEW </a>
-                        </li>
-                        <li>
-                            <a href="/backend/addproducts">ADD </a>
-                        </li>
-                       
-                    </ul>
-                
+        
+                <li class="">
+                    <a href="/backend/products"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Products</a>
+                          
                 </li>
 
 
