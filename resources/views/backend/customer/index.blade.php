@@ -12,7 +12,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <strong class="mr-5 ">Customers</strong>
-                                    <a href="{{ route('customers.create') }}"><button class="btn btn-primary mb-3 ml-5"> <i class="fa fa-plus"></i> </button></a>
+                                    {{-- <a href="{{ route('customers.create') }}"><button class="btn btn-primary mb-3 ml-5"> <i class="fa fa-plus"></i> </button></a> --}}
                                   </div>
                             </div>
                         </div>
@@ -46,18 +46,16 @@
                 <td>
                 
                   <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
+                  <a class="mr-3" href='{{ route("biddetails.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
                   @if ($customer->user_active == 1)
-                  <button type="button" onclick="unpublish_product({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModaldeactivate"> <i class="fa fa-check"></i></button>                
+                  <button type="button" onclick="sweet_alert_deactivate({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModaldeactivate"> <i class="fa fa-check"></i></button>                
                   @else
-                  <button type="button" onclick="publish_product({{ $customer->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalactivate"> <i class="fa fa-check"></i></button>                
+                  <button type="button" onclick="sweet_alert_activate({{ $customer->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalactivate"> <i class="fa fa-check"></i></button>                
                   @endif
                 </th>
             </tr>
             @endforeach
-            
-           
-            
-            
+                
         </tbody>
         <tfoot>
             <tr>
@@ -71,6 +69,19 @@
     </table>
 
 
+  <form action="customerdeactivate" method="POST" id="deactivate_form">
+      {{csrf_field()}}
+  <input  type="hidden" name="id" id="hidden_deactive">
+   </form>
+
+   <form action="customeractivate" method="POST" id="activate_form">
+    {{csrf_field()}}
+  <input  type="hidden" name="id" id="hidden_active" >
+  </form>
+
+
+
+
 
 </div>
 </div>
@@ -78,84 +89,60 @@
 </div>
 </div>
 
-<?php if(isset($product)) {  ?>
 
-  
-
-     <!-- Modal to activate -->
-  <div class="modal fade" id="exampleModalactivate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Activate(<b><span id="publish_product_name"></span></b>)</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body"> 
-            Are you Sure...?
-          </div>
-          <form action="customerdeactivate" method="POST">
-              {{csrf_field()}}
-          <input  type="hidden" name="id" id="hidden_active" >
-           
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Activate</button>
-          </div>
-      </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal to unpublish -->
-  <div class="modal fade" id="exampleModaldeactivate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Deactivate(<b><span id="publish_product_name"></span></b>)</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body"> 
-          Are you Sure...?
-        </div>
-        <form action="customeractivate" method="POST">
-            {{csrf_field()}}
-        <input  type="hidden" name="id" id="hidden_deactive" >
-         
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Deactivate</button>
-        </div>
-    </form>
-      </div>
-    </div>
-  </div>
-  
-  <?php } ?>
 
 <script>
     //DataTable Script
     $(document).ready(function() {
             $('#example').DataTable();
-        } );
+        });
 
- 
-     //publish button scirpt
-     function publish_product(id) {
-       
-        document.querySelector('#hidden_active').value = id;
-    
-  
+//activate customer sweet alert
+function sweet_alert_activate(id){
+      Swal.fire({
+            title: 'Do you want to Activate ?',
+            // text: "You won't be able to revert this!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+              if (result.value) {
+                return activate_customer(id)
+              }
+            })
+     }
+//Deactivate customer sweet alert
+function sweet_alert_deactivate(id){
+      Swal.fire({
+            title: 'Do you want to Deactivate ?',
+            // text: "You won't be able to revert this!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+              if (result.value) {
+                return deactivate_customer(id)
+              }
+            })
+     }
+
+     //activate button scirpt
+     function activate_customer(id) {      
+        document.querySelector('#hidden_active').value = id; 
+        document.querySelector('#activate_form').submit()     
+
     }
-    //publish button scirpt
-    function unpublish_product(id) {
-       
-       document.querySelector('#hidden_deactive').value = id;
-   
- 
+    //deavtivate button scirpt
+    function deactivate_customer(id) {     
+       document.querySelector('#hidden_deactive').value = id; 
+       document.querySelector('#deactivate_form').submit()     
+
    }
 
 </script>

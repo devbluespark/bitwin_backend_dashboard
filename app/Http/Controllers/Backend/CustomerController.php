@@ -12,10 +12,8 @@ class CustomerController extends Controller
   
     public function index()
     {
-        // $customers=Customer::where('user_active','1')->get();
+       
         $customers = DB::table('bid_users')->get();
-    
-        // return $customers;
         return view('backend/customer/index',compact('customers'));
     }
 
@@ -28,25 +26,30 @@ class CustomerController extends Controller
  
     public function store(Request $request)
     {
-        //
+        //not using
     }
 
     public function show($id)
     {
-        $customer = DB::table('bid_users')->where('id',$id)->first();
-        return view('backend/customer/show',compact('customer'));
+        try{
+            $customer = DB::table('bid_users')->where('id',$id)->first();
+            return view('backend/customer/show',compact('customer'));
+        }catch(Exception $e){
+            return redirect('backend/customers');
+        }
+       
     }
 
     
     public function edit(Customer $customer)
     {
-        //
+        //not using
     }
 
    
     public function update(Request $request, Customer $customer)
     {
-        //
+        //not using
     }
 
   
@@ -54,33 +57,24 @@ class CustomerController extends Controller
     {
         //
     }
-
+    //customer activate function
     public function activate(Request $request){
+        
         try {
-            
-            $product_id= $request->id;
-            $product=Product::find($product_id);
-            $product->product_active = "0";
-    
-            $product->save();
-            return redirect('backend/products');
-    
+            $customer = DB::table('bid_users')->where('id',$request->id)->update(['user_active'=>'1']);   
+            return redirect('backend/customers'); 
         } catch (\Exception $e) {
-            return redirect('backend/products');
+            return redirect('backend/customers');
         }
     }   
+    //customer deactivate function
     public function deactivate(Request $request){
-        try {
-            
-            $product_id= $request->id;
-            $product=Product::find($product_id);
-            $product->product_active = "0";
-    
-            $product->save();
-            return redirect('backend/products');
-    
+
+        try {           
+            $customer = DB::table('bid_users')->where('id',$request->id)->update(['user_active'=>'0']);  
+            return redirect('backend/customers');   
         } catch (\Exception $e) {
-            return redirect('backend/products');
+            return redirect('backend/customers');
         }
     }
 }

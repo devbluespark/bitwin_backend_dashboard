@@ -56,7 +56,7 @@ Route::group(['prefix' => 'backend'], function() {
         ]);
     
     Route::post('/customeractivate', 'Backend\CustomerController@activate');
-    Route::post('/customerdeactivate', 'Backend\CustomerController@deactvate');
+    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
     
     
     

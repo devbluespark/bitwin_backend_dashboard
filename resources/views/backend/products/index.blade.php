@@ -169,53 +169,78 @@
     //DataTable Script
     $(document).ready(function() {
             $('#example').DataTable();
-        } );
+        });
 
   
      //publish button scirpt
      function sweet_alert_publish(id){
-       Swal.fire({
-          title: 'Do you want to publish  ?',
-          icon: 'question',
-          confirmButtonText: 'Yes'
-          })
-          .then(() => publish_product(id))
+      Swal.fire({
+            title: 'Do you want to publish ?',
+            // text: "You won't be able to revert this!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+              if (result.value) {
+                return publish_product(id)
+              }
+            })
      }
+                        
+                        
+     
       function sweet_alert_unpublish(id){
-       Swal.fire({
-          title: 'Do you want to unpublish ?',
-          icon: 'question',
-          confirmButtonText: 'Yes'
-          })
-          .then(() => unpublish_product(id))
+        Swal.fire({
+            title: 'Do you want to unpublish ?',
+            // text: "You won't be able to revert this!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+              if (result.value) {
+                return unpublish_product(id)
+              }
+            })           
      } 
      function sweet_delete(id){
-       Swal.fire({
-          title: 'Do you want to delete ?',
-          icon: 'question',
-          confirmButtonText: 'Yes'
-          })
-          .then(() => delete_product(id))
-     }
+      Swal.fire({
+            title: 'Do you want to delete ?',
+            // text: "You won't be able to revert this!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+              if (result.value) {
+                return delete_product(id)
+         }
+      })     
+    }
+
+
      function publish_product(id) {
        
         document.querySelector('#hidden_publish').value = id;
-        document.querySelector('#publish_form').submit()
-    
-  
+        document.querySelector('#publish_form').submit()     
     }
     //publish button scirpt
-    function unpublish_product(id) {
-       
+    function unpublish_product(id) {     
        document.querySelector('#hidden_unpublish').value = id;
        document.querySelector('#unpublish_form').submit()
    }
-         //Delete button scirpt
-         function delete_product(id) {
-    
+    //Delete button scirpt
+    function delete_product(id) {   
       document.querySelector('#hidden_delete').value = id;
       document.querySelector('#delete_form').submit()
-         }
+    }
     
 
 </script>

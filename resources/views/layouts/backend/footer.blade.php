@@ -12,7 +12,7 @@
 <script src="{{asset('assets/backend/js/jquery.vmap.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/backend/js/jquery.vmap.sampledata.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/backend/js/jquery.vmap.world.js')}}" type="text/javascript"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 <script src="{{asset('assets/backend/js/chosen.jquery.js')}}" type="text/javascript"></script>
 
 
@@ -23,7 +23,7 @@
 
 {{-- sweet alerts --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="sweetalert2.all.min.js"></script>
+{{-- <script src="sweetalert2.all.min.js"></script> --}}
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 
