@@ -46,8 +46,6 @@
                 <td>
                 
                   <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
-                  <a class="mr-3" href='{{ route("customers.edit", $customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-pencil"></i></button></a>
-                  <button type="button" onclick="delete_product({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-trash"></i></button>                
                   @if ($customer->user_active == 1)
                   <button type="button" onclick="unpublish_product({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                
                   @else
