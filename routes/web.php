@@ -30,10 +30,12 @@ Route::group(['prefix' => 'backend'], function() {
             'users' =>  'Backend\UserController',
             'roles' =>  'Backend\RoleController',
             'permissions' => 'Backend\PermissionController',
+            'payments-gateways' => 'Backend\PaymentgatewayController',
+            'payments-reciepts' => 'Backend\PaymentbankController',
         ]);
 
 
-        });
+    });
    
 
    

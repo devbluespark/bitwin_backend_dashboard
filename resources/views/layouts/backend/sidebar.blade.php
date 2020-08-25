@@ -5,8 +5,9 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="./"><img src="{{ asset('assets/backend/images/logo.png') }}" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="{{ asset('assets/backend/images/logo2.png') }}" alt="Logo"></a>
+            
+            <a class="navbar-brand" href="./"><p>{{ $user = Auth::user()->name }}</p></a> 
+            <a class="navbar-brand hidden" href="./"><img src="{{ asset('assets/backend/images/logo2.png') }}" alt="Logo"></a> 
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -45,6 +46,19 @@
                     </ul>
                 
                 </li>
+
+
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Payments</a>
+                    <ul class="sub-menu children dropdown-menu">
+                    <li><i class="menu-icon fa fa-usd"></i><a href="">Payments All</a></li>
+                    <li><i class="menu-icon fa fa-btc"></i><a href="{{ route('payments-gateways.index')}}">Payment Gateway</a></li>
+                    <li><i class="menu-icon fa fa-book"></i><a href="{{ route('payments-reciepts.index')}}">Payment with Reciepts</a></li>
+                    </ul>
+                </li>
+
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

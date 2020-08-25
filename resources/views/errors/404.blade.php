@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.backend.app')
 @section('content')
     <div class="col-md-10 col-md-offset-2">
         <div class="panel panel-primary">
