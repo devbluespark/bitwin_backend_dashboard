@@ -4,17 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Package extends Model
+class Receipt extends Model
 {
-    protected $table = 'packages';
+    protected $table = 'receipts';
     protected $primaryKey ='id';
 
     protected $guarded = [];
-
-
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 
     public function payments_gateways(){
         return $this->hasMany(Payments_Gateway::class);
@@ -24,6 +19,6 @@ class Package extends Model
     public function payments_receipts(){
         return $this->hasMany(Payments_Reciept::class);
     }
-    
+
     
 }

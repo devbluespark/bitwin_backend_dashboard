@@ -6,18 +6,15 @@ use App\BidUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Package;
-use App\PaymentGateway;
+use App\Payments_Gateway;
+use App\Receipt;
 
 class PaymentgatewayController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(){
         try {
-            $payments = PaymentGateway::all();
+            $payments = Payments_Gateway::all();
             return view('backend.payment-gateway.index', compact('payments'));
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -25,51 +22,38 @@ class PaymentgatewayController extends Controller
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PaymentGateway $payment)
-    {
+   
+
+    public function show($payment_id){
+    
+
         try {
-            $package = Package::find($payment->payment_id);
-            $bid_user = BidUser::find($payment->payment_id);
             
-            return view('backend.packages.show',compact('payment','user'));
+            
+             $payment_gateway = Payments_Gateway::find($payment_id);
+             $receipt= Receipt::find($payment_gateway->receipts_id);
+             return view('backend.payment-gateway.show',compact('payment_gateway','recipt'));
+             
+      
+            
         } catch (\Exception $e) {
             return $e->getMessage();
         } 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         //

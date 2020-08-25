@@ -4,82 +4,71 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Payments_Reciept;
+use App\Receipt;
 
 class PaymentbankController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
-        echo "payments bank";
+        try {
+             $payments_not_confirmed = Payments_Reciept::where('payment_receipt_confirm', 0)->get();
+            $payments_confirmed = Payments_Reciept::where('payment_receipt_confirm', 1)->get();
+            return view('backend.payment-receipt.index', compact('payments_not_confirmed','payments_confirmed'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function show($payment_id)
     {
-        //
+        try {
+            
+            
+            $payment_receipt = Payments_Reciept::find($payment_id);
+            $receipt= Receipt::find($payment_receipt->receipts_id);
+            return view('backend.payment-receipt.show',compact('payment_receipt','receipt'));
+            
+     
+           
+       } catch (\Exception $e) {
+           return $e->getMessage();
+       }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+
+    public function payment_confirmed(Request $request){
+        try {
+            
+            $payment_id= $request->id;
+            $confirmed_payment=Payments_Reciept::find($payment_id);
+
+            $confirmed_payment->payment_receipt_confirm = 1;
+            $confirmed_payment->save();
+            return redirect('backend/payments-reciepts');
+    
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
+
+
+
 }

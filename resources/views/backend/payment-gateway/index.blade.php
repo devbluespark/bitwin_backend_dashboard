@@ -16,7 +16,6 @@
             <tr>
                 <th>ID</th>
                 <th>Payment Date</th>
-                <th>User Name</th>
                 <th>Pyment Amount</th>
                 <th>Bank</th>
                 <th class="text-center">Actions</th>
@@ -34,9 +33,8 @@
             <tr>
                 <td>{{ $payment->id }}</td>
                 <td>{{ $payment->created_at }}</td>
-                <td>{{ $payment->payemnt_amount }}</td>
-                <td>{{ $payment->payemnt_amount }}</td>
-                <td>{{ $payment->payemnt_bank }}</td>
+                <td>{{ $payment->payment_amount }}</td>
+                <td>{{ $payment->payment_bank }}</td>
 
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">

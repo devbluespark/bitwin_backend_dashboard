@@ -31,8 +31,12 @@ Route::group(['prefix' => 'backend'], function() {
             'roles' =>  'Backend\RoleController',
             'permissions' => 'Backend\PermissionController',
             'payments-gateways' => 'Backend\PaymentgatewayController',
-            'payments-reciepts' => 'Backend\PaymentbankController',
+            'payments-receipts' => 'Backend\PaymentbankController',
         ]);
+
+        Route::post('payments-receipts-confirmed','Backend\PaymentbankController@payment_confirmed')->name('payments-receipts.confirmed');
+
+     
 
 
     });

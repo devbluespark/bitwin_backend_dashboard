@@ -56,6 +56,7 @@ class PackagesController extends Controller
    
     public function show(Package $package){
 
+
        try {
             $user = User::find($package->users_id);
             return view('backend.packages.show',compact('package','user'));
