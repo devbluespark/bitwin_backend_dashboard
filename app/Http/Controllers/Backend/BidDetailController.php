@@ -31,14 +31,10 @@ class BidDetailController extends Controller
     public function show($id)
     {
         try{
-            $bid_records = DB::table('bid_records')
-            ->where('id',$id)
-            // ->join('bid_users', 'bid_users.id', '=', 'bid_records.bid_user_id')
-            // ->join('products', 'products.id', '=', 'bid_records.product_id')
-            // ->select('bid_users.*', 'bid_records.*', 'products.*')
-            ->first();
+            $bid_records = BidDetail::all();
+          
             return $bid_records;
-            // return view('backend/biddetails/show',compact('bid_records'));
+            return view('backend/biddetails/show');
         }catch(Exception $e){
             return redirect('backend/customers');
         }
