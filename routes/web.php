@@ -57,6 +57,15 @@ Route::group(['prefix' => 'backend'], function() {
     
     Route::post('/customeractivate', 'Backend\CustomerController@activate');
     Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
+
+
+     //***************************Backend Bid details Routes*********************
+    Route::resources([
+        'biddetails'=>'Backend\BidDetailController'
+        ]);
+    
+    Route::post('/customeractivate', 'Backend\CustomerController@activate');
+    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
     
     
     
