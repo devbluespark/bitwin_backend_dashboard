@@ -48,11 +48,13 @@
                 
                   <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
                   <a class="mr-3" href='{{ route("products.edit",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-pencil"></i></button></a>
-                  <button type="button" onclick="delete_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-trash"></i></button>                
+                  <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash"></i></button>                
                   @if ($product['product_active'] == 1)
-                  <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                
+                  {{-- <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                 --}}
+                  <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-check"></i></button>                
                   @else
-                  <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                
+                  {{-- <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                 --}}
+                  <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check"></i></button>                
                   @endif
                 </th>
             </tr>
@@ -96,7 +98,7 @@
           <div class="modal-body"> 
             Are you Sure...?
           </div>
-          <form action="productdelete" method="POST">
+          <form action="productdelete" method="POST" id="delete_form">
               {{csrf_field()}}
           <input  type="hidden" name="id"  id="hidden_delete">
            
@@ -122,7 +124,7 @@
           <div class="modal-body"> 
             Are you Sure...?
           </div>
-          <form action="productpublish" method="POST">
+          <form action="productpublish" method="POST" id="publish_form">
               {{csrf_field()}}
           <input  type="hidden" name="id" id="hidden_publish" >
            
@@ -148,7 +150,7 @@
         <div class="modal-body"> 
           Are you Sure...?
         </div>
-        <form action="productunpublish" method="POST">
+        <form action="productunpublish" method="POST" id="unpublish_form">
             {{csrf_field()}}
         <input  type="hidden" name="id" id="hidden_unpublish" >
          
@@ -169,16 +171,36 @@
             $('#example').DataTable();
         } );
 
-        //Delete button scirpt
-    function delete_product(id) {
-    
-    document.querySelector('#hidden_delete').value = id;
-   
-    }
+  
      //publish button scirpt
+     function sweet_alert_publish(id){
+       Swal.fire({
+          title: 'Do you want to publish  ?',
+          icon: 'question',
+          confirmButtonText: 'Yes'
+          })
+          .then(() => publish_product(id))
+     }
+      function sweet_alert_unpublish(id){
+       Swal.fire({
+          title: 'Do you want to unpublish ?',
+          icon: 'question',
+          confirmButtonText: 'Yes'
+          })
+          .then(() => unpublish_product(id))
+     } 
+     function sweet_delete(id){
+       Swal.fire({
+          title: 'Do you want to delete ?',
+          icon: 'question',
+          confirmButtonText: 'Yes'
+          })
+          .then(() => delete_product(id))
+     }
      function publish_product(id) {
        
         document.querySelector('#hidden_publish').value = id;
+        document.querySelector('#publish_form').submit()
     
   
     }
@@ -186,9 +208,15 @@
     function unpublish_product(id) {
        
        document.querySelector('#hidden_unpublish').value = id;
-   
- 
+       document.querySelector('#unpublish_form').submit()
    }
+         //Delete button scirpt
+         function delete_product(id) {
+    
+      document.querySelector('#hidden_delete').value = id;
+      document.querySelector('#delete_form').submit()
+         }
+    
 
 </script>
 

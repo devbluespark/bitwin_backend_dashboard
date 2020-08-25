@@ -55,11 +55,10 @@ Route::group(['prefix' => 'backend'], function() {
         'customers'=>'Backend\CustomerController'
         ]);
     
-    Route::post('/productdelete', 'Backend\ProductsController@delete');
-    Route::post('/productpublish', 'Backend\ProductsController@publish');
-    Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
+    Route::post('/customeractivate', 'Backend\CustomerController@activate');
+    Route::post('/customerdeactivate', 'Backend\CustomerController@deactvate');
     
-
+    
     
 });
 

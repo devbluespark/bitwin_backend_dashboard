@@ -47,9 +47,9 @@
                 
                   <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
                   @if ($customer->user_active == 1)
-                  <button type="button" onclick="unpublish_product({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                
+                  <button type="button" onclick="unpublish_product({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModaldeactivate"> <i class="fa fa-check"></i></button>                
                   @else
-                  <button type="button" onclick="publish_product({{ $customer->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                
+                  <button type="button" onclick="publish_product({{ $customer->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalactivate"> <i class="fa fa-check"></i></button>                
                   @endif
                 </th>
             </tr>
@@ -80,38 +80,14 @@
 
 <?php if(isset($product)) {  ?>
 
-  <!-- Modal to delete -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Delete product(<b><span id="delete_product_name"></span></b>)</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body"> 
-            Are you Sure...?
-          </div>
-          <form action="productdelete" method="POST">
-              {{csrf_field()}}
-          <input  type="hidden" name="id"  id="hidden_delete">
-           
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Delete</button>
-          </div>
-      </form>
-        </div>
-      </div>
-    </div>
+  
 
-     <!-- Modal to publish -->
-  <div class="modal fade" id="exampleModalpublish" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- Modal to activate -->
+  <div class="modal fade" id="exampleModalactivate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Publish product(<b><span id="publish_product_name"></span></b>)</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Activate(<b><span id="publish_product_name"></span></b>)</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -119,13 +95,13 @@
           <div class="modal-body"> 
             Are you Sure...?
           </div>
-          <form action="productpublish" method="POST">
+          <form action="customerdeactivate" method="POST">
               {{csrf_field()}}
-          <input  type="hidden" name="id" id="hidden_publish" >
+          <input  type="hidden" name="id" id="hidden_active" >
            
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Publish</button>
+            <button type="submit" class="btn btn-primary">Activate</button>
           </div>
       </form>
         </div>
@@ -133,11 +109,11 @@
     </div>
 
     <!-- Modal to unpublish -->
-  <div class="modal fade" id="exampleModalunpublish" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModaldeactivate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Unublish product(<b><span id="publish_product_name"></span></b>)</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Deactivate(<b><span id="publish_product_name"></span></b>)</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -145,13 +121,13 @@
         <div class="modal-body"> 
           Are you Sure...?
         </div>
-        <form action="productunpublish" method="POST">
+        <form action="customeractivate" method="POST">
             {{csrf_field()}}
-        <input  type="hidden" name="id" id="hidden_unpublish" >
+        <input  type="hidden" name="id" id="hidden_deactive" >
          
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Unublish</button>
+          <button type="submit" class="btn btn-primary">Deactivate</button>
         </div>
     </form>
       </div>
@@ -166,23 +142,18 @@
             $('#example').DataTable();
         } );
 
-        //Delete button scirpt
-    function delete_product(id) {
-    
-    document.querySelector('#hidden_delete').value = id;
-   
-    }
+ 
      //publish button scirpt
      function publish_product(id) {
        
-        document.querySelector('#hidden_publish').value = id;
+        document.querySelector('#hidden_active').value = id;
     
   
     }
     //publish button scirpt
     function unpublish_product(id) {
        
-       document.querySelector('#hidden_unpublish').value = id;
+       document.querySelector('#hidden_deactive').value = id;
    
  
    }

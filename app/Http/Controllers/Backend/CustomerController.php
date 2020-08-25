@@ -9,11 +9,7 @@ use DB;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         // $customers=Customer::where('user_active','1')->get();
@@ -23,70 +19,68 @@ class CustomerController extends Controller
         return view('backend/customer/index',compact('customers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $customer = DB::table('bid_users')->where('id',$id)->first();
         return view('backend/customer/show',compact('customer'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Customer $customer)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Customer $customer)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    public function activate(Request $request){
+        try {
+            
+            $product_id= $request->id;
+            $product=Product::find($product_id);
+            $product->product_active = "0";
+    
+            $product->save();
+            return redirect('backend/products');
+    
+        } catch (\Exception $e) {
+            return redirect('backend/products');
+        }
+    }   
+    public function deactivate(Request $request){
+        try {
+            
+            $product_id= $request->id;
+            $product=Product::find($product_id);
+            $product->product_active = "0";
+    
+            $product->save();
+            return redirect('backend/products');
+    
+        } catch (\Exception $e) {
+            return redirect('backend/products');
+        }
     }
 }
