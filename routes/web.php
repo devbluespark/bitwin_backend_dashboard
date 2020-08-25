@@ -39,12 +39,20 @@ Route::group(['prefix' => 'backend'], function() {
    
 
    
-    
-    //***************************Product Routes*********************
 
      //***************************Product Routes*********************
      Route::resources([
         'products'=>'Backend\ProductsController'
+        ]);
+    
+    Route::post('/productdelete', 'Backend\ProductsController@delete');
+    Route::post('/productpublish', 'Backend\ProductsController@publish');
+    Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
+    
+
+    //***************************Backend Customer Routes*********************
+    Route::resources([
+        'customers'=>'Backend\CustomerController'
         ]);
     
     Route::post('/productdelete', 'Backend\ProductsController@delete');

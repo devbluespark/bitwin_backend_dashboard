@@ -36,6 +36,10 @@
                     <a href="/backend/products"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Products</a>
                           
                 </li>
+                <li class="">
+                    <a href="/backend/customers"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Customers</a>
+                          
+                </li>
 
 
 
