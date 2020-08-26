@@ -32,10 +32,10 @@ class ProductsController extends Controller
         }
         $validatedData = $request->validate([
             'product_name' => 'required',
-            'product_price' => 'required|numeric|min:1|max:1000',
-            'product_bid_rolls' => 'required|numeric|min:1|max:1000',
-            'product_bid_min_value' =>'required|numeric|min:1|max:1000',
-            'product_bid_max_value' =>'required|numeric|min:1|max:1000',
+            'product_price' => 'required|numeric|min:1|max:1000000',
+            'product_bid_rolls' => 'required|numeric|min:1|max:1000000',
+            'product_bid_min_value' =>'required|numeric|min:1|max:1000000',
+            'product_bid_max_value' =>'required|numeric|min:1|max:1000000',
             'product_img_1' =>'required',
             'product_img_2' =>'required',           
         ]);

@@ -50,7 +50,7 @@
                                   <td>Inactive</td>
                                   @endif
                                   <td>                                 
-                                    <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
+                                    <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>                  
                                     <a class="mr-3" href='{{ route("products.edit",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-pencil"></i></button></a>
                                     <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash"></i></button>                
                                     @if ($product['product_active'] == 1)
