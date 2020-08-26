@@ -12,7 +12,7 @@
                                 <strong class="card-title">Products Edit</strong>
                             </div>
                             <div class="card-body">
-                                <form action="/backend/editproducts/{{$product->id}}" method="POST" enctype='multipart/form-data'>
+                                <form action="{{ route("products.update",[ "product" => $product['id']])}}" method="POST" enctype='multipart/form-data'>
                                   {{ csrf_field() }} {{ method_field('PUT') }}
                                     <div class="form-row">
                                       <div class="form-group col-md-6">
@@ -84,16 +84,30 @@
                                     <div class="form-row">
                                       <div class="form-group col-md-6">
                                         <label for="inputCity">Product Expired</label>
-                                        <input type="text" class="form-control"required value="{{$product->product_expired}}" name="product_expired" id="inputCity">
+                                        <input type="text" class="form-control"required value="@if ($product['product_expired'] === 1)Expired
+                                        @else Not Expired                                        
+                                         @endif" name="" id="inputCity">
                                       </div>                                                             
                                     </div>
                                     <div class="form-row">
                                       <div class="form-group col-md-6">
-                                        <label for="inputCity">Product Featured</label>
-                                        <input type="text" class="form-control"required value="{{$product->product_featured}}"name="product_featured" id="inputCity">
+                                        <label for="inputCity">Product Featured or Not</label>
+                                        <div class="row">
+                                          <input type="text" class="form-control col-3" name="" 
+                                          value="@if ($product['product_featured'] == 1)Featured
+                                            @else Not Featured                                        
+                                            @endif" id="">
+                                          <div class="form-group">
+                                            <select name="product_featured" id="remarks" class="form-control">
+                                                <option value="1">Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                        </div>
+    
                                       </div>                                                             
                                     </div>
-                                    <button type="submit" class="btn btn-primary">ADD</button>
+                                    <button type="submit" class="btn btn-primary">UPDATE</button>
                                 </form>
                             </div>
                         </div>
