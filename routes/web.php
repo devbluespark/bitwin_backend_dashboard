@@ -43,15 +43,35 @@ Route::group(['prefix' => 'backend'], function() {
    
 
    
+
+     //***************************Product Routes*********************
+     Route::resources([
+        'products'=>'Backend\ProductsController'
+        ]);
     
-    //***************************Product Routes*********************
+    Route::post('/productdelete', 'Backend\ProductsController@delete');
+    Route::post('/productpublish', 'Backend\ProductsController@publish');
+    Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
+    
 
-    Route::get('/products','ProductController@index');//index page
-    Route::get('/addproducts','ProductController@addproductindex');//index page
-    Route::get('/editproducts/{id}','ProductController@editproductindex');//edit page
-    Route::put('/editproducts/{id}','ProductController@edit');//edit 
-    Route::post('/addproducts','ProductController@productstore');//store
+    //***************************Backend Customer Routes*********************
+    Route::resources([
+        'customers'=>'Backend\CustomerController'
+        ]);
+    
+    Route::post('/customeractivate', 'Backend\CustomerController@activate');
+    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
 
+
+     //***************************Backend Bid details Routes*********************
+    Route::resources([
+        'biddetails'=>'Backend\BidDetailController'
+        ]);
+    
+    Route::post('/customeractivate', 'Backend\CustomerController@activate');
+    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
+    
+    
     
 });
 
