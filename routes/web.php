@@ -63,14 +63,7 @@ Route::group(['prefix' => 'backend'], function() {
 
 
     });
-   
-
-   
-
-     
-    
-    
-    
+  
 });
 
 

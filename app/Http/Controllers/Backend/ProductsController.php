@@ -150,13 +150,74 @@ class ProductsController extends Controller
             'product_bid_max_value' =>'required|numeric|min:1|max:1000',
                    
         ]);
+        if($request->hasFile('product_img_1')){
+            $filenameWithExt = $request->file('product_img_1')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file('product_img_1')->getClientOriginalExtension();
+            $img_1_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
+            $path = $request->file('product_img_1')->storeAs('public/images',$img_1_filenameToStore);
+
+        }
        
+        if($request->hasFile('product_img_2')){
+            $filenameWithExt = $request->file('product_img_2')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file('product_img_2')->getClientOriginalExtension();
+            $img_2_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
+            $path = $request->file('product_img_2')->storeAs('public/images',$img_2_filenameToStore);
+
+        }
+       
+        if($request->hasFile('product_img_3')){
+            $filenameWithExt = $request->file('product_img_3')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file('product_img_3')->getClientOriginalExtension();
+            $img_3_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
+            $path = $request->file('product_img_3')->storeAs('public/images',$img_3_filenameToStore);
+
+        }
+       
+        if($request->hasFile('product_img_4')){
+            $filenameWithExt = $request->file('product_img_4')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file('product_img_4')->getClientOriginalExtension();
+            $img_4_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
+            $path = $request->file('product_img_4')->storeAs('public/images',$img_4_filenameToStore);
+
+        }
+       
+        if($request->hasFile('product_img_5')){
+            $filenameWithExt = $request->file('product_img_5')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            $extension = $request->file('product_img_5')->getClientOriginalExtension();
+            $img_5_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
+            $path = $request->file('product_img_5')->storeAs('public/images',$img_5_filenameToStore);
+
+        }
+       
+
         $product->update($request->all());
+        if($request->hasFile('product_img_1')){
+        $product->product_img_1=$img_1_filenameToStore;
+        }
+        if($request->hasFile('product_img_2')){
+        $product->product_img_2=$img_2_filenameToStore;
+        }
+        if($request->hasFile('product_img_3')){
+        $product->product_img_3=$img_3_filenameToStore;
+        }
+        if($request->hasFile('product_img_4')){
+        $product->product_img_4=$img_4_filenameToStore;
+        }
+        if($request->hasFile('product_img_5')){
+        $product->product_img_5=$img_5_filenameToStore;
+        }
+        $product->save();
     
-        return redirect()->back()->with('suc','Successfully Updated') ;  
+        return redirect('backend/products')->with('suc','Successfully Updated') ;  
         }
         catch(Exeption $e){
-            return redirect()->back()->with('suc','Updating canseled') ;   
+            return redirect()->back()->with('er','Updating canseled') ;   
         }
     }
 

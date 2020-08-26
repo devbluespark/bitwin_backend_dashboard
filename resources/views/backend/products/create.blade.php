@@ -26,7 +26,7 @@
                                     <div class="form-row">
                                       <div class="form-group col-md-6">
                                         <label for="product_name">Product Name</label>
-                                        <input type="text" class="form-control" required name="product_name" placeholder="">
+                                        <input type="text" class="form-control" required name="product_name" value="{{ $product['product_name'] ?? old('product_name') }}" placeholder="">
                                         @if ($errors->has('product_name'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -37,7 +37,7 @@
                                       </div>
                                       <div class="form-group col-md-6">
                                         <label for="inputPassword4">Product Price</label>
-                                        <input type="text" class="form-control"required name="product_price" id="inputPassword4" placeholder="">
+                                        <input type="text" class="form-control"required name="product_price" value="{{ $product['product_price'] ?? old('product_price') }}" id="inputPassword4" placeholder="">
                                         @if ($errors->has('product_price'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -50,7 +50,7 @@
                                     <div class="form-row">
                                     <div class="form-group col-md-6 ">
                                       <label for="inputAddress">Product Bit Value</label>
-                                      <input type="text" class="form-control"required name="product_bid_rolls" id="inputAddress" placeholder="">
+                                      <input type="text" class="form-control"required name="product_bid_rolls" value="{{ $product['product_bid_rolls'] ?? old('product_bid_rolls') }}" id="inputAddress" placeholder="">
                                       @if ($errors->has('product_bid_rolls'))
                                       <span class="help-block">
                                         <div class='alert alert-danger text-center'>
@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="inputAddress2">Product Bid Min Value</label>
-                                      <input type="text" class="form-control"required name="product_bid_min_value" id="inputAddress2" placeholder="">
+                                      <input type="text" class="form-control"required name="product_bid_min_value" value="{{ $product['product_bid_min_value'] ?? old('product_bid_min_value') }}" id="inputAddress2" placeholder="">
                                       @if ($errors->has('product_bid_min_value'))
                                       <span class="help-block">
                                         <div class='alert alert-danger text-center'>
@@ -73,7 +73,7 @@
                                     {{-- <div class="form-row"> --}}
                                       <div class="form-group col-md-6">
                                         <label for="inputCity">Product Bid Max Value</label>
-                                        <input type="text" class="form-control"required name="product_bid_max_value" id="inputCity">
+                                        <input type="text" class="form-control"required name="product_bid_max_value" value="{{ $product['product_bid_max_value'] ?? old('product_bid_max_value') }}" id="inputCity">
                                         @if ($errors->has('product_bid_max_value'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>

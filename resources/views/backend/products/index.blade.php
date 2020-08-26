@@ -12,6 +12,15 @@
                               <br>
                               {{-- <a href="/backend/addproducts"><button class="btn btn-primary mb-3 ml-5">Add </button></a> --}}
                               <a href="{{ route('products.create') }}"><button class="btn btn-primary mb-3 "> <i class="fa fa-plus"></i> </button></a>
+                              @if (session('suc'))
+                              <div class='alert alert-primary text-center'>
+                                  {{session('suc')}}
+                              </div>
+                              @elseif (session('er'))
+                              <div class='alert alert-danger text-center'>
+                                  {{session('er')}}
+                              </div>
+                               @endif
                             </div>
                       </div>
                   </div>
@@ -19,8 +28,10 @@
         </div>
      </div>
 </div>
+
 <div class="container">
     <div class="">  
+      
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card p-3">
