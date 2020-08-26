@@ -32,6 +32,7 @@ Route::group(['prefix' => 'backend'], function() {
             'permissions' => 'Backend\PermissionController',
             'payments-gateways' => 'Backend\PaymentgatewayController',
             'payments-receipts' => 'Backend\PaymentbankController',
+        
         ]);
 
         Route::post('payments-receipts-confirmed','Backend\PaymentbankController@payment_confirmed')->name('payments-receipts.confirmed');
@@ -80,6 +81,6 @@ Route::group(['prefix' => 'backend'], function() {
 // ALl Front End Routes //
 
     Route::resources([
-        'user-profile' => 'Frontend\ProfileController',
+        'profile' => 'Frontend\ProfileController',
         
     ]);
