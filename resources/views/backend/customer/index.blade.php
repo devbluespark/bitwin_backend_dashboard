@@ -41,8 +41,8 @@
                             <td>{{ $customer->user_email }}</td>
                             <td>{{ $customer->user_nic }}</td>
                             <td>               
-                              <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
-                              <a class="mr-3" href='{{ route("biddetails.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
+                              <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>                  
+                              <a class="mr-3" href='{{ route("biddetails.show",$customer->id ) }}' > <button class="btn btn-warning"> <i class="fa fa fa-money mx-2""></i></button></a>                  
                               @if ($customer->user_active == 1)
                               <button type="button" onclick="sweet_alert_deactivate({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModaldeactivate"> <i class="fa fa-check"></i></button>                
                               @else

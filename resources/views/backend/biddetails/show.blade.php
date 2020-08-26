@@ -1,68 +1,105 @@
 @extends('layouts.backend.app')
+
 @section('content')
 
-<div class="">
-    <div class="col-md-12 col-md-offset-1">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <strong class="mr-5 ">Bids</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="container">
-        <div class="row">
-           
-        </div>  
-    <div class="row justify-content-center">
+
+<h1>Details of {{$bid_user->user_fname}}</h1><br><br>
+ 
+<div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
-             <table id="example" class="display"  class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Product ID</th>
-                            <th>Bid Value</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>            
-                            @foreach ($bid_records as $bid_record)
-                                    <tr>
-                                        <td>{{ $bid_record->id }}</td>
-                                        <td>{{ $bid_record->product_id }}</td>
-                                        <td>{{ $bid_record->bid_value }}</td>
-                                        <td>               
-                                        <a class="mr-3" href='' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
-                                        {{-- <a class="mr-3" href='' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                   --}}                   
-                                        </th>
-                                    </tr>
-                            @endforeach               
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Product ID</th>
-                        <th>Bid Value</th>
-                        <th>Actions</th>
-                    </tr>
-                </tfoot>
-         </table>
-        </div>
-    </div>
-    </div>
-    </div>
+
+        <h2 class="text-center text-warning">Bid Details</h2>
+    <table id="example" class="display" style="width:100%" class="table">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Bid Value</th>    
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach ($bid_records as $bid_record)
+            <tr>
+                 <td>{{ $bid_record->product_id }}</td>
+                <td>{{ $bid_record->bid_value }}</td>
+             
+            </tr>
+            @endforeach         
+        </tbody>
+       
+    </table>
+
 </div>
+
+
+
+
+
+<div class="card p-3">
+
+    <h2 class="text-center text-info">Win Details</h2>   
+    <table id="example2" class="display" style="width:100%" class="table">
+        <thead>
+            <tr>
+                <<th>Product ID</th>
+                <th>Bid Value</th>   
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($win_details as $win_detail)
+            <tr>
+                 <td>{{ $win_detail->product_id }}</td>
+                <td>{{ $win_detail->bid_value }}</td>
+             
+            </tr>
+            @endforeach             
+        </tbody>
+       
+    </table>
+
+</div>
+<div class="card p-3">
+
+    <h2 class="text-center text-info">Package Details</h2>   
+    <table id="example2" class="display" style="width:100%" class="table">
+        <thead>
+            <tr>
+                <th>Package Name</th>
+                <th>Package Rolls</th>
+                <th>package price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($packages as $package)
+            <tr>
+                <td>{{ $package->package_name }}</td>
+                <td>{{ $package->package_rolls }}</td>
+                <td>{{ $package->package_price }}</td>
+               
+            </tr>
+            @endforeach          
+        </tbody>      
+    </table> 
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
 <script>
     //DataTable Script
     $(document).ready(function() {
-                $('#example').DataTable();
-          });
-</script>    
- @endsection
+            $('#example').DataTable();
+            $('#example2').DataTable();
+        } );
+
+</script>
+
+
+@endsection

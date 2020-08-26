@@ -138,8 +138,9 @@ class ProductsController extends Controller
       
     }
 
-    public function update(Request $request, product $product )
+    public function update(Request $request, Product $product )
     {
+        try{
 
         $validatedData = $request->validate([
             'product_name' => 'required',
@@ -152,7 +153,11 @@ class ProductsController extends Controller
        
         $product->update($request->all());
     
-        return redirect('backend/products');
+        return redirect()->back()->with('suc','Successfully Updated') ;  
+        }
+        catch(Exeption $e){
+            return redirect()->back()->with('suc','Updating canseled') ;   
+        }
     }
 
   

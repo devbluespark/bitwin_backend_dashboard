@@ -32,11 +32,34 @@ Route::group(['prefix' => 'backend'], function() {
             'permissions' => 'Backend\PermissionController',
             'payments-gateways' => 'Backend\PaymentgatewayController',
             'payments-receipts' => 'Backend\PaymentbankController',
+
+            //products
+            'products'=>'Backend\ProductsController',
+
+            //customer
+            'customers'=>'Backend\CustomerController',
+
+            //biddetails
+            'biddetails'=>'Backend\BidDetailController',
+
         ]);
 
         Route::post('payments-receipts-confirmed','Backend\PaymentbankController@payment_confirmed')->name('payments-receipts.confirmed');
 
-     
+     //***************************Product Routes*********************
+    Route::post('/productdelete', 'Backend\ProductsController@delete');
+    Route::post('/productpublish', 'Backend\ProductsController@publish');
+    Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
+    
+
+    //***************************Backend Customer Routes*********************
+    Route::post('/customeractivate', 'Backend\CustomerController@activate');
+    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
+
+
+     //***************************Backend Bid details Routes*********************
+    Route::post('/customeractivate', 'Backend\CustomerController@activate');
+    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
 
 
     });
@@ -44,32 +67,7 @@ Route::group(['prefix' => 'backend'], function() {
 
    
 
-     //***************************Product Routes*********************
-     Route::resources([
-        'products'=>'Backend\ProductsController'
-        ]);
-    
-    Route::post('/productdelete', 'Backend\ProductsController@delete');
-    Route::post('/productpublish', 'Backend\ProductsController@publish');
-    Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
-    
-
-    //***************************Backend Customer Routes*********************
-    Route::resources([
-        'customers'=>'Backend\CustomerController'
-        ]);
-    
-    Route::post('/customeractivate', 'Backend\CustomerController@activate');
-    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
-
-
-     //***************************Backend Bid details Routes*********************
-    Route::resources([
-        'biddetails'=>'Backend\BidDetailController'
-        ]);
-    
-    Route::post('/customeractivate', 'Backend\CustomerController@activate');
-    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
+     
     
     
     

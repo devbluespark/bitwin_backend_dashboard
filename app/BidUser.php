@@ -23,6 +23,10 @@ class BidUser extends Model
     public function packages(){
         return $this->belongsToMany(Package::class);
     }
+    public function win_details(){
+        return $this->hasmany(Win_Detail::class);
+    }
+    
 
 
 }
