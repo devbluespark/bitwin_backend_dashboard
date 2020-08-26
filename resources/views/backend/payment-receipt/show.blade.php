@@ -10,126 +10,104 @@
           <div class="card p-3">
 
 
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">##</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>payment ID</td>
+                  <td>{{  $payment_receipt['id']  }}</td>
+                </tr>
+                <tr>
+                  <td>Payment Date</td>
+                  <td>{{ $payment_receipt['created_at'] }}</td>
+                </tr>
+                <tr>
+                  <td>Payment Amount</td>
+                  <td>{{ $payment_receipt['payment_amount']  }}</td>
+                </tr>
+                <tr>
+                  <td>Payment bank</td>
+                  <td>{{  $payment_receipt['payment_bank'] }}</td>
+                </tr>
+                <tr>
+                  <td>customer ID</td>
+                  <td>{{ $payment_receipt->BidUser->id  }}</td>
+                </tr>
 
-          
-            <form class="form-horizontal" >
-
-              <div class="form-row" >
-
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Payment ID</label>
-                  <input type="text" class="form-control" id="package_name" name="package_name" value="{{ $payment_receipt['id'] }}" disabled>
-                  
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="inputEmail4">reciepts code</label>
-                <input type="text" class="form-control" id="package_price" value="" name="package_price" disabled>
-
-              </div>
-
-              </div>
-
-
-              <div class="form-row" >            
-                <div class="form-group col-md-6">
-                  <label for="inputPassword4">Payment Date</label>
-                  <input type="text" class="form-control" id="package_name" name="package_name" value="{{ $payment_receipt['created_at'] }}" disabled>
-                </div>
-                
-
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Payment Amount</label>
-                  <input type="number" class="form-control" id="package_price" value="{{ $payment_receipt['payment_amount']  }}" name="package_price" disabled>
-  
-                </div>
-
-              </div>
+                <tr>
+                  <td>Customer Name</td>
+                  <td>{{ $payment_receipt->BidUser->user_fname }}</td>
+                </tr>
 
 
+                <tr>
+                  <td>Selected Package Name</td>
+                  <td>{{  $payment_receipt->package->package_name }}</td>
+                </tr>
 
+                <tr>
+                  <td>Package Price</td>
+                  <td>{{ $payment_receipt->package->package_price }} USD</td>
+                </tr>
+     
+                <tr>
+                  <td>Image</td>
+                  <td>
+                    <img  onclick="preview_image()" src=" {{ asset('public/images/').'/'.$payment_receipt['receipt_image']}}" alt="" data-toggle="modal" data-target=".bd-example-modal-lg" id="imageresource">
+                  </td>
+                </tr>
+ 
+              </tbody>
+            </table>
 
-              <div class="form-row">
-
-                  
-
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword4">Payment bank</label>
-                    <input type="text" name="package_rolls" class="form-control"  value="{{  $payment_receipt['payment_bank'] }}" id="package_rolls" disabled>
-                  
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">customer ID</label>
-                    <input type="number" class="form-control" id="package_price" value="{{ $payment_receipt->BidUser->id  }}" name="package_price" disabled>
-    
-                  </div>
-
-                    <div class="form-group col-md-6">
-                      <label for="inputPassword4">Customer Name</label>
-                      <input type="text" name="create_user" class="form-control"  value="{{ $payment_receipt->BidUser->user_fname }}" id="package_rolls" disabled>
-                    
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">package ID</label>
-                    <input type="number" class="form-control" id="package_price" value="{{ $payment_receipt->package->id  }}" name="package_price" disabled>
-    
-                  </div>
-
-                    <div class="form-group col-md-6">
-                      <label for="inputPassword4">package Name</label>
-                      <input type="text" name="create_user" class="form-control"  value="{{  $payment_receipt->package->package_name }}" id="package_rolls" disabled>
-                    
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">package price</label>
-                    <input type="number" class="form-control" id="package_price" value="{{ $payment_receipt->package->package_price }}" name="package_price" disabled>
-    
-                  </div>
-
-                    <div class="form-group col-md-6">
-                      <label for="inputPassword4">package Bids</label>
-                      <input type="text" name="create_user" class="form-control"  value="{{ $payment_receipt->package->package_rolls }}" id="package_rolls" disabled>
-                    
-                    </div>
-
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">reciepts code</label>
-                    <input type="number" class="form-control" id="package_price" value="" name="package_price" disabled>
-    
-                  </div>
-
-                  
-
-                </div>
-
-
-
-            </form>
-
-
-                
-
-              <a href="{{ route('payments-gateways.index')}}"><button  class="btn btn-primary">Back</button></a>
+              <a href="{{ route('payments-receipts.index')}}"><button  class="btn btn-primary">Back</button></a>
 
 
             </div>
         </div>
     </div>
 </div>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+        </div>
+        <div class="modal-body">
+          <img src="" id="imagepreview" style="width: 100%; height: 100%;" >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+   
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+
+
+
+function preview_image(path) {
+  $('#imagepreview').attr('src', $('#imageresource').attr('src')); 
+}
+
+</script>
 
 
     @endsection

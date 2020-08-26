@@ -132,10 +132,11 @@
 
 
 
-        $('.payment-confirm').on('click', function (event) {
+    $('.payment-confirm').on('click', function (event) {
     event.preventDefault();
     const url = $(this).attr('href');
     var current_object = $(this);
+    console.log("sasasa");
     swal({
         title: 'Confirme ?',
         text: 'This record and it`s details wii be Confiremd payment',
@@ -152,7 +153,7 @@
             $('body').find('.remove-form').append('<input name="id" type="hidden" value="'+id+'">');
             $('body').find('.remove-form').submit();
         }
-    });
+    }); 
 });
     
 
