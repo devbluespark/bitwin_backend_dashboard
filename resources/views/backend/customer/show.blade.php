@@ -3,9 +3,6 @@
 @section('content')
 
 <div class="container">
-
-
-<div class="">
     <div class="card">
         <div class="card-header">
             <strong class="card-title mb-3">Profile of {{ $customer->user_fname }} </strong>
@@ -28,8 +25,7 @@
             </div>
         </div>
     </div>
-</div>
-  <div class="row justify-content-center">
+   <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">          
             <form class="form-horizontal" >
@@ -46,14 +42,11 @@
               <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
-                    <input type="text" class="form-control" id="" value="{{$customer->user_email}}" name="" disabled>
-    
+                    <input type="text" class="form-control" id="" value="{{$customer->user_email}}" name="" disabled>   
                   </div>
-
                   <div class="form-group col-md-6">
                     <label for="inputPassword4">Mobile No</label>
-                    <input type="number" name="" class="form-control"  value="{{ $customer->user_phn1 }}" id="package_rolls" disabled>
-                  
+                    <input type="number" name="" class="form-control"  value="{{ $customer->user_phn1 }}" id="package_rolls" disabled>                  
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputPassword4">Mobile No Extra</label>
@@ -66,15 +59,12 @@
                     @else 
                     <input type="text" name="" class="form-control"  value="Inactive" id="" disabled>        
                     @endif
-
                 </div>
-                </div>
+              </div>
             </form>
              <a href="{{ route('customers.index')}}"><button  class="btn btn-primary">Back</button></a>
             </div>
         </div>
-    </div>
-</div>
-
-
-    @endsection
+     </div>
+ 
+@endsection

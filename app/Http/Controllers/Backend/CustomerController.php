@@ -32,7 +32,9 @@ class CustomerController extends Controller
     public function show($id)
     {
         try{
-            $customer = DB::table('bid_users')->where('id',$id)->first();
+            $customer = DB::table('bid_users')
+            ->where('id',$id)
+            ->first();
             return view('backend/customer/show',compact('customer'));
         }catch(Exception $e){
             return redirect('backend/customers');
@@ -61,7 +63,9 @@ class CustomerController extends Controller
     public function activate(Request $request){
         
         try {
-            $customer = DB::table('bid_users')->where('id',$request->id)->update(['user_active'=>'1']);   
+            $customer = DB::table('bid_users')
+            ->where('id',$request->id)
+            ->update(['user_active'=>'1']);   
             return redirect('backend/customers'); 
         } catch (\Exception $e) {
             return redirect('backend/customers');
@@ -71,7 +75,9 @@ class CustomerController extends Controller
     public function deactivate(Request $request){
 
         try {           
-            $customer = DB::table('bid_users')->where('id',$request->id)->update(['user_active'=>'0']);  
+            $customer = DB::table('bid_users')
+            ->where('id',$request->id)
+            ->update(['user_active'=>'0']);  
             return redirect('backend/customers');   
         } catch (\Exception $e) {
             return redirect('backend/customers');

@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 @section('content')
 
-<div >
+<div class="container" >
     <div class="row">
        <div class="col-md-12 col-md-offset-1">
           <div class="panel panel-default">
@@ -47,7 +47,8 @@
                                       @endif
                                       </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-row">
+                                    <div class="form-group col-md-6 ">
                                       <label for="inputAddress">Product Bit Value</label>
                                       <input type="text" class="form-control"required name="product_bid_rolls" id="inputAddress" placeholder="">
                                       @if ($errors->has('product_bid_rolls'))
@@ -58,7 +59,7 @@
                                       </span>
                                     @endif
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-md-6">
                                       <label for="inputAddress2">Product Bid Min Value</label>
                                       <input type="text" class="form-control"required name="product_bid_min_value" id="inputAddress2" placeholder="">
                                       @if ($errors->has('product_bid_min_value'))
@@ -69,7 +70,7 @@
                                       </span>
                                     @endif
                                     </div>
-                                    <div class="form-row">
+                                    {{-- <div class="form-row"> --}}
                                       <div class="form-group col-md-6">
                                         <label for="inputCity">Product Bid Max Value</label>
                                         <input type="text" class="form-control"required name="product_bid_max_value" id="inputCity">

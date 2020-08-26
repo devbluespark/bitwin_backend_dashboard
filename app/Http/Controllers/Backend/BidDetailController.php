@@ -31,10 +31,8 @@ class BidDetailController extends Controller
     public function show($id)
     {
         try{
-            $bid_records = BidDetail::all();
-          
-            return $bid_records;
-            return view('backend/biddetails/show');
+            $bid_records = BidDetail::where('bid_user_id',$id)->get();         
+            return view('backend/biddetails/show',compact('bid_records'));
         }catch(Exception $e){
             return redirect('backend/customers');
         }

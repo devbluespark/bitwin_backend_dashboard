@@ -1,86 +1,85 @@
 @extends('layouts.backend.app')
 
 @section('content')
-
-<div class="">
-    <div >
-        <div class="row">
-           <div class="col-md-12 col-md-offset-1">
-              <div class="panel panel-default">
-                 <div class="panel-heading">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <strong class="mr-5 ">Products</strong>
-                                    {{-- <a href="/backend/addproducts"><button class="btn btn-primary mb-3 ml-5">Add </button></a> --}}
-                                    <a href="{{ route('products.create') }}"><button class="btn btn-primary mb-3 ml-5"> <i class="fa fa-plus"></i> </button></a>
-                                  </div>
+<div>
+     <div class="col-md-12 ">
+        <div class="panel panel-default">
+           <div class="panel-heading">
+                  <div class="col-md-12">
+                      <div class="card">
+                          <div class="card-body">
+                              <strong class="mr-5 ">Products</strong>
+                              <br>
+                              {{-- <a href="/backend/addproducts"><button class="btn btn-primary mb-3 ml-5">Add </button></a> --}}
+                              <a href="{{ route('products.create') }}"><button class="btn btn-primary mb-3 "> <i class="fa fa-plus"></i> </button></a>
                             </div>
-                        </div>
-                    </div>
+                      </div>
+                  </div>
               </div>
-           </div>
+        </div>
+     </div>
+</div>
+<div class="container">
+    <div class="">  
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card p-3">
+                      <table id="example" class="display"  class="table">
+                          <thead>
+                              <tr>
+                                  <th >ID</th>
+                                  <th>Name</th>
+                                  <th>Product(Rs.)</th>
+                                  <th>Min(Rs.)</th>
+                                  <th>Max (Rs.)</th>
+                                  <th>Status</th>
+                                  <th >Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>                            
+                              @foreach ($products as $product)
+                              <tr>
+                                  <td>{{ $product->id }}</td>
+                                  <td>{{ $product->product_name }}</td>
+                                  <td>{{ $product->product_price }}</td>
+                                  <td>{{ $product->product_bid_min_value }}</td>               
+                                  <td>{{ $product->product_bid_max_value }}</td>
+                                  @if ($product['product_active'==1])
+                                  <td>Active</td>
+                                  @else
+                                  <td>Inactive</td>
+                                  @endif
+                                  <td>                                 
+                                    <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
+                                    <a class="mr-3" href='{{ route("products.edit",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-pencil"></i></button></a>
+                                    <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash"></i></button>                
+                                    @if ($product['product_active'] == 1)
+                                    {{-- <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                 --}}
+                                    <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-check"></i></button>                
+                                    @else
+                                    {{-- <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                 --}}
+                                    <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check"></i></button>                
+                                    @endif
+                                  </th>
+                              </tr>
+                              @endforeach           
+                          </tbody>
+                          <tfoot>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>Price</th>
+                                  <th>Price</th>
+                                  <th>Price</th>
+                                  <th>Status</th>               
+                                  <th>Actions</th>
+                              </tr>
+                          </tfoot>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    
-  <div class="row justify-content-center">
-      <div class="col-md-12">
-          <div class="card p-3">
-    <table id="example" class="display"  class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Min</th>
-                <th>Max</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            @foreach ($products as $product)
-            <tr>
-                <td>{{ $product->id }}</td>
-                <td>{{ $product->product_name }}</td>
-                <td>{{ $product->product_bid_min_value }}</td>
-                <td>{{ $product->product_bid_max_value }}</td>
-                <td>
-                
-                  <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-eye"></i></button></a>                  
-                  <a class="mr-3" href='{{ route("products.edit",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-pencil"></i></button></a>
-                  <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash"></i></button>                
-                  @if ($product['product_active'] == 1)
-                  {{-- <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                 --}}
-                  <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-check"></i></button>                
-                  @else
-                  {{-- <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                 --}}
-                  <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check"></i></button>                
-                  @endif
-                </th>
-            </tr>
-            @endforeach
-            
-           
-            
-            
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Coins</th>
-                <th>Actions</th>
-            </tr>
-        </tfoot>
-    </table>
-
-
-
-</div>
-</div>
-</div>
-</div>
 </div>
 
 <?php if(isset($product)) {  ?>
