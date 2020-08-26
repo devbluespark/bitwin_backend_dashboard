@@ -11,7 +11,7 @@ Route::get('/dashboard', function () {
     return view('backend/dashboard');
 });
 
-
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 //**************  All   Backends Routes     */
@@ -56,4 +56,10 @@ Route::group(['prefix' => 'backend'], function() {
 });
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+// ALl Front End Routes //
+
+    Route::resources([
+        'user-profile' => 'Frontend\ProfileController',
+        
+    ]);
