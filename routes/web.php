@@ -80,7 +80,59 @@ Route::group(['prefix' => 'backend'], function() {
 
 // ALl Front End Routes //
 
-    Route::resources([
-        'profile' => 'Frontend\ProfileController',
-        
-    ]);
+    
+
+
+    Route::get('login', 'AuthUser\LoginController@getBidUserLoginForm')->name('user.login');
+    Route::post('login','AuthUser\LoginController@bidUserLogin')->name('user.login');
+   
+    
+    Route::post('logout', 'AuthUser\LoginController@logout')->name('user.logout');
+
+
+
+
+
+
+
+
+    //password reset
+    Route::get('password/reset', 'AuthUser\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
+    Route::post('password/reset', 'AuthUser\ResetPasswordController@reset')->name('user.password.request');
+ 
+    Route::post('password/email', 'AuthUser\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
+    
+    Route::post('password/reset/{token} ', 'AuthUser\ResetPasswordController@showResetForm')->name('user.password.reset');
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+    // Registration Routes...
+    Route::get('register', 'AuthUser\RegisterController@register')->name('user.register');
+    Route::post('register', 'AuthUser\RegisterController@store')->name('user.register');
+
+
+    Route::get('forget-password', 'AuthUser\ForgotPasswordController@getEmail')->name('user.forgetpassword');
+    Route::post('forget-password', 'AuthUser\ForgotPasswordController@postEmail');
+
+    Route::group(['middleware' => ['biduser']], function () {
+      //  Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
+    
+        Route::resources([
+            'profile' => 'Frontend\ProfileController',
+            
+        ]);
+
+        Route::get('/dashboard', function () {
+            return "hii admin";
+        })->name('admin.dashboard');
+    });

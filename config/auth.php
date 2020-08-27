@@ -45,6 +45,11 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'biduser' => [
+            'driver' => 'session',
+            'provider' => 'bidusers',
+        ],
     ],
 
     /*
@@ -74,6 +79,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'bidusers' => [
+            'driver' => 'eloquent',
+            'model' => App\BidUser::class,
+        ]
     ],
 
     /*
@@ -94,6 +103,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'bidusers' => [
+            'provider' => 'bidusers',
             'table' => 'password_resets',
             'expire' => 60,
         ],
