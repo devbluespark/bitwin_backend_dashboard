@@ -32,6 +32,7 @@ class RegisterController extends Controller
             'user_fname' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_active' => 1,
         ]);
          
         return redirect()->route('profile.index');

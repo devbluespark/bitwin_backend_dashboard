@@ -7,6 +7,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\FuncCall;
 
 class LoginController extends Controller
 {
@@ -19,36 +20,42 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:biduser')->except('logout');
     }
-    public function getBidUserLoginForm()
+    public function showLoginForm()
     {
         
         if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
         return view('user-auth.login');
     }
 
-    public function bidUserLogin(Request $request)
+    protected function credentials(Request $request){  
+        return ['email' => $request->{$this->username()}, 'password' => $request->password, 'user_active' => 1 ];      
+     }
+
+
+    public function login(Request $request) //Go web.php then you will find this route
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        if (auth()->guard('biduser')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
-        {
-           // echo "login okk";
-            return redirect()->route('profile.index');
-        }else{
-            dd('your username and password are wrong.');
+         $this->validateLogin($request);
+
+        if ($this->attemptLogin($request)) {
+           return redirect()->route('profile.index');
         }
+
+        return $this->sendFailedLoginResponse($request);
+       
     }
 
+   
+    public function guard(){
+        return Auth::guard('biduser');
+    }
 
     public function logout(Request $request) {
 
-        Auth::logout();
-        $request->session()->flush();
-        return redirect('login');
+       $this->guard('admin')->logout();
+       $request->session()->invalidate();
+       return redirect('/login');
 
       }
 

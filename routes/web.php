@@ -83,8 +83,11 @@ Route::group(['prefix' => 'backend'], function() {
     
 
 
-    Route::get('login', 'AuthUser\LoginController@getBidUserLoginForm')->name('user.login');
-    Route::post('login','AuthUser\LoginController@bidUserLogin')->name('user.login');
+    //Route::get('login', 'AuthUser\LoginController@getBidUserLoginForm')->name('user.login');
+   // Route::post('login','AuthUser\LoginController@bidUserLogin')->name('user.login');
+   
+    Route::get('login', 'AuthUser\LoginController@showLoginForm')->name('user.login');
+    Route::post('login','AuthUser\LoginController@login');
    
     
     Route::post('logout', 'AuthUser\LoginController@logout')->name('user.logout');
