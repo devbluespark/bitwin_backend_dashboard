@@ -11,6 +11,10 @@ Route::get('/dashboard', function () {
     return view('backend/dashboard');
 });
 
+Route::get('/index', function () {
+    return view('frontend/index');
+});
+
 
 
 

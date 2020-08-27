@@ -43,6 +43,7 @@ class BidRecordsController extends Controller
        $bid_records=Bid_Records::where('id',$id)->first();
        $user_records=BidUser::where('id',$bid_records->bid_user_id)->first();
        $product_details=Product::where('id',$bid_records->product_id)->first();
+
     //    $details=Db::table('bid_records')
     //                 ->join('bid_users','bid_users.id','=','1')
     //                 ->join('products','products.id','=','1')
@@ -54,9 +55,7 @@ class BidRecordsController extends Controller
     //                 'products.product_img_1')                    
     //                 ->get();
 
-    //     return $bid_records;
-// 
-                     
+        // return $bid_records;
 
         return view('backend/bid_records/show',compact('bid_records','user_records','product_details'));
     }
