@@ -39,8 +39,11 @@ Route::group(['prefix' => 'backend'], function() {
             //customer
             'customers'=>'Backend\CustomerController',
 
-            //biddetails
-            'biddetails'=>'Backend\BidDetailController',
+            //bidrecords
+            'bidrecords'=>'Backend\BidRecordsController',
+
+            //winrecords
+            'winrecords'=>'Backend\WinRecordsController',
 
         ]);
 
@@ -55,11 +58,10 @@ Route::group(['prefix' => 'backend'], function() {
     //***************************Backend Customer Routes*********************
     Route::post('/customeractivate', 'Backend\CustomerController@activate');
     Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
+    Route::get('/customer_details_all/{id}', 'Backend\CustomerController@customer_details_all');
 
 
-     //***************************Backend Bid details Routes*********************
-    Route::post('/customeractivate', 'Backend\CustomerController@activate');
-    Route::post('/customerdeactivate', 'Backend\CustomerController@deactivate');
+     
 
 
     });

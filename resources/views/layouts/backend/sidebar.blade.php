@@ -40,6 +40,12 @@
                     <a href="/backend/customers"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Customers</a>
                           
                 </li>
+                 <li class="">
+                    <a href="{{ route('bidrecords.index')}}"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Bid Records</a>
+                </li>
+                <li class="">
+                    <a href="{{ route('winrecords.index')}}"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Win Records</a>                         
+                </li>
 
 
 
