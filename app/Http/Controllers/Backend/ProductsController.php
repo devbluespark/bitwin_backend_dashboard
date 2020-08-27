@@ -217,7 +217,7 @@ class ProductsController extends Controller
         return redirect('backend/products')->with('suc','Successfully Updated') ;  
         }
         catch(Exeption $e){
-            return redirect()->back()->with('er','Updating canseled') ;   
+            return redirect()->back()->with('er','Updating canselled') ;   
         }
     }
 

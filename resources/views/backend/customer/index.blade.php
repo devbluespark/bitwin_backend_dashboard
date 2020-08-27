@@ -2,14 +2,14 @@
 
 @section('content')
 
-<div class="">
-    <div class="col-md-12 col-md-offset-1">
+<div class="container-fluid col-12">
+    <div class="col-md-12 ">
       <div class="panel panel-default">
         <div class="panel-heading">
-                <div class="col-md-12">
+                <div class="">
                     <div class="card">
                         <div class="card-body">
-                            <strong class="mr-5 ">Customers</strong>
+                            <strong class=" ">Customers</strong>
                             {{-- <a href="{{ route('customers.create') }}"><button class="btn btn-primary mb-3 ml-5"> <i class="fa fa-plus"></i> </button></a> --}}
                           </div>
                     </div>
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<div class="container">  
+<div class="container-fluid col-12">  
   <div class="row">
       <div class="col-md-12">
           <div class="card p-3">

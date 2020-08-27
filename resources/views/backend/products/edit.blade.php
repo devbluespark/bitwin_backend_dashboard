@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 @section('content')
 
-<div class="container" >
+<div class="container col-12" >
     <div class="row">
        <div class="col-md-12 col-md-offset-1">
           <div class="panel panel-default">
