@@ -135,7 +135,5 @@ Route::group(['prefix' => 'backend'], function() {
             
         ]);
 
-        Route::get('/dashboard', function () {
-            return "hii admin";
-        })->name('admin.dashboard');
+       
     });
