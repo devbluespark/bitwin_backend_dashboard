@@ -1,30 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html  lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php  date_default_timezone_set('Asia/Colombo');  ?>
-  
-    <title>Admin</title>
-    @include('layouts.frontend.header')
-
-</head>
-
-<body>
-
-{{-- @include('layouts.frontend.sidebar') --}}
-{{-- <div id="right-panel" class="right-panel"> --}}
-
-    @include('layouts.frontend.nav')
-    @yield('content')
-
-{{-- </div> --}}
-
-
-    @include('layouts.frontend.footer')
-</body>
-</html>
-=======
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -73,16 +47,11 @@
                        
                         @if (Auth::guard('biduser')->user())
 
-                    <li><a href="{{ route('profile.index') }}">Profile(index)</a> </li>
-                    <li><a href="{{ route('profile.edit',['profile'=> (Auth::guard('biduser')->user()->id)]) }}">Profile(edit)</a> </li>
-
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                 {{ Auth::guard('biduser')->user()->user_fname }} <span class="caret"></span>
                             </a>
-
-                              
-
+    
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="{{ route('user.logout') }}"
@@ -119,4 +88,3 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
->>>>>>> a09ba0f115d9a93677cf0701aa278dc0c2edb625
