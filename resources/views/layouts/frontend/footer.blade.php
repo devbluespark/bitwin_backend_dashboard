@@ -107,3 +107,9 @@
 </script>
 
 <script src="{{asset('assets/frontend/assets/js/template.js')}}"></script>
+
+<!-- Login Form js -->
+<script src="{{asset('assets/frontend/assets/js/login-form-focus.js')}}"></script>
+
+<!-- Register Form js -->
+<script src="{{asset('assets/frontend/assets/js/register-form-focus.js')}}"></script>

@@ -97,7 +97,7 @@ html {
     background-color: #F7F9FC;
 }
 
-.section-3-card-img{
+.section-3-card-img {
     width: 40% !important;
 }
 
@@ -162,4 +162,53 @@ html {
 
 .footer-li:hover {
     color: gray;
+}
+
+
+/* Admin UI Styles */
+label {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.bs-btn-register {
+    width: 60%;
+}
+
+.bs-form-group {
+    padding-left: 22px !important;
+    box-shadow: 2px 2px 4px #8b8b8b !important;
+}
+
+.bs-form-group-focused {
+    border-left: solid;
+    border-left-width: 6px;
+    border-left-color: #2659EE;
+    padding-left: 16px !important;
+    box-shadow: 6px 6px 6px #8b8b8ba9 !important;
+}
+
+.bs-input {
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.register-form-img-col {
+    background-color: #F7F9FE;
+    height: 100vh;
+    /* width: 40% !important; */
+    /* float: left; */
+}
+/* .register-form-col{
+    width: 60% !important;
+} */
+
+.register-img {
+    width: 80%;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

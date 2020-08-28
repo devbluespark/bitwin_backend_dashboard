@@ -11,8 +11,19 @@ Route::get('/dashboard', function () {
     return view('backend/dashboard');
 });
 
+//------------------------------tempory routs for front index
 Route::get('/index', function () {
     return view('frontend/index');
+});
+
+//------------------------------tempory routs for front login
+Route::get('/flogin', function () {
+    return view('frontend/login');
+});
+
+//------------------------------tempory routes for front register
+Route::get('/fregister', function () {
+    return view('frontend/register');
 });
 
 
@@ -135,3 +146,13 @@ Route::group(['prefix' => 'backend'], function() {
 
        
     });
+
+
+
+
+    //Frontend Products
+    Route::resources([
+       
+        'products'=> 'Frontend\ProductController',   //get all products
+        'packages'=> 'Frontend\PackagesController'   //get all packages
+    ]);
