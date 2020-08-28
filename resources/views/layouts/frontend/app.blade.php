@@ -11,13 +11,12 @@
 
 <body>
 
-{{-- @include('layouts.frontend.sidebar') --}}
-{{-- <div id="right-panel" class="right-panel"> --}}
+
 
     @include('layouts.frontend.nav')
     @yield('content')
 
-{{-- </div> --}}
+
 
 
     @include('layouts.frontend.footer')

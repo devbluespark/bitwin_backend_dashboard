@@ -14,18 +14,19 @@ class PackagesController extends Controller
     {
         try{
             $packages =Package::where('package_active','0')
-                        ->where('package_delete_status','1')
+                        ->where('package_delete_status','0')
                         ->get();
-            if($packages){
-                return "sry no available packages at this moment try again later"; 
-            }
-            else{
-                return $packages;
-            }
+           if($packages){
+            
+            return view('frontend/package/index',compact('packages')) ;  
+           }else{
+            return redirect()->back(); 
+           }
+            
         
         }catch(Exception $e){
 
-            return "sry no available packages at this moment try again later";
+            return redirect()->back();
         }
     }
 
@@ -41,9 +42,20 @@ class PackagesController extends Controller
         //
     }
 
+    //view a package detail
     public function show($id)
     {
-        //
+        try{
+            $package =Package::where('id',$id)
+                        ->first();   
+                     
+            return view('frontend/package/show',compact('package')) ;  
+            
+        
+        }catch(Exception $e){
+           
+            return redirect()->back();
+        }
     }
 
   

@@ -11,20 +11,6 @@ Route::get('/dashboard', function () {
     return view('backend/dashboard');
 });
 
-//------------------------------tempory routs for front index
-Route::get('/index', function () {
-    return view('frontend/index');
-});
-
-//------------------------------tempory routs for front login
-Route::get('/flogin', function () {
-    return view('frontend/login');
-});
-
-//------------------------------tempory routes for front register
-Route::get('/fregister', function () {
-    return view('frontend/register');
-});
 
 
 
@@ -156,3 +142,23 @@ Route::group(['prefix' => 'backend'], function() {
         'products'=> 'Frontend\ProductController',   //get all products
         'packages'=> 'Frontend\PackagesController'   //get all packages
     ]);
+
+    //tempory routes
+    Route::get('products/{id}','Frontend\ProductController@show');
+    Route::get('packages/{id}','Frontend\PackagesController@show');
+
+    
+    //------------------------------tempory routs for front index
+    Route::get('/index', function () {
+        return view('frontend/index');
+    });
+    
+    //------------------------------tempory routs for front login
+    Route::get('/flogin', function () {
+        return view('frontend/login');
+    });
+    
+    //------------------------------tempory routes for front register
+    Route::get('/fregister', function () {
+        return view('frontend/register');
+    });

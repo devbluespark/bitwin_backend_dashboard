@@ -18,19 +18,21 @@ class ProductController extends Controller
 
         try{
             $products =Product::where('product_active','0')
-                        ->where('product_delete_status','1')
+                        ->where('product_delete_status','0')
                         ->get();
                        
              if($products){
-                  return $products; 
-                 }
-             else{
-                 return $packages;
-                }
+                return view('frontend/product/index',compact('products')) ;
+             }else{
+
+                return redirect()->back();
+             }
+             
+            
         
         }catch(Exception $e){
            
-            return "sry no available products at this moment try again later";
+            return redirect()->back();
         }
 
     }
@@ -47,10 +49,19 @@ class ProductController extends Controller
         //
     }
 
-  
+   //view a product details
     public function show($id)
     {
-        //
+        try{
+            $product =Product::where('id',$id)
+                        ->first();            
+            return view('frontend/product/show',compact('product')) ;  
+            
+        
+        }catch(Exception $e){
+           
+            return redirect()->back();
+        }
     }
 
     
