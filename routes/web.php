@@ -11,15 +11,11 @@ Route::get('/dashboard', function () {
     return view('backend/dashboard');
 });
 
-<<<<<<< HEAD
 Route::get('/index', function () {
     return view('frontend/index');
 });
 
 
-=======
-Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> a09ba0f115d9a93677cf0701aa278dc0c2edb625
 
 
 //**************  All   Backends Routes     */
@@ -40,11 +36,8 @@ Route::group(['prefix' => 'backend'], function() {
             'permissions' => 'Backend\PermissionController',
             'payments-gateways' => 'Backend\PaymentgatewayController',
             'payments-receipts' => 'Backend\PaymentbankController',
-<<<<<<< HEAD
-=======
         
-        ]);
->>>>>>> a09ba0f115d9a93677cf0701aa278dc0c2edb625
+      
 
             //products
             'products'=>'Backend\ProductsController',
