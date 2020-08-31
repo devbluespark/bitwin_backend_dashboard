@@ -136,16 +136,16 @@ Route::group(['prefix' => 'backend'], function() {
 
 
 
-    //Frontend Products
-    Route::resources([
+    // //Frontend Products
+    // Route::resources([
        
-        'products'=> 'Frontend\ProductController',   //get all products
-        'packages'=> 'Frontend\PackagesController'   //get all packages
-    ]);
+    //     'products'=> 'Frontend\ProductController',   //get all products
+    //     'packages'=> 'Frontend\PackagesController'   //get all packages
+    // ]);
 
-    //tempory routes
-    Route::get('products/{id}','Frontend\ProductController@show');
-    Route::get('packages/{id}','Frontend\PackagesController@show');
+    // //tempory routes
+    // Route::get('products/{id}','Frontend\ProductController@show');
+    // Route::get('packages/{id}','Frontend\PackagesController@show');
 
     
     //------------------------------tempory routs for front index
