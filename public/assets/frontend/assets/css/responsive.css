@@ -57,6 +57,11 @@
         top: 50%;
         transform: translateY(-50%);
     }
+
+    /* Register Page */
+    label{
+        font-size: 12px !important;
+    }
 }
 
 @media (max-width: 840px) and (min-width: 768px) {}
