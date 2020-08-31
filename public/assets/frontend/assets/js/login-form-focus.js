@@ -1,3 +1,4 @@
+
 $('#username').on('focus', function () {
     $('#usernameDiv').addClass('bs-form-group-focused');
 }).on('blur', function () {

@@ -5,6 +5,7 @@
     <?php  date_default_timezone_set('Asia/Colombo');  ?>
   
     <title>Admin</title>
+ 
     @include('layouts.frontend.header')
 
 </head>
@@ -17,7 +18,9 @@
     @yield('content')
 
 
+  
 
+  
 
 </body>
 </html>

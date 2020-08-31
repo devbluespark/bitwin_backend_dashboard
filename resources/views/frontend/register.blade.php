@@ -104,4 +104,7 @@
     </div>
 </div>
 <!-- End - Verify email modal  -->
+
+ <!-- Register Form js -->
+   <script src="{{asset('assets/frontend/assets/js/register-form-focus.js')}}"></script>
 @endsection

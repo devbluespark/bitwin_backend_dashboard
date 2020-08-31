@@ -76,4 +76,7 @@
     </div>
 </div>
 <!-- End - Register form section -->
+
+ <!-- Login Form js -->
+ <script src="{{asset('assets/frontend/assets/js/login-form-focus.js')}}"></script>
 @endsection

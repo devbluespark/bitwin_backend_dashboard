@@ -85,7 +85,10 @@
                                       </div>                                                             
                                     </div>
                                     <div class="wrapper_">                                      
-                                      <div class="box">                                       
+                                      <div class="box">   
+                                        @if ($product['product_img_1'] != "noimage.jpg") 
+                                        <i href="" class="fa fa-trash"></i> 
+                                        @endif                                  
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_1'] != "noimage.jpg") 
@@ -101,6 +104,9 @@
                                       </div>
                                   <div class="row">
                                       <div class="box col-3">
+                                        @if ($product['product_img_2'] != "noimage.jpg") 
+                                        <i href="" class="fa fa-trash"></i> 
+                                        @endif
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_2'] != "noimage.jpg") 
@@ -116,6 +122,9 @@
                                         </div>
                                       </div>
                                       <div class="box col-3">
+                                        @if ($product['product_img_3'] != "noimage.jpg") 
+                                        <i href="" class="fa fa-trash"></i> 
+                                        @endif
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_3'] != "noimage.jpg") 
@@ -131,6 +140,9 @@
                                         </div>
                                       </div>
                                       <div class="box col-3">
+                                        @if ($product['product_img_4'] != "noimage.jpg") 
+                                        <i href="" class="fa fa-trash"></i> 
+                                        @endif
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_4'] != "noimage.jpg") 
@@ -146,6 +158,9 @@
                                         </div>
                                       </div>           
                                       <div class="box col-3">
+                                        @if ($product['product_img_5'] != "noimage.jpg") 
+                                        <i href="" class="fa fa-trash"></i> 
+                                        @endif
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_5'] != "noimage.jpg") 
