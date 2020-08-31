@@ -10,3 +10,4 @@ $('#password').on('focus', function () {
 }).on('blur', function () {
     $('#passwordDiv').removeClass('bs-form-group-focused');
 });
+
