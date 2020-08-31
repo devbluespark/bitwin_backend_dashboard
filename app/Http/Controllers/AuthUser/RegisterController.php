@@ -5,41 +5,125 @@ namespace App\Http\Controllers\AuthUser;
 use App\BidUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyMail;
+use App\Referral;
+use App\VerifyUser;
 use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
     
-    public function register()
-  {
+    public function showRegistrationForm(){
 
     if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
     return view('user-auth.register');
-   // return view('user-auth.register');
   }
 
-  public function store(Request $request)
+
+
+
+  protected function register(Request $request)
   {
-      $request->validate([
-          'name' => 'required|string|max:255',
-          'email' => 'required|string|email|max:255|unique:bid_users',
-          'password' => 'required|string|min:8|confirmed',
-          'password_confirmation' => 'required',
+
+        $request->validate([
+            'user_fname' => 'required|string|max:25|min:3',
+            'user_lname' => 'required|string|max:25|min:3',
+            'email' => 'required|string|email|max:25|unique:bid_users',
+            'username' => 'required|string|max:20|min:3|unique:bid_users|alpha',
+            'password' => 'required|string|min:6|confirmed|max:30',
+            'password_confirmation' => 'required',
+            'user_phn1' => 'required|min:8|max:20',
+        ]);
+
+        $token =str_random(30).date('His');
+
+      
+        
+
+         $user = BidUser::create([
+            'user_fname' => $request->user_fname,
+            'user_lname' => $request->user_lname,
+            'username' =>  $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'user_phn1' => $request->user_phn1,
+            'token' => $token,
+            'user_active' => 1,
+        ]); 
+
+       /* if(($request->parent_id)){
+            echo $request->parent_id;
+            echo "go with id";
+        }else{
+            echo $request->parent_id;
+            echo "go withour id";
+        } */
+        
+       
+       
+      
+        if (isset($request->parent_id)) {
+            $referral= Referral::create([
+                'bid_user_id' => $user->id,
+                'parent_user_id' => $request->parent_id
+            ]);
+
+        } else {
+            $referral= Referral::create([
+                'bid_user_id' => $user->id,
+                'parent_user_id' => 0
+            ]);
+        }
+
+      $verifyUser = verifyUser::create([
+          'user_id' => $user->id,
+          'token' => str_random(40)
       ]);
 
       
-        BidUser::create([
-            'user_fname' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'user_active' => 1,
-        ]);
-         
-        return redirect()->route('profile.index');
 
+      $user['token'] = $verifyUser->token;
+      Mail::to($user->email)->send(new VerifyMail($user));
+
+      $status = "We have sent you an activation code, please check your email";
+
+      return redirect()->route('user.login')->with('status', $status);  
+  }
+
+  
+
+
+  public function verifyUser($token)
+  {
+      $verifyUser = VerifyUser::where('token', $token)->first();
+      $bid_user= BidUser::find($verifyUser->user_id); 
+      if(isset($verifyUser) ){
+        
+          if(!$bid_user->verified) {
+              $bid_user->verified = 1;
+              $bid_user->save();
+              $status = "Your e-mail is verified. You can now login.";
+          }else{
+              $status = "Your e-mail is already verified. You can now login.";
+          }
+      }else{
+          return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+      } 
+
+      return redirect('/login')->with('status', $status); 
   }
 
 
+  protected function registered(Request $request, $user)
+  {
+      $this->guard()->logout();
+      return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+  }
 
+  protected function guard(){
+        return Auth::guard('biduser');
+    }
 
 }

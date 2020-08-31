@@ -21,7 +21,7 @@ class BidUser extends Authenticatable
         'user_fname', 'email', 'password',
         'user_lname', 'user_phn1', 'user_phn2',
         'user_address', 'user_nic', 'user_active',
-        'user_image'
+        'user_image','username','token'
     ];
   
     protected $hidden = [
@@ -32,6 +32,11 @@ class BidUser extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new UserResetPasswordNotification($token));
+    }
+
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
     }
 
     public function payments_gateways(){
