@@ -17,9 +17,10 @@ class BidRecordsController extends Controller
   
     public function index()
     {
+
         $bid_records =DB::table('bid_records')
                     ->join('bid_users','bid_users.id','=','bid_records.bid_user_id')
-                    ->join('win_records','bid_records.bid_user_id','=','bid_records.bid_user_id')
+                    // ->join('win_records','bid_records.bid_user_id','=','bid_records.bid_user_id')
                     ->join('products','products.id','=','bid_records.product_id')
                     ->select('bid_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')                   
                     ->get();
