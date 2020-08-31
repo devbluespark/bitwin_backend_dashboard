@@ -92,12 +92,6 @@ Route::group(['prefix' => 'backend'], function() {
     Route::post('logout', 'AuthUser\LoginController@logout')->name('user.logout');
 
 
-
-
-
-
-
-
     //password reset
 
     Route::post('password/email', 'AuthUser\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
@@ -108,17 +102,7 @@ Route::group(['prefix' => 'backend'], function() {
     Route::get('password/reset/{token} ', 'AuthUser\ResetPasswordController@showResetForm')->name('user.password.reset');
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
     // Registration Routes...
     Route::get('register', 'AuthUser\RegisterController@showRegistrationForm')->name('user.register');
     Route::post('register', 'AuthUser\RegisterController@register');
@@ -152,16 +136,16 @@ Route::group(['prefix' => 'backend'], function() {
     Route::get('/reg/{token}', 'Frontend\ReferralController@showRegisterForm');
 
 
-    // //Frontend Products
-    // Route::resources([
+   //Frontend Products
+    Route::resources([
        
-    //     'products'=> 'Frontend\ProductController',   //get all products
-    //     'packages'=> 'Frontend\PackagesController'   //get all packages
-    // ]);
+        'f-products'=> 'Frontend\ProductController',   //get all products
+        'f-packages'=> 'Frontend\PackagesController'   //get all packages
+    ]);
 
-    // //tempory routes
-    // Route::get('products/{id}','Frontend\ProductController@show');
-    // Route::get('packages/{id}','Frontend\PackagesController@show');
+    //tempory routes
+    Route::get('products/{id}','Frontend\ProductController@show');
+    Route::get('packages/{id}','Frontend\PackagesController@show');
 
     
     //------------------------------tempory routs for front index
@@ -177,4 +161,4 @@ Route::group(['prefix' => 'backend'], function() {
     //------------------------------tempory routes for front register
     Route::get('/fregister', function () {
         return view('frontend/register');
-    });
+    }); 

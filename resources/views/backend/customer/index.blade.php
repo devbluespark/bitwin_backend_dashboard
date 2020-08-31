@@ -38,7 +38,7 @@
                         <tr>
                             <td>{{ $customer->id }}</td>
                             <td>{{ $customer->user_fname }}</td>
-                            <td>{{ $customer->user_email }}</td>
+                            <td>{{ $customer->email }}</td>
                             <td>{{ $customer->user_nic }}</td>
                             <td>               
                               <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>                  
