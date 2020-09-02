@@ -7,7 +7,7 @@
 
 
 <form method="post" action="https://sandbox.payhere.lk/pay/checkout">   
-    <input type="hidden" name="merchant_id" value="121XXXX">    <!-- Replace your Merchant ID -->
+    <input type="hidden" name="merchant_id" value="1215318">    <!-- Replace your Merchant ID -->
     <input type="hidden" name="return_url" value="http://sample.com/return">
     <input type="hidden" name="cancel_url" value="http://sample.com/cancel">
     <input type="hidden" name="notify_url" value="http://sample.com/notify">  

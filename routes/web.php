@@ -1,7 +1,7 @@
 <?php
 
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/', function () {
   //  return redirect()->route('user.login');
@@ -120,6 +120,7 @@ Route::group(['prefix' => 'backend'], function() {
     
         Route::resources([
             'profile' => 'Frontend\ProfileController',
+            'products' =>'Frontend\ProductController'
             
         ]);
 
@@ -139,7 +140,7 @@ Route::group(['prefix' => 'backend'], function() {
    //Frontend Products
     Route::resources([
        
-        'f-products'=> 'Frontend\ProductController',   //get all products
+        'f-products'=> 'Frontend\ProductsController',   //get all products
         'f-packages'=> 'Frontend\PackagesController'   //get all packages
     ]);
 

@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 
 
 namespace App\Http\Controllers\Frontend;
+
+use App\Bid_Record;
 use App\Http\Controllers\Controller;
 use App\Product;
 
@@ -17,37 +19,27 @@ class ProductController extends Controller
     {
 
         try{
-            $products =Product::where('product_active','0')
-                        ->where('product_delete_status','0')
+            $products =Product::where('product_active',1)
+                        ->where('product_delete_status',0)
                         ->get();
-                       
-             if($products){
-                return view('frontend/product/index',compact('products')) ;
-             }else{
 
-                return redirect()->back();
-             }
-             
-            
-        
-        }catch(Exception $e){
+            foreach($products as $product){
+
+                $product['bid_records_percentage']= $this->status_bar($product);
+            }
+
+            return view('frontend/product/index',compact('products'));
+
            
-            return redirect()->back();
+        
+        }catch (\Exception $e) {
+            return $e->getMessage();
         }
 
     }
 
    
-    public function create()
-    {
-        //
-    }
 
-  
-    public function store(Request $request)
-    {
-        //
-    }
 
    //view a product details
     public function show($id)
@@ -58,26 +50,42 @@ class ProductController extends Controller
             return view('frontend/product/show',compact('product')) ;  
             
         
-        }catch(Exception $e){
-           
-            return redirect()->back();
+        }catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 
     
-    public function edit($id)
-    {
-        //
-    }
+    
 
-  
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    public function status_bar($product){
 
-    public function destroy($id)
-    {
-        //
+
+
+        try {
+            
+           
+                $how_many_bids= ($product->product_price /( $product->product_bid_rolls * 0.027 )); 
+              
+              $how_many_bids_int=intval($how_many_bids);
+   
+               if (($how_many_bids - $how_many_bids_int) > 0) {
+                   $how_many_bids_int = $how_many_bids_int + 1 ;
+               }
+   
+            
+             $bid_records_count = Bid_Record::where('products_id', $product->id)->count();
+       
+            $bid_records_percentage =(( $bid_records_count/$how_many_bids_int )*100);
+            return $bid_records_percentage;
+
+
+
+
+        }catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        
+        
     }
 }
