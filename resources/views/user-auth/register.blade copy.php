@@ -1,38 +1,30 @@
-@extends('layouts.frontend.app-f')
+@extends('user-auth.layouts.app')
+
 @section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Register</div>
 
-   <!-- Start - Register form section -->
-   <div class="row m-0">
-    <div class="col-md-5 p-0 register-form-img-col">
-        <img src="{{asset('assets/frontend/assets/img/section-1-img.png')}}" alt="Image" class="p-5 register-img">
-    </div>
 
-    <div class="col-md-7 mt-5 p-5 register-form-col">
-        <div class="row m-0 p-0">
-            <div class="col m-0 p-0 text-center">
-                <h1>WELCOME TO BIT 2 WIN</h1>
-                <p style="color: gray;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
-                    doloremque nulla, tempore at
-                    quam dolor assumenda porro corrupti quos consequuntur incidunt mollitia laudantium minus nobis
-                    veritatis! Rerum eius magni similique!</p>
-            </div>
-        </div>
+                <div class="panel-body">
                     
-   
                         
                         
-                    <form class="mt-4" method="POST" action="{{ route('user.register') }}">
+                  <!--  @if (isset($user_id))
+                    <form class="form-horizontal" method="POST" action="{{ route('user.register', ['user_id' => $user_id]) }}">
+                    @else
+                    <form class="form-horizontal" method="POST" action="{{ route('user.register') }}">    
+                    @endif  -->
+                        
+                        
+                    <form class="form-horizontal" method="POST" action="{{ route('user.register') }}">
                         {{ csrf_field() }}
 
                         @if (isset($parent_id))
                             <input type="hidden" name="parent_id" value="{{ $parent_id }}" >
                         @endif
-
-
-                        <div class="form-row">
-
-                            
-                        </div>
 
                         <div class="form-group{{ $errors->has('user_fname') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">First Name</label>
