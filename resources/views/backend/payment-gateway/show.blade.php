@@ -40,23 +40,23 @@
                 </tr>
                 <tr>
                   <td>customer ID</td>
-                  <td>{{ $payment_gateway->BidUser->id  }}</td>
+                  <td>{{  $bid_user['id'] }}</td>
                 </tr>
 
                 <tr>
                   <td>Customer Name</td>
-                  <td>{{ $payment_gateway->BidUser->user_fname }}</td>
+                <td>{{ $bid_user['user_fname'] }}</td>
                 </tr>
 
 
                 <tr>
                   <td>Selected Package Name</td>
-                  <td>{{  $payment_gateway->package->package_name }}</td>
+                <td>{{ $packages['package_name']}}</td>
                 </tr>
 
                 <tr>
-                  <td>Selected Package Name</td>
-                  <td>{{ $payment_gateway->package->package_price }} USD</td>
+                  <td>Selected Package Price</td>
+                  <td>{{ $packages['package_price']}} USD</td>
                 </tr>
 
                 

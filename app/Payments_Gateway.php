@@ -12,9 +12,9 @@ class Payments_Gateway extends Model
 
     protected $guarded = [];
 
-    public function BidUser()
+    public function bid_user()
     {
-        return $this->belongsTo(BidUser::class);
+        return $this->belongsTo(Bid_User::class);
     }
 
     public function package()
@@ -25,6 +25,7 @@ class Payments_Gateway extends Model
     public function receipt()
     {
         return $this->belongsTo(Receipt::class);
+        
     }
 
 }

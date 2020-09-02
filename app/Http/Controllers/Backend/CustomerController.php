@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Customer;
-use App\Bid_Records;
-use App\BidUser;
-use App\Win_Records;
+use App\Bid_Record;
+use App\Bid_User;
+use App\Win_Record;
 use App\package;
 use Illuminate\Http\Request;
 use DB;
@@ -91,9 +91,9 @@ class CustomerController extends Controller
     public function customer_details_all($id){
 
         try{
-            $bid_records = Bid_Records::where('bid_user_id',$id)->get();         
-            $bid_user = BidUser::where('id',$id)->first();     
-            $win_details=Win_Records::where('bid_user_id',$id)->get();  
+            $bid_records = Bid_Record::where('bid_user_id',$id)->get();         
+            $bid_user = Bid_User::where('id',$id)->first();     
+            $win_details=Win_Record::where('bid_user_id',$id)->get();  
             $packages= Package::where('users_id',$id)->get(); 
           
             return view('backend/biddetails/show',compact('bid_records','bid_user','win_details','packages'));

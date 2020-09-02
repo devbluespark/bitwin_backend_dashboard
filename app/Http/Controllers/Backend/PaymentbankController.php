@@ -17,7 +17,8 @@ class PaymentbankController extends Controller
         try {
              $payments_not_confirmed = Payments_Receipt::where('payment_receipt_confirm', 0)->get();
             $payments_confirmed = Payments_Receipt::where('payment_receipt_confirm', 1)->get();
-            return view('backend.payment-receipt.index', compact('payments_not_confirmed','payments_confirmed'));
+          
+             return view('backend.payment-receipt.index', compact('payments_not_confirmed','payments_confirmed'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }

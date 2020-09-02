@@ -81,7 +81,7 @@ return [
         // ],
         'bidusers' => [
             'driver' => 'eloquent',
-            'model' => App\BidUser::class,
+            'model' => App\Bid_User::class,
         ]
     ],
 

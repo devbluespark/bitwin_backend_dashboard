@@ -25,8 +25,8 @@ class Package extends Model
         return $this->hasMany(Payments_Receipt::class);
     }
     
-    public function BidUsers(){
-        return $this->belongsToMany(BidUser::class);
+    public function bid_users(){
+        return $this->belongsToMany(Bid_User::class);
     }
 
   

@@ -273,9 +273,5 @@ class ProductsController extends Controller
       
         
     }
-
-    public function delete_product_image(){
-        return "dsas";
-    }
   
 }

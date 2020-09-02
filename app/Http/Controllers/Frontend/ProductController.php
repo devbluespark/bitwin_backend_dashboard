@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Product;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductController extends Controller
 {
    //return all active products in frontend
     public function index()
-    {
+    { 
 
         try{
             $products =Product::where('product_active','0')

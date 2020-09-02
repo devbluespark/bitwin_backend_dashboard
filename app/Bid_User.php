@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class BidUser extends Authenticatable
+class Bid_User extends Authenticatable
 {
     use Notifiable;
 
@@ -51,10 +51,21 @@ class BidUser extends Authenticatable
     public function packages(){
         return $this->belongsToMany(Package::class);
     }
+
     public function win_details(){
         return $this->hasmany(Win_Detail::class);
     }
     
+    public function referrals(){
+        return $this->hasmany(Referral::class);
+    }
 
+    public function bid_records(){
+        return $this->hasmany(Bid_Record::class);
+    }
+
+    public function win_records(){
+        return $this->hasmany(Win_Record::class);
+    }
 
 }

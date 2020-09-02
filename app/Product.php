@@ -8,18 +8,20 @@ class Product extends Model
 {
     protected $table = 'products';
     protected $primaryKey ='id';
-    protected $fillable=[
-        'product_name',
-        'product_price',
-        'product_bid_rolls',
-        'product_bid_min_value',
-        'product_bid_max_value',
-        'product_img_1',
-        'product_img_2',
-        'product_img_3',
-        'product_img_4',
-        'product_img_5',
-        'product_expired',
-        'product_featured',
-    ];
+   
+
+    public function bid_records()
+    {
+        return $this->hasMany(Bid_Record::class);
+    }
+
+    public function win_record()
+    {
+        return $this->hasOne(Win_Record::class);
+    }
+
+    
+
+
+
 }

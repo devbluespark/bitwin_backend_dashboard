@@ -60,8 +60,6 @@ Route::group(['prefix' => 'backend'], function() {
     Route::post('/productdelete', 'Backend\ProductsController@delete');
     Route::post('/productpublish', 'Backend\ProductsController@publish');
     Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
-    Route::get('/delete_product_image', 'Backend\ProductsController@delete_product_image');
-    
     
 
     //***************************Backend Customer Routes*********************
@@ -124,9 +122,26 @@ Route::group(['prefix' => 'backend'], function() {
             'profile' => 'Frontend\ProfileController',
             
         ]);
+        //Frontend Products
+        Route::resources([
+       
+             'products'=> 'Frontend\ProductController',   //get all products
+             'packages'=> 'Frontend\PackagesController'   //get all packages
+        ]);  
+        
+        
 
+        //tempory routes
+        Route::get('products/{id}','Frontend\ProductController@show');
+        Route::get('packages/{id}','Frontend\PackagesController@show');
     
         Route::get('/referrals', 'Frontend\ReferralController@index');
+
+        //Frontend Dashboard
+        Route::resources([
+       
+            'dashboard'=> 'Frontend\DashboardController',   //get all products
+       ]);
        
     });
 
@@ -138,16 +153,7 @@ Route::group(['prefix' => 'backend'], function() {
     Route::get('/reg/{token}', 'Frontend\ReferralController@showRegisterForm');
 
 
-   //Frontend Products
-    Route::resources([
-       
-        'f-products'=> 'Frontend\ProductController',   //get all products
-        'f-packages'=> 'Frontend\PackagesController'   //get all packages
-    ]);
-
-    //tempory routes
-    Route::get('products/{id}','Frontend\ProductController@show');
-    Route::get('packages/{id}','Frontend\PackagesController@show');
+  
 
     
     //------------------------------tempory routs for front index

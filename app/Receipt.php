@@ -11,14 +11,16 @@ class Receipt extends Model
 
     protected $guarded = [];
 
-    public function payments_gateways(){
-        return $this->hasMany(Payments_Gateway::class);
+    //wrong
+    public function payments_gateway(){
+        return $this->belongsTo(Payments_Gateway::class);
     }
 
     
-    public function payments_receipts(){
-        return $this->hasMany(Payments_Receipt::class);
+    public function payments_receipt(){
+        return $this->hasOne(Payments_Receipt::class);
     }
 
+   
     
 }
