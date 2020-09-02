@@ -22,14 +22,20 @@ class LoginController extends Controller{
     }
 
     public function showLoginForm(){
+
+    
         
         if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
         return view('user-auth.login');
+
+        
     }
 
     public function login(Request $request){
+
         
-        $request->validate([
+        
+       $request->validate([
             'email' => 'required|string|email|max:25',
             'password' => 'required|string|min:6|max:30'
         ]);
@@ -82,7 +88,7 @@ class LoginController extends Controller{
     }
 
     public function logout(Request $request) {
-        $this->guard('admin')->logout();
+        $this->guard('biduser')->logout();
         $request->session()->invalidate();
         return redirect('/login');
  

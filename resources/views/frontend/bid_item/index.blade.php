@@ -36,13 +36,18 @@
         <div class="row m-0 pl-5 pr-5 pb-5 justify-content-center">
 
             <!-- Sample Card -->
+            @foreach($products as $product)
             <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
+             @if ($product['product_img_1'] != "noimage.jpg") 
+            <img src="/storage/images/{{$product->product_img_1}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
+            @else
+            <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
+            @endif
                 <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
+                    <h6 class="card-title">{{$product->product_name}}</h6>
                     <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
+                        Max Bid <a class="bid-item-card-val">{{$product->product_bid_max_value}}</a><br>
+                        Min Bid <a class="bid-item-card-val">{{$product->product_bid_min_value}}</a>
                     </p>
                 </div>
                 <div class="card-footer bid-item-card-footer mt-3">
@@ -50,126 +55,7 @@
                 </div>
             </div>
             <!-- Sample Card -->
-
-            <!-- Start - Sample Cards -->
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-                <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">Card title</h6>
-                    <p class="card-text bid-item-card-text">
-                        Max Bid <a class="bid-item-card-val">4000</a><br>
-                        Min Bid <a class="bid-item-card-val">1000</a>
-                    </p>
-                </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block">BID</button>
-                </div>
-            </div>
-            <!-- End - Sample Cards -->
+            @endforeach
 
         </div>
 

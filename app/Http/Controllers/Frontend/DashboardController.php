@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Dashboard;
+use App\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -12,9 +13,10 @@ use DB;
 
 class DashboardController extends Controller
 {
-    
+    //return to frontend dashboard
     public function index()
     {
+            $latest_products = Product::orderBy('id', 'desc')->take(15)->get();
       
              $dashboard_details=DB::table('bid_users')
                 ->join('referrals','referrals.parent_user_id','=','bid_users.id')
@@ -24,7 +26,7 @@ class DashboardController extends Controller
                 ->get();
 
             //   echo  gettype($dashboard_details);
-        return view('frontend/dashboard/index',compact('dashboard_details')) ;        
+        return view('frontend/dashboard/index',compact('dashboard_details','latest_products')) ;        
       
            
     }

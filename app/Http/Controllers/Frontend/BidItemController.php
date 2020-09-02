@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class BidItemController extends Controller
 {
-    
+    //return to bid item view o dashboard
     public function index()
     {
         return view('frontend/bid_item/index') ;        

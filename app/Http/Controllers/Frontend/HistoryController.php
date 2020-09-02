@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class HistoryController extends Controller
 {
-   
+   //return to history view on frontend dashboard
     public function index()
     {
         return view('frontend/history/index') ;        

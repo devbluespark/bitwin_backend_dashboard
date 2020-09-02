@@ -160,13 +160,18 @@
 
             <div class="col-md-3 m-0 p-3 pt-4" style="background-color: white;">
                 <h5 style="font-weight: 700;">New Items</h5>
+                @foreach($latest_products as $latest_product)
                 <div class="row m-0 item-card">
                     <div
-                        style="background-color: white; width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
-                        <img src="{{asset('assets/frontend/assets/img/test-item-card-img.png')}}" alt="Image" style="width: 80%;">
+                        style="width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
+                        @if ($latest_product['product_img_1'] != "noimage.jpg") 
+                        <img src="/storage/images/{{$latest_product->product_img_1}}" alt="Image" style="width: 100%; border-radius: 10px;">
+                        @else
+                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image" style="width: 100%; border-radius: 10px;">
+                        @endif
                     </div>
                     <div class="pl-2" style="padding-top: 12px;">
-                        <p class="mb-0" style="font-size: 14px; line-height: 0px; font-weight: 600;">Item Title</p>
+                        <p class="mb-0" style="font-size: 14px; line-height: 0px; font-weight: 600;">{{$latest_product->product_name}}</p>
                         <small style="color: gray; font-weight: 600;">20/200</small>
                     </div>
                     <div class="col m-0 p-0 text-right pr-2" style="margin-top: 5px !important;">
@@ -174,7 +179,7 @@
                             data-toggle="modal" data-target="#viewItemModal">BID</a>
                     </div>
                 </div>
-
+                @endforeach
             </div>
 
         </div>

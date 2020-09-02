@@ -11,11 +11,12 @@ use DB;
 
 class ReferralController extends Controller
 {
+    //return to referrels view o dashboard
     public function index(){
 
 
     $referel_count= DB::table('referrals')->where('parent_user_id',Auth::guard('biduser')->user()->id)->count();
-        // $bid_user= Bid_User::find((Auth::guard('biduser')->user()->id));
+    // $bid_user= Bid_User::find((Auth::guard('biduser')->user()->id));
     //    echo $refferalUrl=url('reg',$bid_user->token);
     return view('frontend/referels/index',compact('referel_count')) ;   
 

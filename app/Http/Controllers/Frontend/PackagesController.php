@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Package;
 
-class PackageController extends Controller
+class PackagesController extends Controller
 {
    
     //show all packages in frontend
