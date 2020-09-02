@@ -15,25 +15,18 @@ class DashboardController extends Controller
     
     public function index()
     {
-
-        
-        $u=Auth::guard('biduser')->user()->id ;
-        try{
-            $data=DB::table('packages')->where('user_id',$u)
-            ->get();
-
-            if($data){
-                return $u;
-            }else{
-                return "sad";
-            }
-        }catch(Exception $e){
-            return "sad";
-        }
       
-        
-        
-                    
+             $dashboard_details=DB::table('bid_users')
+                ->join('referrals','referrals.parent_user_id','=','bid_users.id')
+                // ->join('win_records','win_records.bid_users_id','=','bid_users.id')
+                ->select(DB::raw("count(referrals.parent_user_id) as count_referells"))
+                ->where('bid_users.id','=',Auth::guard('biduser')->user()->id)
+                ->get();
+
+            //   echo  gettype($dashboard_details);
+        return view('frontend/dashboard/index',compact('dashboard_details')) ;        
+      
+           
     }
 
  

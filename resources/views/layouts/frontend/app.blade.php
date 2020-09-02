@@ -5,7 +5,7 @@
     <?php  date_default_timezone_set('Asia/Colombo');  ?>
   
     <title>Admin</title>
-    @include('layouts.frontend.header')
+    @include('layouts.frontend.header-dashboard')
 
 </head>
 
@@ -13,12 +13,11 @@
 
 
 
-    @include('layouts.frontend.nav')
+    @include('layouts.frontend.sidebar')
     @yield('content')
 
 
 
 
-    @include('layouts.frontend.footer')
 </body>
 </html>

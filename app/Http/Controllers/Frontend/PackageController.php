@@ -13,7 +13,7 @@ class PackageController extends Controller
     public function index()
     {
         try{
-            $packages =Package::where('package_active','0')
+            $packages =Package::where('package_active','1')
                         ->where('package_delete_status','0')
                         ->get();
            if($packages){
