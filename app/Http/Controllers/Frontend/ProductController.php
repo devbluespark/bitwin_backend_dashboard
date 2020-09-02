@@ -9,14 +9,14 @@ namespace App\Http\Controllers\Frontend;
 use App\Bid_Record;
 use App\Http\Controllers\Controller;
 use App\Product;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductController extends Controller
 {
    //return all active products in frontend
     public function index()
-    {
+    { 
 
         try{
             $products =Product::where('product_active',1)
@@ -28,6 +28,7 @@ class ProductController extends Controller
                 $product['bid_records_percentage']= $this->status_bar($product);
             }
 
+            
             return view('frontend/product/index',compact('products'));
 
            

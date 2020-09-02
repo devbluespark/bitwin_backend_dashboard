@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 class BidRecordsController extends Controller
 {
   
+    //return all bid records to front
     public function index()
     {
         $bid_records =DB::table('bid_records')
@@ -37,7 +38,7 @@ class BidRecordsController extends Controller
         //
     }
 
-    
+    //return selected bid record to front
     public function show($id)
     {
        $bid_records=Bid_Record::where('id',$id)->first();

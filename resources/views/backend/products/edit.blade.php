@@ -87,7 +87,7 @@
                                     <div class="wrapper_">                                      
                                       <div class="box">   
                                         @if ($product['product_img_1'] != "noimage.jpg") 
-                                        <i href="" class="fa fa-trash"></i> 
+                                        <a class="mr-2" href="/delete_product_image" class="btn btn-danger"> <i class="fa fa fa-trash mx-1""></i></a> 
                                         @endif                                  
                                         <div class="card-body">
                                           <div class="  mb-3">
