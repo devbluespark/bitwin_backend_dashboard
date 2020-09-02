@@ -1,4 +1,5 @@
-h2, h3{
+h2,
+h3 {
     font-family: AvenirNextRoundedProBold;
 }
 
@@ -32,7 +33,7 @@ h2, h3{
 }
 
 .left-nav-link:hover {
-    color: gray !important;
+    color: #89a4f5 !important;
 }
 
 .nav-item-clicked {
@@ -65,7 +66,7 @@ h2, h3{
     /* padding: 16px; */
 }
 
-.content{
+.content {
     padding-right: 0px !important;
     background-color: whitesmoke;
     width: 100%;
@@ -82,7 +83,181 @@ h2, h3{
     }
 }
 
-.dashboard-card{
-    /* background-color: white; */
+.page-title {
+    margin-left: 39px !important;
+}
+
+.page-link {
+    border-radius: 50% !important;
+    color: gray;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.currunt-page-link {
+    color: #2659EE !important;
+}
+
+.dashboard-card {
+    background-color: white;
     border-radius: 15px !important;
+    border: 0 !important;
+    margin-top: 15px !important;
+}
+
+.bs-card-border-left {
+    border-left: solid;
+    border-left-width: 1px;
+    border-left-color: rgba(128, 128, 128, 0.4);
+}
+
+.dashboard-row {
+    margin-top: 25px !important;
+    margin-left: 15px !important;
+    margin-right: 39px !important;
+}
+
+.item-card {
+    padding: 5px;
+    border-radius: 15px;
+    background-color: whitesmoke;
+}
+
+.item-card-button {
+    border: 0px;
+    box-shadow: 0px 0px 2px 2px #2658ee7e;
+    background-color: white;
+    font-size: 10px;
+    font-weight: 600;
+    width: 40px;
+}
+
+.product-modal-description-p {
+    color: gray;
+    margin-bottom: 0px;
+}
+
+.product-modal-description-val {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+.product-modal-description-val:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.progress {
+    border-radius: 50px !important;
+    height: 10px;
+    margin-top: 8px !important;
+}
+
+/* Referels */
+.social-link-btn {
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+/* Packages */
+.package-card {
+    max-width: 18rem;
+    border-radius: 15px;
+    border: none;
+}
+
+.package-card:hover {
+    border: 1.5px solid #2658eea9 !important;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 4px rgba(134, 134, 134, 0.664);
+}
+
+.package-card-header {
+    background-color: white;
+    border-radius: 15px !important;
+    border: 0;
+}
+
+.package-card-title {
+    font-weight: 700;
+}
+
+.package-card-h1 {
+    font-size: 72px;
+    font-weight: 700;
+}
+
+.package-card-h6 {
+    font-weight: 700;
+    color: gray;
+}
+
+/* History */
+.product-card-description-p {
+    color: gray;
+    margin-bottom: 3px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.product-card-description-val {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.product-card-description-val:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.card-remove-button {
+    border: none !important;
+    background-color: whitesmoke;
+    color: gray;
+    border-radius: 50%;
+}
+
+.product-card-date{
+    margin-top: 4px !important;
+    margin-bottom: 0px !important;
+    color: gray;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Bid Items */
+.bid-item-card{
+    border-radius: 15px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.bid-item-card-img{
+    border-radius: 15px;
+}
+
+.bid-item-card-text{
+    font-size: 14px;
+    font-weight: 600;
+    color: gray;
+}
+
+.bid-item-card-val{
+    color: black !important;
+    text-decoration: none !important;
+}
+.bid-item-card-body {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+.bid-item-card-footer {
+    padding: 0px;
+    background-color: white;
+    border: 0;
 }

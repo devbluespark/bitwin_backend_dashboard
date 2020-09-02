@@ -125,8 +125,12 @@ Route::group(['prefix' => 'backend'], function() {
         //Frontend Products
         Route::resources([
        
-             'products'=> 'Frontend\ProductController',   //get all products
-             'packages'=> 'Frontend\PackagesController'   //get all packages
+            'products'=> 'Frontend\ProductController',   //get all products
+            'packages'=> 'Frontend\PackagesController' , //get all packages
+            'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
+            'biditems'=> 'Frontend\BidItemController',   //get all bid items
+            'history'=> 'Frontend\BidItemController',   //get history
+            'referrels'=> 'Frontend\ReferralController',   //get all refreels
         ]);  
         
         
@@ -137,13 +141,9 @@ Route::group(['prefix' => 'backend'], function() {
     
         Route::get('/referrals', 'Frontend\ReferralController@index');
 
-        //Frontend Dashboard
-        Route::resources([
        
-            'dashboard'=> 'Frontend\DashboardController',   //get all products
-       ]);
        
-    });
+         });
 
 
     Route::get('/user/verify/{token}', 'AuthUser\RegisterController@verifyUser');

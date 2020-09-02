@@ -7,12 +7,18 @@ use App\BidUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ReferralController extends Controller
 {
     public function index(){
-        $bid_user= Bid_User::find((Auth::guard('biduser')->user()->id));
-       echo $refferalUrl=url('reg',$bid_user->token);
+
+
+    $referel_count= DB::table('referrals')->where('parent_user_id',Auth::guard('biduser')->user()->id)->count();
+        // $bid_user= Bid_User::find((Auth::guard('biduser')->user()->id));
+    //    echo $refferalUrl=url('reg',$bid_user->token);
+    return view('frontend/referels/index',compact('referel_count')) ;   
+
 
         
     }

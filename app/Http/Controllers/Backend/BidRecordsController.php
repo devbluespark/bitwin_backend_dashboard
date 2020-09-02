@@ -22,7 +22,8 @@ class BidRecordsController extends Controller
                     ->join('bid_users','bid_users.id','=','bid_records.bid_user_id')
                     ->join('win_records','bid_records.bid_user_id','=','bid_records.bid_user_id')
                     ->join('products','products.id','=','bid_records.product_id')
-                    ->select('bid_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')                   
+                    ->select('bid_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')
+                    // ->where                   
                     ->get();
         return view('backend/bid_records/index',compact('bid_records'));
     }
