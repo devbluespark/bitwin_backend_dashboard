@@ -163,8 +163,12 @@
                 @foreach($latest_products as $latest_product)
                 <div class="row m-0 item-card">
                     <div
-                        style="background-color: white; width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
-                        <img src="/storage/images/{{$latest_product->product_img_1}}" alt="Image" style="width: 80%;">
+                        style="width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
+                        @if ($latest_product['product_img_1'] != "noimage.jpg") 
+                        <img src="/storage/images/{{$latest_product->product_img_1}}" alt="Image" style="width: 100%; border-radius: 10px;">
+                        @else
+                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image" style="width: 100%; border-radius: 10px;">
+                        @endif
                     </div>
                     <div class="pl-2" style="padding-top: 12px;">
                         <p class="mb-0" style="font-size: 14px; line-height: 0px; font-weight: 600;">{{$latest_product->product_name}}</p>
