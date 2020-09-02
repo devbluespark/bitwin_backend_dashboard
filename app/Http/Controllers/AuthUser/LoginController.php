@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\AuthUser;
-use App\BidUser;
+
+use App\Bid_User;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -40,7 +41,7 @@ class LoginController extends Controller{
         }
 
          // Load user from database
-         $bid_user = BidUser::where($this->username(), $request->{$this->username()})->first();
+         $bid_user = Bid_User::where($this->username(), $request->{$this->username()})->first();
 
          
         

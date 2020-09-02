@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 
-use App\Win_Records;
+use App\Win_Record;
 use Illuminate\Http\Request;
 use App\Product;
-use App\BidUser;
+use App\Bid_User;
 use DB;
 
 class WinRecordsController extends Controller
@@ -39,8 +39,8 @@ class WinRecordsController extends Controller
     public function show($id)
     {
 
-        $win_records=Win_Records::where('id',$id)->first();
-        $user_records=BidUser::where('id',$win_records->bid_user_id)->first();
+        $win_records=Win_Record::where('id',$id)->first();
+        $user_records=Bid_User::where('id',$win_records->bid_user_id)->first();
         $product_details=Product::where('id',$win_records->product_id)->first();
     //    $details=Db::table('bid_records')
     //                 ->join('bid_users','bid_users.id','=','1')
@@ -61,19 +61,19 @@ class WinRecordsController extends Controller
     }
 
     
-    public function edit(Win_Records $win_Records)
+    public function edit(Win_Record $win_Records)
     {
         //
     }
 
    
-    public function update(Request $request, Win_Records $win_Records)
+    public function update(Request $request, Win_Record $win_Records)
     {
         //
     }
 
    
-    public function destroy(Win_Records $win_Records)
+    public function destroy(Win_Record $win_Records)
     {
         //
     }

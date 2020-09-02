@@ -60,8 +60,6 @@ Route::group(['prefix' => 'backend'], function() {
     Route::post('/productdelete', 'Backend\ProductsController@delete');
     Route::post('/productpublish', 'Backend\ProductsController@publish');
     Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
-    Route::get('/delete_product_image', 'Backend\ProductsController@delete_product_image');
-    
     
 
     //***************************Backend Customer Routes*********************

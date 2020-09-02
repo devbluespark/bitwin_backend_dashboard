@@ -29,7 +29,7 @@
 
             @foreach ($payments_not_confirmed as $payment_not_confirmed)
             <tr>
-                <td>{{ $payment_not_confirmed->BidUser->user_fname }}</td>
+                <td>{{ $payment_not_confirmed->BidUser->user_fname }} </td>
                 <td>{{ $payment_not_confirmed->created_at }}</td>
                 <td>{{ $payment_not_confirmed->payment_amount }}</td>
                 <td>{{ $payment_not_confirmed->payment_bank }}</td>

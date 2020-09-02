@@ -87,7 +87,9 @@ class ProfileController extends Controller
 
 
 
-
+    //public function ShowD(){
+      //  $win_details=(Auth::guard('biduser')->user()->id)
+    //}
 
 
 

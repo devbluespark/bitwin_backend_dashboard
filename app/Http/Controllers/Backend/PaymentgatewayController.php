@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\BidUser;
+use App\Bid_User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Package;
@@ -42,9 +42,11 @@ class PaymentgatewayController extends Controller
         try {
             
             
-             $payment_gateway = Payments_Gateway::find($payment_id);
-             $receipt= Receipt::find($payment_gateway->receipts_id);
-             return view('backend.payment-gateway.show',compact('payment_gateway','recipt'));
+            $payment_gateway = Payments_Gateway::find($payment_id);
+            $receipt= Receipt::find($payment_gateway->receipts_id);
+            $bid_user =Bid_User::select('id','user_fname')->find($payment_gateway->bid_users_id);
+            $packages=Package::select('package_name','package_price')->find($payment_gateway->packages_id);
+            return view('backend.payment-gateway.show',compact('payment_gateway','recipt','bid_user','packages'));
              
       
             

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 
-use App\Bid_Records;
+use App\Bid_Record;
 use App\Product;
-use App\BidUser;
+use App\Bid_User;
 
 use DB;
 use Illuminate\Http\Request;
@@ -17,10 +17,9 @@ class BidRecordsController extends Controller
   
     public function index()
     {
-
         $bid_records =DB::table('bid_records')
                     ->join('bid_users','bid_users.id','=','bid_records.bid_user_id')
-                    // ->join('win_records','bid_records.bid_user_id','=','bid_records.bid_user_id')
+                    ->join('win_records','bid_records.bid_user_id','=','bid_records.bid_user_id')
                     ->join('products','products.id','=','bid_records.product_id')
                     ->select('bid_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')                   
                     ->get();
@@ -41,8 +40,8 @@ class BidRecordsController extends Controller
     
     public function show($id)
     {
-       $bid_records=Bid_Records::where('id',$id)->first();
-       $user_records=BidUser::where('id',$bid_records->bid_user_id)->first();
+       $bid_records=Bid_Record::where('id',$id)->first();
+       $user_records=Bid_User::where('id',$bid_records->bid_user_id)->first();
        $product_details=Product::where('id',$bid_records->product_id)->first();
 
     //    $details=Db::table('bid_records')
@@ -62,19 +61,19 @@ class BidRecordsController extends Controller
     }
 
     
-    public function edit(Bid_Records $bid_Records)
+    public function edit(Bid_Record $bid_Records)
     {
         //
     }
 
    
-    public function update(Request $request, Bid_Records $bid_Records)
+    public function update(Request $request, Bid_Record $bid_Records)
     {
         //
     }
 
    
-    public function destroy(Bid_Records $bid_Records)
+    public function destroy(Bid_Record $bid_Records)
     {
         //
     }

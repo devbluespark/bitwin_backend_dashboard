@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AuthUser;
 
+use App\Bid_User;
 use App\BidUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,18 +15,19 @@ use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
-    
-    public function showRegistrationForm(){
 
-    if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
-    return view('user-auth.register');
-  }
+    public function showRegistrationForm()
+    {
+
+        if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
+        return view('user-auth.register');
+    }
 
 
 
 
-  protected function register(Request $request)
-  {
+    protected function register(Request $request)
+    {
 
         $request->validate([
             'user_fname' => 'required|string|max:25|min:3',
@@ -37,12 +39,12 @@ class RegisterController extends Controller
             'user_phn1' => 'required|min:8|max:20',
         ]);
 
-        $token =str_random(30).date('His');
+        $token = str_random(30) . date('His');
 
-      
-        
 
-         $user = BidUser::create([
+
+
+        $user = Bid_User::create([
             'user_fname' => $request->user_fname,
             'user_lname' => $request->user_lname,
             'username' =>  $request->username,
@@ -51,79 +53,70 @@ class RegisterController extends Controller
             'user_phn1' => $request->user_phn1,
             'token' => $token,
             'user_active' => 1,
-        ]); 
+        ]);
 
-       /* if(($request->parent_id)){
-            echo $request->parent_id;
-            echo "go with id";
-        }else{
-            echo $request->parent_id;
-            echo "go withour id";
-        } */
-        
-       
-       
-      
+
+
+
         if (isset($request->parent_id)) {
-            $referral= Referral::create([
-                'bid_user_id' => $user->id,
+            $referral = Referral::create([
+                'bid_users_id' => $user->id,
                 'parent_user_id' => $request->parent_id
             ]);
-
         } else {
-            $referral= Referral::create([
-                'bid_user_id' => $user->id,
+            $referral = Referral::create([
+                'bid_users_id' => $user->id,
                 'parent_user_id' => 0
             ]);
         }
 
-      $verifyUser = verifyUser::create([
-          'user_id' => $user->id,
-          'token' => str_random(40)
-      ]);
-
-      
-
-      $user['token'] = $verifyUser->token;
-      Mail::to($user->email)->send(new VerifyMail($user));
-
-      $status = "We have sent you an activation code, please check your email";
-
-      return redirect()->route('user.login')->with('status', $status);  
-  }
-
-  
+        $verifyUser = verifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
 
 
-  public function verifyUser($token)
-  {
-      $verifyUser = VerifyUser::where('token', $token)->first();
-      $bid_user= BidUser::find($verifyUser->user_id); 
-      if(isset($verifyUser) ){
-        
-          if(!$bid_user->verified) {
-              $bid_user->verified = 1;
-              $bid_user->save();
-              $status = "Your e-mail is verified. You can now login.";
-          }else{
-              $status = "Your e-mail is already verified. You can now login.";
-          }
-      }else{
-          return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
-      } 
 
-      return redirect('/login')->with('status', $status); 
-  }
+        $user['token'] = $verifyUser->token;
+        Mail::to($user->email)->send(new VerifyMail($user));
 
+        $status = "We have sent you an activation code, please check your email";
 
-  protected function registered(Request $request, $user)
-  {
-      $this->guard()->logout();
-      return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
-  }
-
-  protected function guard(){
-        return Auth::guard('biduser');
+        return redirect()->route('user.login')->with('status', $status);
     }
 
+
+
+
+    public function verifyUser($token)
+    {
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        $bid_user = Bid_User::find($verifyUser->user_id);
+        if (isset($verifyUser)) {
+
+            if (!$bid_user->verified) {
+                $bid_user->verified = 1;
+                $bid_user->save();
+                $status = "Your e-mail is verified. You can now login.";
+            } else {
+                $status = "Your e-mail is already verified. You can now login.";
+            }
+        } else {
+            return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+        }
+
+        return redirect('/login')->with('status', $status);
+    }
+
+
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('biduser');
+    }
 }
