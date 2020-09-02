@@ -17,12 +17,12 @@ class ProductController extends Controller
     { 
 
         try{
-            $products =Product::where('product_active','0')
+             $products =Product::where('product_active','1')
                         ->where('product_delete_status','0')
                         ->get();
                        
              if($products){
-                return view('frontend/product/index',compact('products')) ;
+                return view('frontend/bid_item/index',compact('products')) ;
              }else{
 
                 return redirect()->back();

@@ -129,17 +129,17 @@ Route::group(['prefix' => 'backend'], function() {
             'packages'=> 'Frontend\PackagesController' , //get all packages
             'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
             'biditems'=> 'Frontend\BidItemController',   //get all bid items
-            'history'=> 'Frontend\BidItemController',   //get history
+            'history'=> 'Frontend\HistoryController',   //get history
             'referrels'=> 'Frontend\ReferralController',   //get all refreels
         ]);  
         
         
 
         //tempory routes
-        Route::get('products/{id}','Frontend\ProductController@show');
-        Route::get('packages/{id}','Frontend\PackagesController@show');
+        // Route::get('products/{id}','Frontend\ProductController@show');
+        // Route::get('packages/{id}','Frontend\PackagesController@show');
     
-        Route::get('/referrals', 'Frontend\ReferralController@index');
+        // Route::get('/referrals', 'Frontend\ReferralController@index');
 
        
        

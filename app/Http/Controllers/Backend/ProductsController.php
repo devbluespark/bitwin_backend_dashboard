@@ -12,7 +12,7 @@ class ProductsController extends Controller
    
     public function index()
     {
-        $products=Product::where('product_delete_status','1')->get();
+        $products=Product::where('product_delete_status','0')->get();
     
         return view('backend/products/index',compact('products'));
     }

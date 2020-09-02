@@ -10,7 +10,7 @@
                 Dashboard</a>
         </div>
         <div class="p-2">
-            <a href="{{route("biditems.index")}}" class="left-nav-link"><i class="material-icons mr-3">category</i> Bid Item</a>
+            <a href="{{route("products.index")}}" class="left-nav-link"><i class="material-icons mr-3">category</i> Bid Item</a>
         </div>
         <div class="p-2">
             <a href="{{route("referrels.index")}}" class="left-nav-link"><i class="material-icons mr-3">people</i> Referels</a>
