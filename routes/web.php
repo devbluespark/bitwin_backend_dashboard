@@ -41,7 +41,7 @@ Route::group(['prefix' => 'backend'], function() {
       
 
             //products
-            // 'products'=>'Backend\ProductsController',
+            'products'=>'Backend\ProductsController',
 
             //customer
             'customers'=>'Backend\CustomerController',
@@ -60,7 +60,6 @@ Route::group(['prefix' => 'backend'], function() {
     Route::post('/productdelete', 'Backend\ProductsController@delete');
     Route::post('/productpublish', 'Backend\ProductsController@publish');
     Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
-    Route::get('/poducts', 'Backend\ProductsController@index');
     
 
     //***************************Backend Customer Routes*********************
@@ -125,13 +124,8 @@ Route::group(['prefix' => 'backend'], function() {
         ]);
         //Frontend Products
         Route::resources([
-       
-            'products'=> 'Frontend\ProductController',   //get all products
-            'packages'=> 'Frontend\PackagesController' , //get all packages
+    
             'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
-            'biditems'=> 'Frontend\BidItemController',   //get all bid items
-            'history'=> 'Frontend\HistoryController',   //get history
-            'referrels'=> 'Frontend\ReferralController',   //get all refreels
         ]);  
         
         
@@ -142,7 +136,11 @@ Route::group(['prefix' => 'backend'], function() {
     
         // Route::get('/referrals', 'Frontend\ReferralController@index');
 
-       
+        //frontend routes to return dashboard views
+       Route::get('products','Frontend\ProductController@index')->name('user.products.index');
+       Route::get('history','Frontend\HistoryController@index')->name('user.history.index');
+       Route::get('referrals','Frontend\ReferralController@index')->name('user.referrals.index');
+       Route::get('packages','Frontend\PackagesController@index')->name('user.packages.index');
        
          });
 
