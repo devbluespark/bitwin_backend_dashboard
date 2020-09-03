@@ -41,7 +41,7 @@ Route::group(['prefix' => 'backend'], function() {
       
 
             //products
-            'products'=>'Backend\ProductsController',
+            // 'products'=>'Backend\ProductsController',
 
             //customer
             'customers'=>'Backend\CustomerController',
@@ -60,6 +60,7 @@ Route::group(['prefix' => 'backend'], function() {
     Route::post('/productdelete', 'Backend\ProductsController@delete');
     Route::post('/productpublish', 'Backend\ProductsController@publish');
     Route::post('/productunpublish', 'Backend\ProductsController@unpublish');
+    Route::get('/poducts', 'Backend\ProductsController@index');
     
 
     //***************************Backend Customer Routes*********************
