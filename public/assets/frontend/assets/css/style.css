@@ -178,6 +178,7 @@ label {
 .bs-form-group {
     padding-left: 22px !important;
     box-shadow: 2px 2px 4px #8b8b8b !important;
+    background-color: white;
 }
 
 .bs-form-group-focused {
@@ -212,4 +213,9 @@ label {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.login-register-img {
+    background-color: #F7F9FE;
+    height: 100vh;
 }

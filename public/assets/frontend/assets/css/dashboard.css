@@ -3,6 +3,35 @@ h3 {
     font-family: AvenirNextRoundedProBold;
 }
 
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    pointer-events: none;
+}
+
+#mySidenav {
+    padding-top: 40px;
+}
+
+#sideNavToggleBtn {
+    cursor: pointer;
+    margin-left: 6px;
+    margin-top: 6px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: white;
+    border-radius: 50%;
+}
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -48,10 +77,6 @@ h3 {
     color: #2659EE !important;
 }
 
-/* .sidenav a:hover {
-    color: #f1f1f1;
-} */
-
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -63,7 +88,7 @@ h3 {
 #main {
     background-color: whitesmoke;
     transition: margin-left .5s;
-    /* padding: 16px; */
+    height: 100vh;
 }
 
 .content {
@@ -96,6 +121,19 @@ h3 {
 
 .currunt-page-link {
     color: #2659EE !important;
+}
+
+.dashboard-new-items-col {
+    margin-top: -44px !important;
+}
+
+#myChartDiv {
+    width: 100%;
+}
+
+#dashboardChartDate {
+    color: gray;
+    font-size: 14px;
 }
 
 .dashboard-card {
@@ -152,6 +190,36 @@ h3 {
     border-radius: 50px !important;
     height: 10px;
     margin-top: 8px !important;
+}
+
+.dashboard-curSaleItemCard-title {
+    font-size: 14px;
+    line-height: 0px;
+    font-weight: 600;
+}
+
+.dashboard-newItemsCard-title {
+    font-size: 14px;
+    line-height: 0px;
+    font-weight: 600;
+}
+
+.dashboard-curSaleItemCard-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.dashboard-newItemsCard-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
 }
 
 /* Referels */
@@ -222,7 +290,7 @@ h3 {
     border-radius: 50%;
 }
 
-.product-card-date{
+.product-card-date {
     margin-top: 4px !important;
     margin-bottom: 0px !important;
     color: gray;
@@ -231,25 +299,39 @@ h3 {
 }
 
 /* Bid Items */
-.bid-item-card{
+.bid-item-card {
     border-radius: 15px;
     margin-left: 8px;
     margin-right: 8px;
 }
-.bid-item-card-img{
-    border-radius: 15px;
-}
 
-.bid-item-card-text{
+/* .bid-item-card-img-container {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+} */
+
+/* .bid-item-card-img {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px;
+} */
+
+.bid-item-card-text {
     font-size: 14px;
     font-weight: 600;
     color: gray;
 }
 
-.bid-item-card-val{
+.bid-item-card-val {
     color: black !important;
     text-decoration: none !important;
 }
+
 .bid-item-card-body {
     padding-left: 0px;
     padding-right: 0px;
@@ -260,4 +342,29 @@ h3 {
     padding: 0px;
     background-color: white;
     border: 0;
+}
+
+/* Profile */
+.profile-userImg {
+    border: solid;
+    border-color: gray;
+    border-radius: 50%;
+}
+
+/* Footer */
+.dashboard-footer {
+    background-color: whitesmoke;
+}
+
+.dashboard-footer-p {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+@media (max-width: 992px) {
+
+    .sidenav {
+        position: absolute !important;
+    }
+
 }

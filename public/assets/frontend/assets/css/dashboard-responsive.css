@@ -4,90 +4,41 @@
 
 @media (min-width: 993px) {}
 
-@media (max-width: 1236px) and (min-width: 992px) {
-    .socialMedia-Sign-button{
-        padding: 0;
-        margin-right: 10px !important;
-    }
-    .socialMedia-Sign-button p{
-        font-size: 12px !important;
-    }
-}
 @media (max-width: 992px) {
 
-    /* Navbar */
-    .navbar {
-        background-color: #2766F0 !important;
+    /* Dashboard */
+    #allRollsCardCol {
+        padding-right: 0px;
     }
 
-    .nav-link {
-        color: white !important;
-        font-weight: 600 !important;
+    #allRollsCardCol .card-body {
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    .activeNavLink {
-        color: white !important;
+    #allRefferalCardCol {
+        padding-right: 0;
     }
 
-    .btn-sign-in {
-        border-color: white !important;
-        color: white !important;
+    .dashboard-curSaleItemCard-title {
+        font-size: 12px;
     }
 
-}
-
-@media (max-width: 991px) and (min-width: 768px) {
-    /* Common */
-    h1 {
-        font-size: 2rem;
-    }
-    p{
-        font-size: 14px;
-    }
-    /* Section - 1 */
-    .section-1-bg {
-        margin-top: 0;
+    .dashboard-curSaleItemCard-img {
+        padding: 10px;
+        width: 130px;
+        height: 130px;
+        border-radius: 10px;
     }
 
-    .section-1-content-txt {
-        padding-top: 10px;
-        padding-left: 10px;
-        padding-right: 40px;
-    }
-
-    /* Section - 2 */
-    .section-2-img {
-        position: relative;
-        top: 40%;
-        transform: translateY(-50%);
-    }
-
-    /* Section - 4 */
-    .section-4-img {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    /* Register Page */
-    .login-register-form-col{
-        padding-left: 10px !important;
-        padding-right: 10px !important;
-    }
-    label{
-        font-size: 12px !important;
-    }
-
-    /* Login */
-    .socialMedia-Sign-button{
-        padding: 0;
-        margin-right: 10px !important;
-    }
-    .socialMedia-Sign-button p{
-        font-size: 10px !important;
+    .dashboard-new-items-col {
+        padding-left: 6px !important;
+        padding-right: 6px !important;
     }
 
 }
+
+@media (max-width: 991px) and (min-width: 768px) {}
 
 @media (max-width: 840px) and (min-width: 768px) {}
 
@@ -96,123 +47,145 @@
 @media (max-width:769px) {}
 
 @media (max-width:767px) {
-    /* Common */
-    h3{
-        font-size: 1.1rem;
+
+    #allRollsCardCol {
+        padding-right: 15px;
     }
 
-    /* Section - 3 */
-    .section-3-card{
-        margin: 0px !important;
+    #allRollsCardCol .card-body {
+        padding-left: 30px;
+        padding-right: 30px;
     }
 
-    /* Login */
-    .login-register-img-col {
-        margin-top: 50px;
-        background-color: #F7F9FE;
-        height: 400px;
-    }
-    .register-img{
-        width: 50% !important;
+    #allRefferalCardCol {
+        padding-right: 15px;
     }
 
-    .login-register-form-col{
+    .dashboard-new-items-col {
         margin-top: 0px !important;
+        padding-left: 50px !important;
+        padding-right: 50px !important;
     }
 
-    .socialMedia-Sign-button{
-        margin-top: 15px !important;
+    .dashboard-curSaleItemCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
     }
+
+    .dashboard-curSaleItemCard-img {
+        padding: 0px;
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .item-card-button {
+        margin-top: 14px;
+    }
+
+    .dashboard-newItemsCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
+    }
+
+    .dashboard-newItemsCard-img {
+        padding: 0px;
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+    }
+
 }
 
 
 @media (max-width:680px) {}
 
-@media (max-width:580px) {
-    
-    /* Section - 3 */
-    .section-3{
-        padding: 10px !important;
-    }
-    .section-3-card{
-        margin: 0px !important;
+@media (max-width:580px) {}
+
+@media (max-width:480px) {}
+
+@media (max-width:380px) {}
+
+@media (max-width:370px) {
+
+    h5 {
+        font-size: 16px !important;
     }
 
-    /* Login */
-    .login-register-img-col {
-        height: 300px;
-    }
-    .register-img{
-        width: 50% !important;
-    }
-}
-
-/* New */
-@media (max-width:575px) {
-    /* Section - 1 */
-    .section-1-content-txt{
-        padding-top: 0px !important;
-    }
-
-    /* Section - 3 */
-    .section-3-card{
-        margin: 0px !important;
-    }
-    
-}
-
-/* New */
-@media (max-width:494px) {
-    /* Common */
-    h1{
-        font-size: 1.5rem;
-    }
-    
-    /* Section - 1 */
-    .section-1-content-txt{
-        padding-top: 20px !important;
-        padding-left: 10px !important;
-        padding-right: 40px !important;
-    }
-    .section-1-img-row{
-        margin: 0px !important;
-    }
-
-    /* Section - 2 */
-    .section-2-txt-col{
-        padding-top: 0px !important;
-    }
-
-    /* Section - 4 */
-    .section-4-txt-col{
-        padding-top: 0px !important;
-    }
-}
-
-@media (max-width:480px) {
-
-    /* Login */
-    .login-register-img-col {
-        height: 200px;
-    }
-    .register-img{
-        width: 55% !important;
-    }
-}
-
-@media (max-width:380px) {
-    p{
+    p {
         font-size: 14px !important;
     }
-    .login-register-form-col{
-        padding: 20px !important;
+
+    #dashboardChartDate {
+        font-size: 10px !important;
     }
-    .socialMedia-Sign-button{
-        padding: 0;
+
+    #allRollsCardCol .card-body {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #dashboardCol1 {
+        padding-left: 0 !important;
+    }
+
+    #dashboardRow1 {
+        padding-right: 0 !important;
+    }
+
+    #dashboardChartRow {
+        margin-right: 15px !important;
+    }
+
+    #dashboardSaleItemsRow {
+        margin-right: 15px !important;
+    }
+
+    .dashboard-new-items-col {
+        margin-top: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .dashboard-curSaleItemCard-title {
+        margin-top: 0px;
+        margin-bottom: 5px !important;
+        font-size: 12.5px !important;
+    }
+
+    .dashboard-curSaleItemCard-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .item-card-button {
+        margin-top: 6px;
+    }
+
+    .dashboard-newItemsCard-title {
+        margin-top: 0px;
+        margin-bottom: 5px !important;
+        font-size: 12.5px !important;
+    }
+
+    .dashboard-newItemsCard-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .dashboard-footer {
+        padding-top: 20px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-bottom: 20px !important;
+    }
+
+    .dashboard-footer-p {
+        font-size: 10px !important;
     }
 }
-
-@media (max-width:370px) {}
 
 @media (min-width: 770px) and (max-width: 790px) {}
 
@@ -265,37 +238,7 @@ iPad 3
 /* iPhone 4 ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {}
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
-
-    /* Styles */
-    #soundrental_tbl {
-        border: 0px;
-    }
-
-    #pianotuning_tbl {
-        border: 0px;
-    }
-
-    #prostudio_tbl {
-        border: 0px;
-    }
-
-    #musiclesion_tbl {
-        border: 0px;
-    }
-
-    #b11 {
-        display: none;
-    }
-
-    #b12 {
-        display: none;
-    }
-
-    #b13 {
-        display: none;
-    }
-}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {}
 
 /* iPhone 5 ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2) {}

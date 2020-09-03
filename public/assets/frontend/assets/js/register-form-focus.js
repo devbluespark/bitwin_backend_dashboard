@@ -1,7 +1,7 @@
-$('#fullName').on('focus', function () {
-    $('#fullNameDiv').addClass('bs-form-group-focused');
+$('#firstName').on('focus', function () {
+    $('#firstNameDiv').addClass('bs-form-group-focused');
 }).on('blur', function () {
-    $('#fullNameDiv').removeClass('bs-form-group-focused');
+    $('#firstNameDiv').removeClass('bs-form-group-focused');
 });
 
 $('#mobileNumber').on('focus', function () {
