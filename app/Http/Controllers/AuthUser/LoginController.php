@@ -8,8 +8,6 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\FuncCall;
-use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller{
 
@@ -21,12 +19,18 @@ class LoginController extends Controller{
         $this->middleware('guest:biduser')->except('logout');
     }
 
-    public function showLoginForm(){
+    public function showLoginForm(Request $request){
 
     
         
-        if (auth()->guard('biduser')->user()) return redirect()->route('index');
-        return view('user-auth.login');
+        if (auth()->guard('biduser')->user()){
+            return redirect()->route('index');
+        }else{
+            //$request=new Request;
+            $request->session()->flash('status', 'Task was successful!');
+            return  view('user-auth.login');
+        } 
+        
 
         //if (auth()->guard('biduser')->user()) return redirect('')
         //return view('user-auth.login');

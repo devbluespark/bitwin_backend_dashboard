@@ -29,9 +29,9 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
 
+
         $request->validate([
             'user_fname' => 'required|string|max:25|min:3',
-            'user_lname' => 'required|string|max:25|min:3',
             'email' => 'required|string|email|max:25|unique:bid_users',
             'username' => 'required|string|max:20|min:3|unique:bid_users|alpha',
             'password' => 'required|string|min:6|confirmed|max:30',
@@ -41,10 +41,10 @@ class RegisterController extends Controller
 
         $token = str_random(30) . date('His');
 
+       
 
 
-
-        $user = Bid_User::create([
+       $user = Bid_User::create([
             'user_fname' => $request->user_fname,
             'user_lname' => $request->user_lname,
             'username' =>  $request->username,
@@ -58,7 +58,7 @@ class RegisterController extends Controller
 
 
 
-        if (isset($request->parent_id)) {
+       if (isset($request->parent_id)) {
             $referral = Referral::create([
                 'bid_users_id' => $user->id,
                 'parent_user_id' => $request->parent_id
@@ -80,9 +80,9 @@ class RegisterController extends Controller
         $user['token'] = $verifyUser->token;
         Mail::to($user->email)->send(new VerifyMail($user));
 
-        $status = "We have sent you an activation code, please check your email";
+       // $status = "We have sent you an activation code, please check your email";
 
-        return redirect()->route('user.login')->with('status', $status);
+        return redirect()->route('user.login')->with('email_verify_model', $user->email);  
     }
 
 
@@ -112,7 +112,8 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         $this->guard()->logout();
-        return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+        echo $request->email;
+        return redirect('/login')->with('email_verify_model', 'We sent you an activation code. Check your email and click on the link to verify.');
     }
 
     protected function guard()

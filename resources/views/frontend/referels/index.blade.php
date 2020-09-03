@@ -16,7 +16,9 @@
 
             <div class="col-md-4 text-center" style="background-color: white; border-radius: 15px;">
                 <div class="m-0 p-0" style="top:50% !important; transform: translateY(-50%); position: relative;">
-                    <h1>{{$referel_count}}</h1>
+                    <h1>{{ $referrels['amount'] }}</h1>
+
+
                     <h5 style="color: gray;">Total Referrals</h5>
                 </div>
 
@@ -26,7 +28,7 @@
                     <div class="form-group col-md-8 pr-3">
                         <div class="bs-form-group" id="referelLinkDiv" style="background-color: white;">
                             <label class="mb-0">Referel link</label>
-                            <input type="text" class="form-control rounded-0 bs-input" id="referelLink">
+                            <input type="text" class="form-control rounded-0 bs-input" id="referelLink" value="{{ $referrels['url'] }} ">
                         </div>
                     </div>
 

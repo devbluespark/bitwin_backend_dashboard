@@ -20,11 +20,37 @@
             </div>
         </div>
 
-        @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
+
+
+      
+
+
+
+
+
+           <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
         </div>
-    @endif
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+ 
+    
     @if (session('warning'))
         <div class="alert alert-warning">
             {{ session('warning') }}
@@ -110,7 +136,114 @@
 </div>
 <!-- End - Register form section -->
 
+@if (session('status'))
+<div class="alert alert-warning">
+   
+
+   <!--  <script type="text/javascript">
+      //   $(document).ready(function() {
+           
+        //    emailVerifyModel();
+            
+         //  function emailVerifyModel(){
+          //      alert('okk');
+         //    }
+
+
+             
+       // });
+</script> -->
+
+
+       <script type="text/javascript" >
+       
+
+            loadModel();
+           function loadModel(){
+                $('#popupmodal').modal('show');
+            }
+           
+      
+
+    </script>
+    
+    <div id="popupmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Notification: Please read</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                ss
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
+    
+    
+
+</div>
+@endif
+
+
+<!-- Start - Verify email modal  -->
+<div class="modal fade" id="verifyEmailModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="verifyEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px;">
+            <div class="modal-body pt-1">
+                <div class="row m-0">
+                    <div class="col p-0 text-right">
+                        <a type="button" class="btn p-0" data-dismiss="modal"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col p-4 text-center">
+                        <img src="{{asset('assets/frontend/assets/img/test-modal-img.png')}}" alt="Image" style="width: 40%;">
+                        <h3 class="mb-4">CONGRATULATIONS.!</h3>
+                        <p style="color: gray;">Your account creation almost finished. We sent email to <a style="color: black;">john@gmail.com</a></p>
+                        <p style="color: gray;">Still can't find email?</p>
+                        <button type="button" class="btn btn-primary rounded-0 btn-block mt-4 mb-4">Re-Send</button>
+                        <p style="color: gray;">Need help? <a href="#">Contact Us</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End - Verify email modal  -->
+
+
+<script type="text/javascript">
+  //  $(document).ready(function() {
+     //   loadMode();
+
+     //   function loadMode() {
+     //       $('#verifyEmailModal').modal('show');
+     //   }
+       
+      
+   // });
+
+   // $(document).ready(function($) {
+  $("#div").on("click", "a", function(event) {
+    event.preventDefault();
+    jQuery.noConflict();
+    $('#verifyEmailModal').modal('show');
+
+  });
+
+
+</script>
+
 
 <!-- Login Form js -->
 <script src="{{asset('assets/frontend/assets/js/login-form-focus.js')}}"></script>
+
+
+
+
+
 @endsection
