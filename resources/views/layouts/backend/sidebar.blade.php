@@ -6,7 +6,7 @@
                 <i class="fa fa-bars"></i>
             </button>
             
-            <a class="navbar-brand" href="./"><p>{{ $user = Auth::user()->name }}</p></a> 
+            <a class="navbar-brand" href="./"><p></p></a> 
             <a class="navbar-brand hidden" href="./"><img src="{{ asset('assets/backend/images/logo2.png') }}" alt="Logo"></a> 
         </div>
 

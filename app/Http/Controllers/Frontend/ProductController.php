@@ -19,7 +19,7 @@ class ProductController extends Controller
     { 
 
         try{
-<<<<<<< HEAD
+
             $products =Product::where('product_active',1)
                         ->where('product_delete_status',0)
                         ->get();
@@ -29,19 +29,6 @@ class ProductController extends Controller
                 $product['bid_records_percentage']= $this->status_bar($product);
             }
 
-=======
-             $products =Product::where('product_active','1')
-                        ->where('product_delete_status','0')
-                        ->get();
-                       
-             if($products){
-                return view('frontend/bid_item/index',compact('products')) ;
-             }else{
-
-                return redirect()->back();
-             }
-             
->>>>>>> c6875e164bf801aea12ba2d79084fe34c66a77ef
             
             return view('frontend/product/index',compact('products'));
 

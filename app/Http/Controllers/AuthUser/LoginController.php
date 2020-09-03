@@ -25,8 +25,11 @@ class LoginController extends Controller{
 
     
         
-        if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
+        if (auth()->guard('biduser')->user()) return redirect()->route('index');
         return view('user-auth.login');
+
+        //if (auth()->guard('biduser')->user()) return redirect('')
+        //return view('user-auth.login');
 
         
     }

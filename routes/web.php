@@ -1,21 +1,6 @@
 <?php
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-//Route::get('/', function () {
-  //  return redirect()->route('user.login');
-//});
-
-Route::get('/', function () {
-    return view('frontend/index');
-});
-
-Route::get('/dashboard', function () {
-    return view('backend/dashboard');
-});
-
-
 
 
 
@@ -77,6 +62,98 @@ Route::group(['prefix' => 'backend'], function() {
 
 
 
+
+Route::group(['middleware' => ['biduser']], function () {
+    //  Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
+  
+      Route::resources([
+          'profile' => 'Frontend\ProfileController',
+          'products' =>'Frontend\ProductController'
+          
+      ]);
+      //Frontend Products
+      Route::resources([
+     
+          'products'=> 'Frontend\ProductController',   //get all products
+          'packages'=> 'Frontend\PackagesController' , //get all packages
+          'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
+          'biditems'=> 'Frontend\BidItemController',   //get all bid items
+          'history'=> 'Frontend\HistoryController',   //get history
+          'referrels'=> 'Frontend\ReferralController',   //get all refreels
+      ]);  
+      
+      
+
+      //tempory routes
+      // Route::get('products/{id}','Frontend\ProductController@show');
+      // Route::get('packages/{id}','Frontend\PackagesController@show');
+  
+      // Route::get('/referrals', 'Frontend\ReferralController@index');
+
+     
+      //------------------------------tempory routs for front index
+      Route::get('/index', function () {
+          return view('frontend/index');
+      })->name('index');
+     
+   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       // Route::get('/home', 'HomeController@index')->name('home');
+
+        //Route::get('/', function () {
+        //  return redirect()->route('user.login');
+        //});
+
+      //  Route::get('/', function () {
+     //       return view('frontend/index');
+     //   });
+
+      //  Route::get('/dashboard', function () {
+       //     return view('backend/dashboard');
+     //   });
+
+
+
+
+
+
+
 // ALl Front End Routes //
 
     
@@ -115,36 +192,7 @@ Route::group(['prefix' => 'backend'], function() {
 
 
 
-    Route::group(['middleware' => ['biduser']], function () {
-      //  Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
-    
-        Route::resources([
-            'profile' => 'Frontend\ProfileController',
-            'products' =>'Frontend\ProductController'
-            
-        ]);
-        //Frontend Products
-        Route::resources([
-       
-            'products'=> 'Frontend\ProductController',   //get all products
-            'packages'=> 'Frontend\PackagesController' , //get all packages
-            'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
-            'biditems'=> 'Frontend\BidItemController',   //get all bid items
-            'history'=> 'Frontend\HistoryController',   //get history
-            'referrels'=> 'Frontend\ReferralController',   //get all refreels
-        ]);  
-        
-        
 
-        //tempory routes
-        // Route::get('products/{id}','Frontend\ProductController@show');
-        // Route::get('packages/{id}','Frontend\PackagesController@show');
-    
-        // Route::get('/referrals', 'Frontend\ReferralController@index');
-
-       
-       
-         });
 
 
     Route::get('/user/verify/{token}', 'AuthUser\RegisterController@verifyUser');
@@ -157,10 +205,7 @@ Route::group(['prefix' => 'backend'], function() {
   
 
     
-    //------------------------------tempory routs for front index
-    Route::get('/index', function () {
-        return view('frontend/index');
-    });
+    
     
     //------------------------------tempory routs for front login
     Route::get('/flogin', function () {
