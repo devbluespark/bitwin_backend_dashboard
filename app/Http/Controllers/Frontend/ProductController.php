@@ -20,35 +20,20 @@ class ProductController extends Controller
              $products =Product::where('product_active','1')
                         ->where('product_delete_status','0')
                         ->get();
-                       
-             if($products){
-                return view('frontend/bid_item/index',compact('products')) ;
-             }else{
-
-                return redirect()->back();
-             }
-             
-            
-        
-        }catch(Exception $e){
-           
-            return redirect()->back();
-        }
-
-    }
-
    
-    public function create()
-    {
-        //
+             
+            // return view('frontend/bid_item/index',compact('products')) ;
+           
+        
+        
+        }catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        
+
     }
 
   
-    public function store(Request $request)
-    {
-        //
-    }
-
    //view a product details
     public function show($id)
     {
@@ -58,26 +43,10 @@ class ProductController extends Controller
             return view('frontend/product/show',compact('product')) ;  
             
         
-        }catch(Exception $e){
-           
-            return redirect()->back();
+        }catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 
     
-    public function edit($id)
-    {
-        //
-    }
-
-  
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }
