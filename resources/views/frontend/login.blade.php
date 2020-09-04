@@ -5,7 +5,7 @@
     <!-- Start - Login form section -->
     <div class="row m-0">
         <div class="col-md-5 p-0 login-register-img-col">
-            <img src="assets/img/section-1-img.png" alt="Image" class="p-5 register-img">
+            <img src="{{asset('assets/frontend/assets/img/section-1-img.png')}}" alt="Image" class="p-5 register-img">
         </div>
 
         <div class="col-md-7 mt-5 p-5 login-register-form-col">
