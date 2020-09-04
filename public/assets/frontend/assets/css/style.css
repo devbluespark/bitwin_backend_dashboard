@@ -199,13 +199,7 @@ label {
 .register-form-img-col {
     background-color: #F7F9FE;
     height: 100vh;
-    /* width: 40% !important; */
-    /* float: left; */
 }
-
-/* .register-form-col{
-    width: 60% !important;
-} */
 
 .register-img {
     width: 80%;
@@ -217,5 +211,10 @@ label {
 
 .login-register-img {
     background-color: #F7F9FE;
+    height: 100vh;
+}
+
+.login-register-img-col{
+    background-color: #F7F9FE !important;
     height: 100vh;
 }

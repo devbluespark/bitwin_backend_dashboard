@@ -7,13 +7,6 @@
   //  return redirect()->route('user.login');
 //});
 
-Route::get('/', function () {
-    return view('frontend/index');
-});
-
-Route::get('/dashboard', function () {
-    return view('backend/dashboard');
-});
 
 
 
@@ -141,6 +134,7 @@ Route::group(['prefix' => 'backend'], function() {
        Route::get('history','Frontend\HistoryController@index')->name('user.history.index');
        Route::get('referrals','Frontend\ReferralController@index')->name('user.referrals.index');
        Route::get('packages','Frontend\PackagesController@index')->name('user.packages.index');
+       Route::get('profile','Frontend\ProfileController@index')->name('user.profile.index');
        
          });
 

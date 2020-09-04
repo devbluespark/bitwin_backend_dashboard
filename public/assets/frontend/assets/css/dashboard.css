@@ -223,6 +223,17 @@ h3 {
 }
 
 /* Referels */
+.total-referrals-card {
+    background-color: white;
+    border-radius: 15px;
+}
+
+.total-referrals-card-content {
+    top: 50% !important;
+    transform: translateY(-50%);
+    position: relative;
+}
+
 .social-link-btn {
     border-radius: 50px;
     width: 40px;
@@ -232,7 +243,6 @@ h3 {
 
 /* Packages */
 .package-card {
-    max-width: 18rem;
     border-radius: 15px;
     border: none;
 }
@@ -264,6 +274,28 @@ h3 {
 }
 
 /* History */
+.history-product-card {
+    background-color: white;
+}
+
+.history-product-card-img-container {
+    position: relative !important;
+    padding-bottom: 100% !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    border-radius: 10px !important;
+}
+
+.history-product-card-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+}
+
 .product-card-description-p {
     color: gray;
     margin-bottom: 3px;
@@ -305,21 +337,21 @@ h3 {
     margin-right: 8px;
 }
 
-/* .bid-item-card-img-container {
-    width: 100%;
-    padding-top: 100%;
+.bid-item-card-img-container {
     position: relative;
-} */
+    padding-bottom: 100%;
+    height: 0;
+    overflow: hidden;
+}
 
-/* .bid-item-card-img {
+.bid-item-card-img {
     position: absolute;
-    display: block;
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
-} */
+}
 
 .bid-item-card-text {
     font-size: 14px;
@@ -349,6 +381,11 @@ h3 {
     border: solid;
     border-color: gray;
     border-radius: 50%;
+}
+
+#userDetailsCol {
+    display: flex;
+    align-items: center;
 }
 
 /* Footer */

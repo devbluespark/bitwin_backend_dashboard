@@ -198,6 +198,11 @@
     .register-img{
         width: 55% !important;
     }
+
+    /* Password Reset */
+    #pwResetFormCol{
+        padding: 10px !important;
+    }
 }
 
 @media (max-width:380px) {

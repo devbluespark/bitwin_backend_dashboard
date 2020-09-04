@@ -22,7 +22,7 @@
             <a href="{{ route("user.packages.index")}}" class="left-nav-link n"><i class="material-icons mr-3">redeem</i> Packages</a>
         </div>
         <div class="p-2">
-            <a href="#" class="left-nav-link"><i class="material-icons mr-3">contacts</i> Profile</a>
+            <a href="{{route("user.profile.index")}}" class="left-nav-link"><i class="material-icons mr-3">contacts</i> Profile</a>
         </div>
         <div class="p-2">
             <a href="#" class="left-nav-link"><i class="material-icons mr-3">login</i> Logout</a>

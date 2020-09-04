@@ -2,7 +2,112 @@
 
 @media (max-width: 1200px) {}
 
-@media (min-width: 993px) {}
+@media (min-width: 993px) {
+    .bid-items-col {
+        padding: 0 !important;
+    }
+
+    .bid-item-card {
+        padding: 8px !important;
+    }
+
+    .bid-item-card-text {
+        font-size: 12px;
+    }
+
+    .history-card-row {
+        padding: 0px !important;
+    }
+
+    #packagesRow {
+        padding: 10px !important;
+    }
+
+    .package-card-header {
+        padding: 10px !important;
+    }
+
+    /* Dashboard */
+
+    #allRollsCardCol,
+    #allRefferalCardCol {
+        padding-right: 0 !important;
+    }
+
+    #allRollsCardCol .card-body {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 3px;
+    }
+
+    #allRollsCardCol small {
+        font-size: 10px;
+    }
+
+    .dashboard-card p {
+        font-size: 14px;
+    }
+
+    #allRollsCardCol p {
+        font-size: 12px;
+    }
+
+    .dashboard-card h1 {
+        font-size: 18px;
+    }
+
+    /* ---------- */
+
+    .dashboard-new-items-col {
+        margin-top: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .dashboard-curSaleItemCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
+    }
+
+    .dashboard-curSaleItemCard-img {
+        padding: 0px;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .item-card-button {
+        margin-top: 14px;
+    }
+
+    .dashboard-newItemsCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
+    }
+
+    .dashboard-newItemsCard-img {
+        padding: 0px;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .total-referrals-card {
+        padding: 0 !important;
+    }
+
+
+
+
+
+
+    /* ---------- */
+
+}
 
 @media (max-width: 992px) {
 
@@ -34,6 +139,17 @@
     .dashboard-new-items-col {
         padding-left: 6px !important;
         padding-right: 6px !important;
+    }
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 0px !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
     }
 
 }
@@ -97,14 +213,84 @@
         border-radius: 10px;
     }
 
+    .total-referrals-card {
+        padding: 0 !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 60px !important;
+        padding-right: 60px !important;
+    }
+
+    /* History */
+    .history-product-card-text {
+        padding-left: 0 !important;
+        padding-top: 12px !important;
+    }
+
+    .product-card-description-p {
+        font-size: 12px;
+    }
+
+    .product-card-description-val {
+        font-size: 12px;
+    }
+
+    .product-card-date {
+        font-size: 10px;
+    }
+
+    /* Profile */
+    #userDetailsCol {
+        padding-left: 0px !important;
+    }
+
+
 }
 
+@media (max-width:575px) {
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 80px !important;
+    }
+}
 
 @media (max-width:680px) {}
 
 @media (max-width:580px) {}
 
-@media (max-width:480px) {}
+@media (max-width:480px) {
+
+    /* Referels */
+    #referelMainRow {
+        padding: 20px !important;
+    }
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 40px !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+
+    .package-card-h1 {
+        font-size: 60px;
+    }
+
+    /* Profile */
+    .profile-form {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+
+}
 
 @media (max-width:380px) {}
 
@@ -185,6 +371,36 @@
     .dashboard-footer-p {
         font-size: 10px !important;
     }
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 10px !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 1px !important;
+        padding-right: 10px !important;
+    }
+
+    /* History */
+    .history-card-row {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .product-card-description-p {
+        font-size: 12px !important;
+    }
+
+    .product-card-description-val {
+        font-size: 12px !important;
+    }
+
+    .product-card-date {
+        font-size: 10px !important;
+    }
+
 }
 
 @media (min-width: 770px) and (max-width: 790px) {}

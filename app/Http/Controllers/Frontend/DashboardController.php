@@ -16,7 +16,7 @@ class DashboardController extends Controller
     //return to frontend dashboard
     public function index()
     {
-            $latest_products = Product::orderBy('id', 'desc')->take(15)->get();
+            $latest_products = Product::orderBy('id', 'desc')->take(10)->get();
       
              $dashboard_details=DB::table('bid_users')
                 ->join('referrals','referrals.parent_user_id','=','bid_users.id')
