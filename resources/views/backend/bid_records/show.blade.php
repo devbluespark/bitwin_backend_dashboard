@@ -43,7 +43,7 @@
                                                <div class="row">
                                                    <div class="text-center col-4">
                                                     @if ($product_details['product_img_1'] != "noimage.jpg") 
-                                                    <img src="/storage/images/{{$product_details->product_img_1}}" width="" class="rounded" alt="...">
+                                                    <img src="/storage/images/{{$product_details->product_img_1}}" style="border: solid" width="" class="rounded" alt="...">
                                                     @else
                                                     <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" style="border: solid" width="500px" alt="Card image cap">
                                                     @endif
