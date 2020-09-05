@@ -29,17 +29,17 @@
                                     </div>
                                     <div class="col p-0 m-0 bs-card-border-left">
                                         <p class="m-0" style="color: black; font-weight: 700;">05</p>
-                                        <p class="mb-0"><small style="color: gray; font-weight: 600;">Buy</small>
+                                        <p class="mb-0"><small style="color: gray; font-weight: 600;">Bonus</small>
                                         </p>
                                     </div>
                                     <div class="col p-0 m-0 bs-card-border-left">
                                         <p class="m-0" style="color: black; font-weight: 700;">05</p>
-                                        <p class="mb-0"><small style="color: gray; font-weight: 600;">Buy</small>
+                                        <p class="mb-0"><small style="color: gray; font-weight: 600;">Free</small>
                                         </p>
                                     </div>
                                     <div class="col p-0 m-0 bs-card-border-left">
                                         <p class="m-0" style="color: black; font-weight: 700;">05</p>
-                                        <p class="mb-0"><small style="color: gray; font-weight: 600;">Buy</small>
+                                        <p class="mb-0"><small style="color: gray; font-weight: 600;">All</small>
                                         </p>
                                     </div>
                                 </div>
@@ -51,6 +51,9 @@
                     <div class="col-md-4">
                         <div class="card m-0 dashboard-card">
                             <div class="card-body text-center">
+                                @if (isset($dashboard_details))
+                                    
+                               
                                 @foreach($dashboard_details as $dashboard_detail )
                                 <h1>{{ $dashboard_detail->count_referells }}</h1>
                                 @endforeach
@@ -64,6 +67,7 @@
                                 @foreach($dashboard_details as $dashboard_detail )
                                 <h1>200</h1>
                                 @endforeach
+                                @endif
                                 <p style="color: gray;" class="mb-0">All Win Items</p>
                             </div>
                         </div>
@@ -160,6 +164,10 @@
 
             <div class="col-md-3 m-0 p-3 pt-4" style="background-color: white;">
                 <h5 style="font-weight: 700;">New Items</h5>
+
+                @if (isset($last_products))
+                    
+               
                 @foreach($latest_products as $latest_product)
                 <div class="row m-0 item-card">
                     <div
@@ -180,6 +188,8 @@
                     </div>
                 </div>
                 @endforeach
+
+                @endif
             </div>
 
         </div>

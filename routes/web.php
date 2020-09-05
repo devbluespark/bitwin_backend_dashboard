@@ -128,6 +128,7 @@ Route::group(['prefix' => 'backend'], function() {
             'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
         ]);  
         
+        Route::get('dashboard/{timezone}','Frontend\DashboardController@index')->name('user.dashboard.timezone');
         
 
         //tempory routes

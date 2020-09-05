@@ -37,6 +37,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed|max:30',
             'password_confirmation' => 'required',
             'user_phn1' => 'required|min:8|max:20',
+            'timezone' => 'required'
         ]);
 
         $token = str_random(30) . date('His');
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'user_phn1' => $request->user_phn1,
             'token' => $token,
             'user_active' => 1,
+            'timezone' => $request->timezone
         ]);
 
 
