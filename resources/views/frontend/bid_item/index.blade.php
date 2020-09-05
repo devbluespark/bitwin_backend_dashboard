@@ -1,16 +1,16 @@
 @extends('layouts.frontend.app')
 @section('content')
 
-<!-- Start main div -->
-<div id="main">
-    <!-- <a style="cursor: pointer;" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
+  <!-- Start main div -->
+  <div id="main">
+    <a class="btn" id="sideNavToggleBtn" onclick="navToggle()"><i class="fa fa-bars"></i></a>
 
     <!-- Start main div content -->
     <div class="content">
 
         <div class="row m-0">
             <h3 class="mt-4 page-title">Bid Items</h3>
-            <nav aria-label="Page navigation example" class="mt-4 w-75">
+            <nav aria-label="Page navigation example" class="mt-4 w-75 pagination-nav">
                 <ul class="pagination justify-content-end">
                     <li class="page-item mr-2 disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i
@@ -24,7 +24,7 @@
                     </li>
                 </ul>
             </nav>
-            <nav aria-label="Page navigation calander" class="mt-4 ml-4 nav-right">
+            <nav aria-label="Page navigation calander" class="mt-4 ml-4 nav-right calander-nav">
                 <ul class="pagination justify-content-end">
                     <li class="page-item mr-2"><a class="page-link" href="#">
                             <i class="fa fa-calendar"></i>
@@ -33,21 +33,23 @@
             </nav>
         </div>
 
-        <div class="row m-0 pl-5 pr-5 pb-5 justify-content-center">
+        <div class="row m-0 pl-5 pr-5 pb-5 justify-content-center bid-items-col">
 
             @if (isset($products))
                 
           
             <!-- Sample Card -->
             @foreach($products as $product)
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
-             @if ($product['product_img_1'] != "noimage.jpg") 
-            <img src="/storage/images/{{$product->product_img_1}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-            @else
-            <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
-            @endif
-                <div class="card-body bid-item-card-body text-center w-100">
-                    <h6 class="card-title">{{$product->product_name}}</h6>
+            <div class="col-md-2 col-sm-4 mt-3 card p-3 bid-item-card">
+                <div class="bid-item-card-img-container">
+                    @if ($product['product'] != "noimage.jpg") 
+                    <img class="card-img-top bid-item-card-img" src="/storage/images/{{$product->product_img_1}}" alt="Image" >
+                    @else
+                    <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" class="card-img-top bid-item-card-img" alt="Image">
+                    @endif
+                </div>
+                <div class="card-body bid-item-card-body pt-1 text-center w-100">
+                    <h6 class="card-title mt-2">{{$product->product_name}}</h6>
                     <p class="card-text bid-item-card-text">
                         Max Bid <a class="bid-item-card-val">{{$product->product_bid_max_value}}</a><br>
                         Min Bid <a class="bid-item-card-val">{{$product->product_bid_min_value}}</a>
@@ -55,12 +57,13 @@
 
                     </p>
                 </div>
-                <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block" onclick="show_details({{ $product }})"  data-toggle="modal" data-target="#viewItemModal">BID</button>
+                <div class="card-footer mt-3 bid-item-card-footer">
+                    <button class="btn btn-outline-primary btn-block">BID</button>
                 </div>
             </div>
-            <!-- Sample Card -->
             @endforeach
+            <!-- Sample Card -->
+
 
             @endif
 
@@ -68,6 +71,16 @@
 
     </div>
     <!-- End main div content -->
+ <!-- Start - Footer -->
+ <footer class="p-5 dashboard-footer">
+    <div class="row m-0">
+        <div class="col p-0">
+            <hr>
+            <p class="dashboard-footer-p">Designed & Developed By <a href="#">Bluespark</a> 2020</p>
+        </div>
+    </div>
+</footer>
+<!-- End - Footer -->
 
 </div>
 <!-- End main div -->

@@ -19,12 +19,12 @@ class BidRecordsController extends Controller
     public function index()
     {
         $bid_records =DB::table('bid_records')
-                    ->join('bid_users','bid_users.id','=','bid_records.bid_user_id')
-                    ->join('win_records','bid_records.bid_user_id','=','bid_records.bid_user_id')
-                    ->join('products','products.id','=','bid_records.product_id')
+                    ->join('bid_users','bid_users.id','=','bid_records.bid_users_id')
+                    ->join('products','products.id','=','bid_records.products_id')
                     ->select('bid_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')
                     // ->where                   
                     ->get();
+
         return view('backend/bid_records/index',compact('bid_records'));
     }
 
@@ -43,8 +43,8 @@ class BidRecordsController extends Controller
     public function show($id)
     {
        $bid_records=Bid_Record::where('id',$id)->first();
-       $user_records=Bid_User::where('id',$bid_records->bid_user_id)->first();
-       $product_details=Product::where('id',$bid_records->product_id)->first();
+       $user_records=Bid_User::where('id',$bid_records->bid_users_id)->first();
+       $product_details=Product::where('id',$bid_records->products_id)->first();
 
     //    $details=Db::table('bid_records')
     //                 ->join('bid_users','bid_users.id','=','1')

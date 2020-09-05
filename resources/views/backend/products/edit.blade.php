@@ -92,9 +92,9 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_1'] != "noimage.jpg") 
-                                              <img class="rounded-circle "  src="/storage/images/{{$product->product_img_1}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle "  src="/storage/images/{{$product->product_img_1}}"style="border: solid"   width="150px" alt="Card image cap">
                                               @else
-                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" style="border: solid"  width="150px" alt="Card image cap">
                                             @endif
                                             </div>
                                           <label>
@@ -110,9 +110,9 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_2'] != "noimage.jpg") 
-                                            <img class="rounded-circle " src="/storage/images/{{$product->product_img_2}}" width="150px" alt="Card image cap">
+                                            <img class="rounded-circle " src="/storage/images/{{$product->product_img_2}}" style="border: solid"  width="150px" alt="Card image cap">
                                             @else
-                                            <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
+                                            <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" style="border: solid"  width="150px" alt="Card image cap">
                                             @endif
 
                                           </div>
@@ -128,9 +128,9 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_3'] != "noimage.jpg") 
-                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_3}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_3}}" style="border: solid"  width="150px" alt="Card image cap">
                                               @else
-                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" style="border: solid"  width="150px" alt="Card image cap">
                                               @endif
 
                                           </div>
@@ -146,9 +146,9 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_4'] != "noimage.jpg") 
-                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_4}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_4}}" style="border: solid"  width="150px" alt="Card image cap">
                                               @else
-                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" style="border: solid"  width="150px" alt="Card image cap">
                                               @endif
 
                                           </div>
@@ -164,9 +164,9 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_5'] != "noimage.jpg") 
-                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_5}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_5}}" style="border: solid"  width="150px" alt="Card image cap">
                                               @else
-                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}"style="border: solid"  width="150px" alt="Card image cap">
                                             @endif
                                             </div>
                                           <label>

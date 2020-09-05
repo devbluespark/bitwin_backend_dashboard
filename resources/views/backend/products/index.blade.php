@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
 @section('content')
-<div>
+{{-- <div> --}}
      <div class="container col-12 ">
         <div class="panel panel-default">
            <div class="panel-heading">
@@ -27,7 +27,7 @@
               </div>
         </div>
      </div>
-</div>
+{{-- </div> --}}
 
 <div class="container col-12">
     <div class="">  

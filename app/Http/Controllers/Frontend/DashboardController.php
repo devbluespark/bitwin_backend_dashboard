@@ -54,8 +54,11 @@ class DashboardController extends Controller
         date_default_timezone_set($user_timezone);
         $free_bid_today_date = date('Y-m-d');
 
-        echo $free_bid_final_date;
-        echo $free_bid_today_date;
+        // echo $free_bid_final_date;
+        // echo $free_bid_today_date;
+
+
+        echo max(2020-01-06,2020-02-06);
 
 
        // echo max( $free_bid_today_date ,$free_bid_final_date);
@@ -78,9 +81,22 @@ class DashboardController extends Controller
         //         ->get(); 
 
         //   echo  gettype($dashboard_details);
-         return view('frontend/dashboard/index',compact('dashboard_details','latest_products')) ;        
+        //  return view('frontend/dashboard/index',compact('dashboard_details','latest_products')) ;        
 
 
+        //     $latest_products = Product::orderBy('id', 'desc')->take(10)->get();
+      
+        //      $dashboard_details=DB::table('bid_users')
+        //         ->join('referrals','referrals.parent_user_id','=','bid_users.id')
+        //         // ->join('win_records','win_records.bid_users_id','=','bid_users.id')
+        //         ->select(DB::raw("count(referrals.parent_user_id) as count_referells"))
+        //         ->where('bid_users.id','=',Auth::guard('biduser')->user()->id)
+        //         ->get();
+
+        //     //   echo  gettype($dashboard_details);
+        // return view('frontend/dashboard/index',compact('dashboard_details','latest_products')) ;        
+      
+           
     }
 
 

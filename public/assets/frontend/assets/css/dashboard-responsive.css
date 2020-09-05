@@ -1,0 +1,528 @@
+@media (min-width: 1600px) {}
+
+@media (max-width: 1200px) {}
+
+@media (min-width: 993px) {
+    .bid-items-col {
+        padding: 0 !important;
+    }
+
+    .bid-item-card {
+        padding: 8px !important;
+    }
+
+    .bid-item-card-text {
+        font-size: 12px;
+    }
+
+    .history-card-row {
+        padding: 0px !important;
+    }
+
+    #packagesRow {
+        padding: 10px !important;
+    }
+
+    .package-card-header {
+        padding: 10px !important;
+    }
+
+    /* Dashboard */
+
+    #allRollsCardCol,
+    #allRefferalCardCol {
+        padding-right: 0 !important;
+    }
+
+    #allRollsCardCol .card-body {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 3px;
+    }
+
+    #allRollsCardCol small {
+        font-size: 10px;
+    }
+
+    .dashboard-card p {
+        font-size: 14px;
+    }
+
+    #allRollsCardCol p {
+        font-size: 12px;
+    }
+
+    .dashboard-card h1 {
+        font-size: 18px;
+    }
+
+    /* ---------- */
+
+    .dashboard-new-items-col {
+        margin-top: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .dashboard-curSaleItemCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
+    }
+
+    .dashboard-curSaleItemCard-img {
+        padding: 0px;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .item-card-button {
+        margin-top: 14px;
+    }
+
+    .dashboard-newItemsCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
+    }
+
+    .dashboard-newItemsCard-img {
+        padding: 0px;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .total-referrals-card {
+        padding: 0 !important;
+    }
+
+
+
+
+
+
+    /* ---------- */
+
+}
+
+@media (max-width: 992px) {
+
+    /* Dashboard */
+    #allRollsCardCol {
+        padding-right: 0px;
+    }
+
+    #allRollsCardCol .card-body {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #allRefferalCardCol {
+        padding-right: 0;
+    }
+
+    .dashboard-curSaleItemCard-title {
+        font-size: 12px;
+    }
+
+    .dashboard-curSaleItemCard-img {
+        padding: 10px;
+        width: 130px;
+        height: 130px;
+        border-radius: 10px;
+    }
+
+    .dashboard-new-items-col {
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+    }
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 0px !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+}
+
+@media (max-width: 991px) and (min-width: 768px) {}
+
+@media (max-width: 840px) and (min-width: 768px) {}
+
+@media (max-width:769px) {}
+
+@media (max-width:769px) {}
+
+@media (max-width:767px) {
+
+    #allRollsCardCol {
+        padding-right: 15px;
+    }
+
+    #allRollsCardCol .card-body {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    #allRefferalCardCol {
+        padding-right: 15px;
+    }
+
+    .dashboard-new-items-col {
+        margin-top: 0px !important;
+        padding-left: 50px !important;
+        padding-right: 50px !important;
+    }
+
+    .dashboard-curSaleItemCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
+    }
+
+    .dashboard-curSaleItemCard-img {
+        padding: 0px;
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .item-card-button {
+        margin-top: 14px;
+    }
+
+    .dashboard-newItemsCard-title {
+        margin-top: 6px;
+        margin-bottom: 5px !important;
+        font-size: 16px;
+    }
+
+    .dashboard-newItemsCard-img {
+        padding: 0px;
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .total-referrals-card {
+        padding: 0 !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 60px !important;
+        padding-right: 60px !important;
+    }
+
+    /* History */
+    .history-product-card-text {
+        padding-left: 0 !important;
+        padding-top: 12px !important;
+    }
+
+    .product-card-description-p {
+        font-size: 12px;
+    }
+
+    .product-card-description-val {
+        font-size: 12px;
+    }
+
+    .product-card-date {
+        font-size: 10px;
+    }
+
+    /* Profile */
+    #userDetailsCol {
+        padding-left: 0px !important;
+    }
+
+
+}
+
+@media (max-width:575px) {
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 80px !important;
+    }
+}
+
+@media (max-width:680px) {}
+
+@media (max-width:580px) {}
+
+@media (max-width:480px) {
+
+    /* Referels */
+    #referelMainRow {
+        padding: 20px !important;
+    }
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 40px !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+
+    .package-card-h1 {
+        font-size: 60px;
+    }
+
+    /* Profile */
+    .profile-form {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+
+}
+
+@media (max-width:380px) {}
+
+@media (max-width:370px) {
+
+    h5 {
+        font-size: 16px !important;
+    }
+
+    p {
+        font-size: 14px !important;
+    }
+
+    #dashboardChartDate {
+        font-size: 10px !important;
+    }
+
+    #allRollsCardCol .card-body {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #dashboardCol1 {
+        padding-left: 0 !important;
+    }
+
+    #dashboardRow1 {
+        padding-right: 0 !important;
+    }
+
+    #dashboardChartRow {
+        margin-right: 15px !important;
+    }
+
+    #dashboardSaleItemsRow {
+        margin-right: 15px !important;
+    }
+
+    .dashboard-new-items-col {
+        margin-top: 0px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .dashboard-curSaleItemCard-title {
+        margin-top: 0px;
+        margin-bottom: 5px !important;
+        font-size: 12.5px !important;
+    }
+
+    .dashboard-curSaleItemCard-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .item-card-button {
+        margin-top: 6px;
+    }
+
+    .dashboard-newItemsCard-title {
+        margin-top: 0px;
+        margin-bottom: 5px !important;
+        font-size: 12.5px !important;
+    }
+
+    .dashboard-newItemsCard-img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .dashboard-footer {
+        padding-top: 20px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        padding-bottom: 20px !important;
+    }
+
+    .dashboard-footer-p {
+        font-size: 10px !important;
+    }
+
+    /* Bid Items */
+    .bid-items-col {
+        padding: 10px !important;
+    }
+
+    /* Packages */
+    #packagesRow {
+        padding-left: 1px !important;
+        padding-right: 10px !important;
+    }
+
+    /* History */
+    .history-card-row {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .product-card-description-p {
+        font-size: 12px !important;
+    }
+
+    .product-card-description-val {
+        font-size: 12px !important;
+    }
+
+    .product-card-date {
+        font-size: 10px !important;
+    }
+
+}
+
+@media (min-width: 770px) and (max-width: 790px) {}
+
+@media (max-width: 991px) and (min-width: 768px) {}
+
+@media(max-width: 1299px) and (min-width: 1200px) {}
+
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {}
+
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    /* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+    /* Styles */
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+    /* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2) {}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2) {}
+
+/* iPhone 6, 7, 8 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2) {}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2) {}
+
+/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2) {}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2) {
+    /* Styles */
+
+}
+
+/* iPhone X ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3) {}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3) {
+    /* Styles */
+}
+
+/* iPhone XS Max, XR ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3) {}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3) {
+    /* Styles */
+}
+
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2) {}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2) {}
+
+/* Samsung Galaxy S4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3) {}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3) {}
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3) {}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3) {}
+
+@media only screen and (min-width : 375px) {}
+
+@media only screen and (min-width : 360px) {}
+
+@media only screen and (min-width : 425px) {}
+
+@media (max-width:767px) {}
+
+@media only screen and (min-width : 1024px) {}
+
+@media only screen and (max-width : 425px) {}
+
+@media only screen and (max-width : 455px) {}
+
+@media only screen and (max-width : 414px) {}
+
+@media only screen and (max-width : 411px) {}
+
+@media only screen and (max-width : 375px) {}
+
+@media only screen and (max-width : 360px) {}
+
+@media only screen and (max-width : 320px) {}

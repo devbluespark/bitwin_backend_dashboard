@@ -1,74 +1,52 @@
 @extends('layouts.frontend.app')
 @section('content')
 
- <!-- Start main div -->
- <div id="main">
-    <!-- <a style="cursor: pointer;" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
+ 
+    <!-- Start main div -->
+    <div id="main">
+        <a class="btn" id="sideNavToggleBtn" onclick="navToggle()"><i class="fa fa-bars"></i></a>
 
-    <!-- Start main div content -->
-    <div class="content">
+        <!-- Start main div content -->
+        <div class="content">
 
-        <div class="row m-0">
-            <h3 class="mt-4 page-title">Packages</h3>
-        </div>
-
-        <div class="row m-0 p-5">
-
-            @foreach ($packages as $package)
-            <div class="col-md-4">
-                <div class="card mb-3 package-card">
-                    <div class="card-header text-center package-card-header">
-                        <h5 class="package-card-title">{{$package->package_name}}</h5>
-                    </div>
-                    <div class="card-body text-center pt-0 pb-5">
-                        <hr class="mt-0">
-                        <h1 class="package-card-h1">{{$package->package_price}}</h1>
-                        <h6 class="package-card-h6">Total Roll</h6>
-                        <h5 class="mt-3 mb-4 text-primary">{{$package->package_rolls}}</h5>
-                        <button class="btn btn-outline-primary">BUY NOW</button>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            {{-- <div class="col-md-4">
-                <div class="card mb-3 package-card">
-                    <div class="card-header text-center package-card-header">
-                        <h5 class="package-card-title">Premium Package</h5>
-                    </div>
-                    <div class="card-body text-center pt-0 pb-5">
-                        <hr class="mt-0">
-                        <h1 class="package-card-h1">500</h1>
-                        <h6 class="package-card-h6">Total Roll</h6>
-                        <h5 class="mt-3 mb-4 text-primary">5000 LKR</h5>
-                        <button class="btn btn-outline-primary">BUY NOW</button>
-                    </div>
-                </div>
+            <div class="row m-0">
+                <h3 class="mt-4 page-title">Packages</h3>
             </div>
 
-            <div class="col-md-4">
-                <div class="card mb-3 package-card">
-                    <div class="card-header text-center package-card-header">
-                        <h5 class="package-card-title">Basic Package</h5>
-                    </div>
-                    <div class="card-body text-center pt-0 pb-5">
-                        <hr class="mt-0">
-                        <h1 class="package-card-h1">300</h1>
-                        <h6 class="package-card-h6">Total Roll</h6>
-                        <h5 class="mt-3 mb-4 text-primary">2000 LKR</h5>
-                        <button class="btn btn-outline-primary">BUY NOW</button>
+            <div class="row m-0 p-5" id="packagesRow">
+                @foreach($packages as $package)
+                <div class="col-md-4">
+                    <div class="card mb-3 package-card">
+                        <div class="card-header text-center package-card-header">
+                            <h5 class="package-card-title">{{$package->package_name}}</h5>
+                        </div>
+                        <div class="card-body text-center pt-0 pb-5">
+                            <hr class="mt-0">
+                            <h1 class="package-card-h1">{{$package->package_rolls}}</h1>
+                            <h6 class="package-card-h6">Total Roll</h6>
+                            <h5 class="mt-3 mb-4 text-primary">{{$package->package_price}} LKR</h5>
+                            <button class="btn btn-outline-primary">BUY NOW</button>
+                        </div>
                     </div>
                 </div>
-            </div> --}}
+                @endforeach
+            </div>
 
         </div>
+        <!-- End main div content -->
 
-
-
+        <!-- Start - Footer -->
+        <footer class="p-5 dashboard-footer">
+            <div class="row m-0">
+                <div class="col p-0">
+                    <hr>
+                    <p class="dashboard-footer-p">Designed & Developed By <a href="#">Bluespark</a> 2020</p>
+                </div>
+            </div>
+        </footer>
+        <!-- End - Footer -->
     </div>
-    <!-- End main div content -->
-
-</div>
-<!-- End main div -->
+    <!-- End main div -->
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -1,9 +1,9 @@
 @extends('layouts.frontend.app')
 @section('content')
 
- <!-- Start main div -->
- <div id="main">
-    <!-- <a style="cursor: pointer;" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
+<!-- Start main div -->
+<div id="main">
+    <a class="btn" id="sideNavToggleBtn" onclick="navToggle()"><i class="fa fa-bars"></i></a>
 
     <!-- Start main div content -->
     <div class="content">
@@ -31,16 +31,17 @@
             </nav>
         </div>
 
-        <div class="row m-0 pl-5 pr-5 pb-5">
+        <div class="row m-0 pl-5 pr-5 pb-5 history-card-row">
 
             <!-- Sample Card -->
-            <div class="col-md-6 mt-3">
+            <div class="col-md-6 col-sm-6 mt-3">
                 <div class="row m-0 item-card p-3" style="border-radius: 15px; background-color: white;">
-                    <div class="col-md-3 p-0" style="border-radius: 10px;">
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image"
-                            style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
+                    <div class="col-md-3 p-0">
+                        <div class="history-product-card-img-container">
+                            <img class="history-product-card-img" src="assets/img/noimage.jpg" alt="Image">
+                        </div>
                     </div>
-                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0">
+                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0 history-product-card-text">
                         <div class="row m-0 w-100">
                             <div class="col p-0">
                                 <h6 class="mb-0" style="font-weight: 700;">Item Title</h6>
@@ -75,13 +76,14 @@
             <!-- Sample Card -->
 
             <!-- Sample Cards -->
-            <div class="col-md-6 mt-3">
+            <div class="col-md-6 col-sm-6 mt-3">
                 <div class="row m-0 item-card p-3" style="border-radius: 15px; background-color: white;">
-                    <div class="col-md-3 p-0" style="border-radius: 10px;">
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image"
-                            style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
+                    <div class="col-md-3 p-0">
+                        <div class="history-product-card-img-container">
+                            <img class="history-product-card-img" src="assets/img/noimage.jpg" alt="Image">
+                        </div>
                     </div>
-                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0">
+                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0 history-product-card-text">
                         <div class="row m-0 w-100">
                             <div class="col p-0">
                                 <h6 class="mb-0" style="font-weight: 700;">Item Title</h6>
@@ -112,14 +114,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mt-3">
+            </div><div class="col-md-6 col-sm-6 mt-3">
                 <div class="row m-0 item-card p-3" style="border-radius: 15px; background-color: white;">
-                    <div class="col-md-3 p-0" style="border-radius: 10px;">
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image"
-                            style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
+                    <div class="col-md-3 p-0">
+                        <div class="history-product-card-img-container">
+                            <img class="history-product-card-img" src="assets/img/noimage.jpg" alt="Image">
+                        </div>
                     </div>
-                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0">
+                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0 history-product-card-text">
                         <div class="row m-0 w-100">
                             <div class="col p-0">
                                 <h6 class="mb-0" style="font-weight: 700;">Item Title</h6>
@@ -150,14 +152,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mt-3">
+            </div><div class="col-md-6 col-sm-6 mt-3">
                 <div class="row m-0 item-card p-3" style="border-radius: 15px; background-color: white;">
-                    <div class="col-md-3 p-0" style="border-radius: 10px;">
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image"
-                            style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
+                    <div class="col-md-3 p-0">
+                        <div class="history-product-card-img-container">
+                            <img class="history-product-card-img" src="assets/img/noimage.jpg" alt="Image">
+                        </div>
                     </div>
-                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0">
+                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0 history-product-card-text">
                         <div class="row m-0 w-100">
                             <div class="col p-0">
                                 <h6 class="mb-0" style="font-weight: 700;">Item Title</h6>
@@ -188,14 +190,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mt-3">
+            </div><div class="col-md-6 col-sm-6 mt-3">
                 <div class="row m-0 item-card p-3" style="border-radius: 15px; background-color: white;">
-                    <div class="col-md-3 p-0" style="border-radius: 10px;">
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image"
-                            style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
+                    <div class="col-md-3 p-0">
+                        <div class="history-product-card-img-container">
+                            <img class="history-product-card-img" src="assets/img/noimage.jpg" alt="Image">
+                        </div>
                     </div>
-                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0">
+                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0 history-product-card-text">
                         <div class="row m-0 w-100">
                             <div class="col p-0">
                                 <h6 class="mb-0" style="font-weight: 700;">Item Title</h6>
@@ -226,14 +228,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mt-3">
+            </div><div class="col-md-6 col-sm-6 mt-3">
                 <div class="row m-0 item-card p-3" style="border-radius: 15px; background-color: white;">
-                    <div class="col-md-3 p-0" style="border-radius: 10px;">
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image"
-                            style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
+                    <div class="col-md-3 p-0">
+                        <div class="history-product-card-img-container">
+                            <img class="history-product-card-img" src="assets/img/noimage.jpg" alt="Image">
+                        </div>
                     </div>
-                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0">
+                    <div class="col-md-9 pl-3 pr-0 pt-0 pb-0 history-product-card-text">
                         <div class="row m-0 w-100">
                             <div class="col p-0">
                                 <h6 class="mb-0" style="font-weight: 700;">Item Title</h6>
@@ -272,6 +274,16 @@
     </div>
     <!-- End main div content -->
 
+    <!-- Start - Footer -->
+    <footer class="p-5 dashboard-footer">
+        <div class="row m-0">
+            <div class="col p-0">
+                <hr>
+                <p class="dashboard-footer-p">Designed & Developed By <a href="#">Bluespark</a> 2020</p>
+            </div>
+        </div>
+    </footer>
+    <!-- End - Footer -->
 </div>
 <!-- End main div -->
 

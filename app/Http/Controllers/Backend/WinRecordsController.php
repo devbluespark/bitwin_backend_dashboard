@@ -16,15 +16,17 @@ class WinRecordsController extends Controller
     {
         try{
             $win_records =DB::table('win_records')
-            ->join('bid_users','bid_users.id','=','win_records.bid_user_id')
-            ->join('bid_records','bid_records.product_id','=','win_records.product_id')
-            ->join('products','products.id','=','win_records.product_id')
+            ->join('bid_users','bid_users.id','=','win_records.bid_users_id')
+            ->join('bid_records','bid_records.bid_users_id','=','win_records.bid_users_id')
+            ->join('products','products.id','=','win_records.products_id')
             ->select('win_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')
             ->get();
+
             return view('backend/win_records/index',compact('win_records'));
         }catch(Exception $e){
 
-            return redirect()->back();
+            return view('backend/win_records/index',compact('win_records'));
+
 
         }
         
@@ -47,8 +49,8 @@ class WinRecordsController extends Controller
     {
         try{
         $win_records=Win_Record::where('id',$id)->first();
-        $user_records=Bid_User::where('id',$win_records->bid_user_id)->first();
-        $product_details=Product::where('id',$win_records->product_id)->first();
+        $user_records=Bid_User::where('id',$win_records->bid_users_id)->first();
+        $product_details=Product::where('id',$win_records->products_id)->first();
     //    $details=Db::table('bid_records')
     //                 ->join('bid_users','bid_users.id','=','1')
     //                 ->join('products','products.id','=','1')

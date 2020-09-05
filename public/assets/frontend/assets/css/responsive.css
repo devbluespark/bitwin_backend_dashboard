@@ -4,6 +4,15 @@
 
 @media (min-width: 993px) {}
 
+@media (max-width: 1236px) and (min-width: 992px) {
+    .socialMedia-Sign-button{
+        padding: 0;
+        margin-right: 10px !important;
+    }
+    .socialMedia-Sign-button p{
+        font-size: 12px !important;
+    }
+}
 @media (max-width: 992px) {
 
     /* Navbar */
@@ -32,7 +41,9 @@
     h1 {
         font-size: 2rem;
     }
-
+    p{
+        font-size: 14px;
+    }
     /* Section - 1 */
     .section-1-bg {
         margin-top: 0;
@@ -59,9 +70,23 @@
     }
 
     /* Register Page */
+    .login-register-form-col{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
     label{
         font-size: 12px !important;
     }
+
+    /* Login */
+    .socialMedia-Sign-button{
+        padding: 0;
+        margin-right: 10px !important;
+    }
+    .socialMedia-Sign-button p{
+        font-size: 10px !important;
+    }
+
 }
 
 @media (max-width: 840px) and (min-width: 768px) {}
@@ -80,6 +105,24 @@
     .section-3-card{
         margin: 0px !important;
     }
+
+    /* Login */
+    .login-register-img-col {
+        margin-top: 50px;
+        background-color: #F7F9FE;
+        height: 400px;
+    }
+    .register-img{
+        width: 50% !important;
+    }
+
+    .login-register-form-col{
+        margin-top: 0px !important;
+    }
+
+    .socialMedia-Sign-button{
+        margin-top: 15px !important;
+    }
 }
 
 
@@ -93,6 +136,14 @@
     }
     .section-3-card{
         margin: 0px !important;
+    }
+
+    /* Login */
+    .login-register-img-col {
+        height: 300px;
+    }
+    .register-img{
+        width: 50% !important;
     }
 }
 
@@ -140,9 +191,31 @@
 
 @media (max-width:480px) {
 
+    /* Login */
+    .login-register-img-col {
+        height: 200px;
+    }
+    .register-img{
+        width: 55% !important;
+    }
+
+    /* Password Reset */
+    #pwResetFormCol{
+        padding: 10px !important;
+    }
 }
 
-@media (max-width:380px) {}
+@media (max-width:380px) {
+    p{
+        font-size: 14px !important;
+    }
+    .login-register-form-col{
+        padding: 20px !important;
+    }
+    .socialMedia-Sign-button{
+        padding: 0;
+    }
+}
 
 @media (max-width:370px) {}
 
