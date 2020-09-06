@@ -22,7 +22,7 @@ class LoginController extends Controller{
     }
 
     public function showLoginForm(){
-        
+      
         if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
         return view('user-auth.login');
     }
