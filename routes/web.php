@@ -1,22 +1,7 @@
 <?php
 
 
-//Route::get('/home', 'HomeController@index')->name('home');
-
-//Route::get('/', function () {
-  //  return redirect()->route('user.login');
-//});
-
-Route::get('/', function () {
-    return view('frontend/index');
-});
-
-Route::get('/dashboard', function () {
-    return view('backend/dashboard');
-});
-
-
-
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 //**************  All   Backends Routes     */
@@ -68,7 +53,7 @@ Route::group(['prefix' => 'backend'], function() {
     Route::get('/customer_details_all/{id}', 'Backend\CustomerController@customer_details_all');
 
 
-     
+    Route::get('/dashboard','Backend\DashboardController@index')->name('dashboard.index');
 
 
     });
@@ -77,47 +62,47 @@ Route::group(['prefix' => 'backend'], function() {
 
 
 
-// ALl Front End Routes //
+
+
+   /*  -------------------------------- All Frontend Routes ------------------- */
 
     
-
-
-    //Route::get('login', 'AuthUser\LoginController@getBidUserLoginForm')->name('user.login');
-   // Route::post('login','AuthUser\LoginController@bidUserLogin')->name('user.login');
-   
+     //user Login
     Route::get('login', 'AuthUser\LoginController@showLoginForm')->name('user.login');
     Route::post('login','AuthUser\LoginController@login');
    
-    
+    //Logout
     Route::post('logout', 'AuthUser\LoginController@logout')->name('user.logout');
 
 
-    //password reset
 
-    Route::post('password/email', 'AuthUser\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
-
-
-    Route::get('password/reset', 'AuthUser\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
-    Route::post('password/reset', 'AuthUser\ResetPasswordController@reset');
-    Route::get('password/reset/{token} ', 'AuthUser\ResetPasswordController@showResetForm')->name('user.password.reset');
-   
-   
-
-    // Registration Routes...
+    //Register 
     Route::get('register', 'AuthUser\RegisterController@showRegistrationForm')->name('user.register');
     Route::post('register', 'AuthUser\RegisterController@register');
 
 
+
+
+    //password reset
     Route::post('password/email', 'AuthUser\ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
     Route::get('password/reset', 'AuthUser\ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
-    Route::post('password/reset ', 'AuthUser\ForgotPasswordController@reset');
-    Route::get('password/reset/{token}', 'AuthUser\ForgotPasswordController@showResetForm')->name('user.password.reset');
+    Route::post('password/reset', 'AuthUser\ResetPasswordController@reset');
+    Route::get('password/reset/{token} ', 'AuthUser\ResetPasswordController@showResetForm')->name('user.password.reset');
+     
+    // Route::post('password/reset', 'AuthUser\ForgotPasswordController@reset');
+    // Route::get('password/reset/{token}', 'AuthUser\ForgotPasswordController@showResetForm')->name('user.password.reset');
 
+
+    // VerifyUser Using Email
+    Route::get('/user/verify/{token}', 'AuthUser\RegisterController@verifyUser');
+
+
+    //Referrals Register Using Register Form
+    Route::get('/reg/{token}', 'Frontend\ReferralController@showRegisterForm');
 
 
     Route::group(['middleware' => ['biduser']], function () {
-      //  Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
-    
+      
         Route::resources([
             'profile' => 'Frontend\ProfileController',
             
@@ -143,14 +128,10 @@ Route::group(['prefix' => 'backend'], function() {
        Route::get('referrals','Frontend\ReferralController@index')->name('user.referrals.index');
        Route::get('packages','Frontend\PackagesController@index')->name('user.packages.index');
        
-         });
+    });
 
 
-    Route::get('/user/verify/{token}', 'AuthUser\RegisterController@verifyUser');
-
-
-
-    Route::get('/reg/{token}', 'Frontend\ReferralController@showRegisterForm');
+   
 
 
   
