@@ -138,7 +138,7 @@ Route::group(['prefix' => 'backend'], function() {
 
     
     //------------------------------tempory routs for front index
-    Route::get('/index', function () {
+    Route::get('/', function () {
         return view('frontend/index');
     });
     
