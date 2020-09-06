@@ -73,7 +73,7 @@
         </form>
         <div class="row m-0 pr-2 mt-4">
             <div class="col text-center">
-                <p>Don't you have an account? <a href="#">Sign up</a></p>
+            <p>Don't you have an account? <a href="{{ route('user.register')}}">Sign up</a></p>
                 <a class="btn btn-link" href="{{ route('user.password.request') }}">
                     Forgot Your Password?
                 </a>
