@@ -6,7 +6,7 @@
             <h1>LOGO</h1>
         </div>
         <div class="p-2">
-            <a href="{{route("dashboard.index")}}" class="left-nav-link"><i class="material-icons mr-3">dashboard</i>
+            <a id="dashboard-a" href="" class="left-nav-link"><i class="material-icons mr-3">dashboard</i>
                 Dashboard</a>
         </div>
         <div class="p-2">
