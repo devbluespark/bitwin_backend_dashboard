@@ -29,7 +29,7 @@
                             <th>ID</th>
                             <th>First Name</th>
                             <th>Email</th>
-                            <th>NIC</th>
+                            <th>Time Zone</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -39,15 +39,25 @@
                             <td>{{ $customer->id }}</td>
                             <td>{{ $customer->user_fname }}</td>
                             <td>{{ $customer->email }}</td>
-                            <td>{{ $customer->user_nic }}</td>
-                            <td>               
-                              <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>                  
-                              <a class="mr-3" href='/backend/customer_details_all/{{$customer->id }}' > <button class="btn btn-warning"> <i class="fa fa fa-money mx-2""></i></button></a>                  
+                            <td>{{ $customer->timezone }}</td>
+                            <td>  
+
+                              <a class="mr-3" href='{{ route("customers.show",$customer->id ) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a> 
+
+                              @can('allDetailsCustomer')
+                              <a class="mr-3" href='/backend/customer_details_all/{{$customer->id }}' > <button class="btn btn-warning"> <i class="fa fa fa-money mx-2""></i></button></a>    
+                              @endcan
+
+
+                              @can('changeActiveCustomer')
                               @if ($customer->user_active == 1)
-                              <button type="button" onclick="sweet_alert_deactivate({{ $customer->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModaldeactivate"> <i class="fa fa-check"></i></button>                
-                              @else
-                              <button type="button" onclick="sweet_alert_activate({{ $customer->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalactivate"> <i class="fa fa-check"></i></button>                
+                              <button type="button" onclick="sweet_alert_deactivate({{ $customer->id }})" class="btn btn-success" data-toggle="modal" data-target="#exampleModaldeactivate"> <i class="fa fa-check"></i></button>                
+                              @else             
+                              <button type="button" onclick="sweet_alert_activate({{ $customer->id }})" class="btn  btn-danger" data-toggle="modal" data-target="#exampleModalactivate"> <i class="fa fa-times"></i></button>                
                               @endif
+                              @endcan
+
+
                             </th>
                         </tr>
                         @endforeach

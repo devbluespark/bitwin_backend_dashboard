@@ -19,6 +19,11 @@ class RoleController extends Controller
         try {
 
             $roles = Role::all();
+
+            // foreach ($roles as $role){
+            //     $role->permissions = Role 
+            // }
+
             return view('backend.roles.index',compact('roles'));
 
         } catch (\Exception $e) {

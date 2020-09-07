@@ -30,30 +30,42 @@
                 </li>
              
 
-                
+                @can('accessPackage')
                 <li class="">
                 <a href="{{ route('packages.index')}}"> <i class="menu-icon fa fa-briefcase"></i>Packages </a>
                 </li>
-                {{-- {!!  $htmlMenu !!} --}}
-        
+                @endcan
+                
+                @can('accessProduct')
                 <li class="">
-                    <a href="/backend/products"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Products</a>
-                          
+                    <a href="/backend/products"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Products</a>           
                 </li>
-                <li class="">
-                    <a href="/backend/customers"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Customers</a>
-                          
-                </li>
-                 <li class="">
-                    <a href="{{ route('bidrecords.index')}}"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Bid Records</a>
-                </li>
-                <li class="">
-                    <a href="{{ route('winrecords.index')}}"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Win Records</a>                         
-                </li>
+                @endcan
 
+                @can('accessCustomer')
+                <li class="">
+                    <a href="/backend/customers"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Customers</a>      
+                </li>
+                @endcan
+
+                @can('accessBidRecord')
+                 <li class="">
+                    <a href="{{ route('bidrecords.index')}}"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-sort-amount-desc"></i>Bid Records</a>
+                </li>
+                @endcan
+
+
+                @can('accessWinRecord')
+                <li class="">
+                    <a href="{{ route('winrecords.index')}}"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-sort-amount-desc"></i>Win Records</a>                         
+                </li>
+                @endcan
+
+                @can('accessPayments')
                 <li class="">
                     <a href="{{ route('payments-gateways.index')}}"   aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-btc"></i>Payments</a>                         
                 </li>
+                @endcan
 
 
 

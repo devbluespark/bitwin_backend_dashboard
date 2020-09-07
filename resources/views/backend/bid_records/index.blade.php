@@ -28,7 +28,8 @@
                                   <th >ID</th>
                                   <th>User Name</th>
                                   <th>Product Name</th>
-                                  <th>Bid Value</th>               
+                                  <th>Bid Value</th> 
+                                  <th>Date</th>              
                                   <th >Actions</th>
                               </tr>
                           </thead>
@@ -36,9 +37,10 @@
                               @foreach ($bid_records as $bid_record)
                               <tr>
                                   <td>{{ $bid_record->id }}</td>
-                                  <td>{{ $bid_record->user_fname }}</td>
-                                  <td>{{ $bid_record->product_name }}</td>
-                                  <td>{{ $bid_record->bid_value}}</td>               
+                                  <td>{{ $bid_record->customer_name->user_fname }}</td>
+                                  <td>{{ $bid_record->Product_name->product_name }}</td>
+                                  <td>{{ $bid_record->bid_value}}</td>  
+                                  <td>{{ $bid_record->created_at}}</td>             
                                   <td>                                 
                                     <a class="mr-3" href='{{ route("bidrecords.show",[ 'bid_record' => $bid_record->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>                                                   
                                   </td>
@@ -51,6 +53,7 @@
                                   <th>User Name</th>
                                   <th>Product Name</th>
                                   <th>Bid Value</th>
+                                  <th>Date</th>
                                   <th>Actions</th>
                               </tr>
                           </tfoot>

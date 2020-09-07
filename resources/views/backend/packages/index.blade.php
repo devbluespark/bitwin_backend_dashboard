@@ -2,12 +2,14 @@
 
 @section('content')
 
-<div class="container">
+<div class="col-12">
 
     <h1>Packages</h1><br><br>
- @can('addPackage') 
-<a href="{{ route('packages.create') }}" class="btn btn-success px-4 mb-3" ><i class="fa fa-plus"></i></a>
-@endcan
+
+    @can('addPackage') 
+        <a href="{{ route('packages.create') }}" class="btn btn-success px-4 mb-3" ><i class="fa fa-plus"></i></a>
+    @endcan
+
 <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
@@ -27,8 +29,7 @@
         <tbody>
 
             
-            <!-- Add Permission View Packages-->
-            @can('viewPackage')
+            
 
             <?php if(isset($packages)) {  ?>
 
@@ -67,7 +68,7 @@
          
         <?php } ?> 
 
-        @endcan
+      
             
         </tbody>
         <tfoot>

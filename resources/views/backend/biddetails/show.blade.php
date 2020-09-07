@@ -13,6 +13,7 @@
     <table id="example" class="display" style="width:100%" class="table">
         <thead>
             <tr>
+                <th>Date</th>
                 <th>Product ID</th>
                 <th>Bid Value</th>    
             </tr>
@@ -20,7 +21,8 @@
         <tbody>
             @foreach ($bid_records as $bid_record)
             <tr>
-                 <td>{{ $bid_record->product_id }}</td>
+                <td>{{ $bid_record->created_at }}</td>
+                <td>{{ $bid_record->products_id }}</td>
                 <td>{{ $bid_record->bid_value }}</td>            
             </tr>
             @endforeach         
@@ -33,6 +35,7 @@
     <table id="example2" class="display" style="width:100%" class="table">
         <thead>
             <tr>
+                <th>Date</th>
                 <th>Product ID</th>
                 <th>Bid Value</th>   
             </tr>
@@ -40,7 +43,8 @@
         <tbody>
             @foreach ($win_details as $win_detail)
             <tr>
-                 <td>{{ $win_detail->product_id }}</td>
+                <td>{{ $win_detail->created_at }}</td>
+                 <td>{{ $win_detail->products_id }}</td>
                 <td>{{ $win_detail->bid_value }}</td>           
             </tr>
             @endforeach             
@@ -54,17 +58,19 @@
     <table id="example3" class="display" style="width:100%" class="table">
         <thead>
             <tr>
+                <th>Package id</th>
                 <th>Package Name</th>
                 <th>Package Rolls</th>
                 <th>package price</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($packages as $package)
+            @foreach ($user_packages as $user_package)
             <tr>
-                <td>{{ $package->package_name }}</td>
-                <td>{{ $package->package_rolls }}</td>
-                <td>{{ $package->package_price }}</td>             
+                <td>{{ $user_package->id }}</td>
+                <td>{{ $user_package->package_name }}</td>
+                <td>{{ $user_package->package_rolls }}</td>
+                <td>{{ $user_package->package_price }}</td>             
             </tr>
             @endforeach          
         </tbody>      

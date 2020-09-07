@@ -4,7 +4,7 @@
 
 <div class="container">
 
-<div class="col-lg-10 col-lg-offset-1">
+<div class="col-12  ">
     <h1><i class="fa fa-key"></i> Roles Management
     <a href="{{ route('users.index') }}" class="btn btn-default pull-right"> <button class="btn btn-primary">Users</button></a>
     <a href="{{ route('permissions.index') }}" class="btn btn-default pull-right"> <button class="btn btn-primary"> Permissions </button></a>
@@ -28,7 +28,13 @@
                 <tr>
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
-                    <td>{{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}</td>
+                    {{-- <td></td> --}}
+                    <td style="width: 50cm;">
+                        <div width="60">
+                            {{ str_replace(array('[',']','"'),'', $role->permissions()->pluck('name')) }}
+                        </div>
+                        
+                    </td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                            

@@ -11,64 +11,48 @@ use DB;
 
 class WinRecordsController extends Controller
 {
-    //return all win records to front
+
     public function index()
     {
         try{
-            $win_records =DB::table('win_records')
-            ->join('bid_users','bid_users.id','=','win_records.bid_user_id')
-            ->join('bid_records','bid_records.product_id','=','win_records.product_id')
-            ->join('products','products.id','=','win_records.product_id')
-            ->select('win_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')
-            ->get();
+            // $win_records =DB::table('win_records')
+            // ->join('bid_users','bid_users.id','=','win_records.bid_user_id')
+            // ->join('bid_records','bid_records.product_id','=','win_records.product_id')
+            // ->join('products','products.id','=','win_records.product_id')
+            // ->select('win_records.id','bid_users.user_fname','bid_records.bid_value','products.product_name')
+            // ->get();
+
+             $win_records=Win_Record::all();
+
+
+             foreach($win_records as $win_record){
+                $win_record->customer_details= Bid_User::select('user_fname')->find($win_record->bid_users_id);
+                $win_record->product_details= Product::select('product_name')->find($win_record->products_id);
+              
+            }
+
             return view('backend/win_records/index',compact('win_records'));
-        }catch(Exception $e){
-
-            return redirect()->back();
-
+        }catch (\Exception $e) {
+            return $e->getMessage();
         }
         
     }
 
     
-    public function create()
-    {
-        //
-    }
-
     
-    public function store(Request $request)
-    {
-        //
-    }
-
-    //return selected win record to front
     public function show($id)
     {
         try{
         $win_records=Win_Record::where('id',$id)->first();
-        $user_records=Bid_User::where('id',$win_records->bid_user_id)->first();
-        $product_details=Product::where('id',$win_records->product_id)->first();
-    //    $details=Db::table('bid_records')
-    //                 ->join('bid_users','bid_users.id','=','1')
-    //                 ->join('products','products.id','=','1')
-    //                 ->select('bid_users.user_fname',
-    //                 'bid_users.user_email','bid_users.user_nic',
-    //                 'bid_users.user_own_coins','bid_users.user_phn1',
-    //                 'bid_records.bid_value','products.product_name',
-    //                 'products.product_name','products.product_price',
-    //                 'products.product_img_1')                    
-    //                 ->get();
+        $user_records=Bid_User::select('user_fname','user_lname','user_phn1','user_nic')->find($win_records->bid_users_id);
+        $product_details=Product::select('product_name','product_price','product_img_1')->find($win_records->products_id);
 
-    //     return $bid_records;
-// 
-                     
+        
 
         return view('backend/win_records/show',compact('win_records','user_records','product_details'));
         
-        }catch(Exception $e){
-
-                return redirect()->back();
+        }catch (\Exception $e) {
+            return $e->getMessage();
         }
      
                      
@@ -76,21 +60,5 @@ class WinRecordsController extends Controller
         
     }
 
-    
-    public function edit(Win_Record $win_Records)
-    {
-        //
-    }
 
-   
-    public function update(Request $request, Win_Record $win_Records)
-    {
-        //
-    }
-
-   
-    public function destroy(Win_Record $win_Records)
-    {
-        //
-    }
 }

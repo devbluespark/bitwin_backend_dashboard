@@ -23,17 +23,7 @@ class PaymentgatewayController extends Controller
     }
 
    
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
+   
    
 
     public function show($payment_id){
@@ -46,6 +36,7 @@ class PaymentgatewayController extends Controller
             $receipt= Receipt::find($payment_gateway->receipts_id);
             $bid_user =Bid_User::select('id','user_fname')->find($payment_gateway->bid_users_id);
             $packages=Package::select('package_name','package_price')->find($payment_gateway->packages_id);
+
             return view('backend.payment-gateway.show',compact('payment_gateway','recipt','bid_user','packages'));
              
       
@@ -56,31 +47,4 @@ class PaymentgatewayController extends Controller
     }
 
    
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

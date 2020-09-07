@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="col-12">
 
 <h1>Package Details {{ $user->name }}</h1><br><br>
   <div class="row justify-content-center">

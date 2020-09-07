@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="col-12">
 
     <h1>Payments with payment gateway</h1><br><br>
  
@@ -24,8 +24,7 @@
         <tbody>
 
             
-            <!-- Add Permission View Packages-->
-            @can('viewPackage')
+            
 
             <?php if(isset($payments)) {  ?>
 
@@ -49,7 +48,7 @@
          
         <?php } ?> 
 
-        @endcan
+      
             
         </tbody>
         <tfoot>

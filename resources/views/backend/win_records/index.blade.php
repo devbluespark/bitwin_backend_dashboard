@@ -39,8 +39,8 @@
                               @foreach ($win_records as $win_record)
                               <tr>
                                   <td>{{ $win_record->id }}</td>
-                                  <td>{{ $win_record->user_fname }}</td>
-                                  <td>{{ $win_record->product_name }}</td>
+                                  <td>{{ $win_record->customer_details->user_fname }}</td>
+                                  <td>{{ $win_record->product_details->product_name }}</td>
                                   <td>{{ $win_record->bid_value}}</td>               
                                   <td>                                 
                                     <a class="mr-3" href='{{ route("winrecords.show",[ 'win_record' => $win_record->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>                                                   

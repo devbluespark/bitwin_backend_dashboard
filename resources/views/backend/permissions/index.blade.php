@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="container justify-content-md-center">
+<div class="col-12">
     
-<div class="col-md-10 col-md-offset-1">
+<div class="col-12 col-md-offset-1">
     <h1><i class="fa fa-key"></i>Permissions Management
     <a href="{{ route('users.index') }}" class="btn btn-default pull-right"><button class="btn btn-primary">Users</button></a>
     <a href="{{ route('roles.index') }}" class="btn btn-default pull-right"><button class="btn btn-primary">Roles</button></a>

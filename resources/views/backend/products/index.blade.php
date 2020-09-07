@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-     <div class="container col-12 ">
+     <div class=" col-12 ">
         <div class="panel panel-default">
            <div class="panel-heading">
                   <div class="col-md-12">
@@ -11,7 +11,11 @@
                               <strong class="mr-5 ">Products</strong>
                               <br>
                               {{-- <a href="/backend/addproducts"><button class="btn btn-primary mb-3 ml-5">Add </button></a> --}}
+
+                              @can('addProduct') 
                               <a href="{{ route('products.create') }}"><button class="btn btn-primary mb-3 "> <i class="fa fa-plus"></i> </button></a>
+                              @endcan
+
                               @if (session('suc'))
                               <div class='alert alert-primary text-center'>
                                   {{session('suc')}}
@@ -61,9 +65,18 @@
                                   <td>Inactive</td>
                                   @endif
                                   <td>                                 
-                                    <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>                  
+                                    <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>  
+
+                                    @can('editProduct')
                                     <a class="mr-3" href='{{ route("products.edit",[ 'product' => $product->id ]) }}' > <button class="btn btn-warning"> <i class="fa fa-pencil mx-2"></i></button></a>
-                                    <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash mx-2"></i></button>                
+                                    @endcan
+
+                                    @can('deleteProduct')
+                                    <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash mx-2"></i></button>   
+                                    @endcan
+                                    
+
+                                    @can('changeActiveProduct')
                                     @if ($product['product_active'] == 1)
                                     {{-- <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                 --}}
                                     <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-check mx-2"></i></button>                
@@ -71,6 +84,9 @@
                                     {{-- <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                 --}}
                                     <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check mx-2"></i></button>                
                                     @endif
+                                    @endcan
+
+
                                   </th>
                               </tr>
                               @endforeach           
