@@ -1,4 +1,4 @@
-@extends('layouts.frontend.app-f')
+@extends('user-auth.layouts.app')
 @section('content')
 
 
@@ -24,7 +24,7 @@
     <div class="col-md-7 mt-5 p-5">
         <div class="row m-0 p-0">
             <div class="col m-0 p-0 text-center">
-                <h1>WELCOME TO BID 2 WIN</h1>
+                <h1>WELCOMEEE TO BID 2 WIN dsdsd</h1>
                 <p style="color: gray;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
                     doloremque nulla, tempore at
                     quam dolor assumenda porro corrupti quos consequuntur incidunt mollitia laudantium minus nobis
@@ -73,7 +73,7 @@
         </form>
         <div class="row m-0 pr-2 mt-4">
             <div class="col text-center">
-            <p>Don't you have an account? <a href="{{ route('user.register')}}">Sign up</a></p>
+            <p>Dont you have an account? <a href="{{ route('user.register')}}">Sign up</a></p>
                 <a class="btn btn-link" href="{{ route('user.password.request') }}">
                     Forgot Your Password?
                 </a>

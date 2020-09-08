@@ -142,12 +142,12 @@ Route::group(['prefix' => 'backend'], function() {
         return view('frontend/index');
     });
     
-    //------------------------------tempory routs for front login
-    Route::get('/flogin', function () {
-        return view('frontend/login');
-    });
+    // //------------------------------tempory routs for front login
+    // Route::get('/flogin', function () {
+    //     return view('frontend/login');
+    // });
     
     //------------------------------tempory routes for front register
-    Route::get('/fregister', function () {
-        return view('frontend/register');
-    }); 
+    // Route::get('/fregister', function () {
+    //     return view('frontend/register');
+    // }); 

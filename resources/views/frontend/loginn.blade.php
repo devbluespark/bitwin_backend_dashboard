@@ -10,7 +10,7 @@
     <div class="col-md-7 mt-5 p-5">
         <div class="row m-0 p-0">
             <div class="col m-0 p-0 text-center">
-                <h1>WELCOME TO BIT 2 WIN</h1>
+                <h1>WELCOMEsss TO BIT 2 WIN</h1>
                 <p style="color: gray;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
                     doloremque nulla, tempore at
                     quam dolor assumenda porro corrupti quos consequuntur incidunt mollitia laudantium minus nobis

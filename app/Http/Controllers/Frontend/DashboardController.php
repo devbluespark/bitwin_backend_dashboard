@@ -33,11 +33,11 @@ class DashboardController extends Controller
             $amount = $amount + $package->remain_rolls;
         }
 
-        echo  $free_bid = Free_Roll::select('used_timestamp')
-            ->where('bid_users_id', $user_id)
-            ->orderBy('id', 'desc')
-            ->take(1)
-            ->get();
+        // echo  $free_bid = Free_Roll::select('used_timestamp')
+        //     ->where('bid_users_id', $user_id)
+        //     ->orderBy('id', 'desc')
+        //     ->take(1)
+        //     ->get();
 
         $rolls['buy'] = $amount;
 
