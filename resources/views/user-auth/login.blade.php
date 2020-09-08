@@ -59,7 +59,7 @@
                     
                     @if ($errors->has('password'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
+                        <strong class="text-danger" >{{ $errors->first('password') }}</strong>
                     </span>
                 @endif
 

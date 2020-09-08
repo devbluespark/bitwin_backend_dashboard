@@ -41,7 +41,7 @@
                     </div>
                     @if ($errors->has('user_fname'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('user_fname') }}</strong>
+                            <strong class="text-danger">{{ $errors->first('user_fname') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -52,7 +52,7 @@
                     </div>
                     @if ($errors->has('user_phn1'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('user_phn1') }}</strong>
+                            <strong class="text-danger">{{ $errors->first('user_phn1') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -65,7 +65,7 @@
                     </div>
                     @if ($errors->has('username'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('username') }}</strong>
+                            <strong class="text-danger">{{ $errors->first('username') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                     @if ($errors->has('email'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong class="text-danger">{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -90,7 +90,7 @@
                     </div>
                     @if ($errors->has('password'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
+                            <strong class="text-danger">{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
                 </div>

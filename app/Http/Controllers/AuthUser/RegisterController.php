@@ -19,7 +19,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
 
-        if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
+        if (auth()->guard('biduser')->user()) return redirect()->route('user.dashboard.index');
         return view('user-auth.register');
     }
 

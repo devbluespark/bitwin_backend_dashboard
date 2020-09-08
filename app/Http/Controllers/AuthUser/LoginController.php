@@ -23,7 +23,7 @@ class LoginController extends Controller{
 
     public function showLoginForm(){
       
-        if (auth()->guard('biduser')->user()) return redirect()->route('profile.index');
+        if (auth()->guard('biduser')->user()) return redirect()->route('user.dashboard.index');
         return view('user-auth.login');
     }
 
@@ -49,7 +49,7 @@ class LoginController extends Controller{
             if($bid_user->user_active && $bid_user->verified){
 
                 if ($this->attemptLogin($request)) {
-                    return redirect()->route('profile.index');
+                    return redirect()->route('user.dashboard.index');
                      
                 }else{
                     $errors = [$this->username() => trans('auth.failed')];

@@ -108,10 +108,10 @@ Route::group(['prefix' => 'backend'], function() {
             
         ]);
         //Frontend Products
-        Route::resources([
+        // Route::resources([
     
-            'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
-        ]);  
+        //     'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
+        // ]);  
         
         Route::get('dashboard/{timezone}','Frontend\DashboardController@index')->name('user.dashboard.timezone');
         
@@ -123,6 +123,7 @@ Route::group(['prefix' => 'backend'], function() {
         // Route::get('/referrals', 'Frontend\ReferralController@index');
 
         //frontend routes to return dashboard views
+       Route::get('dashboard','Frontend\DashboardController@index')->name('user.dashboard.index');
        Route::get('products','Frontend\ProductController@index')->name('user.products.index');
        Route::get('history','Frontend\HistoryController@index')->name('user.history.index');
        Route::get('referrals','Frontend\ReferralController@index')->name('user.referrals.index');
