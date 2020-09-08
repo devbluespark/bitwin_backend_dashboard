@@ -21,7 +21,7 @@ class Bid_User extends Authenticatable
         'user_fname', 'email', 'password',
         'user_lname', 'user_phn1', 'user_phn2',
         'user_address', 'user_nic', 'user_active',
-        'user_image','username','token'
+        'user_image','username','token','timezone'
     ];
   
     protected $hidden = [

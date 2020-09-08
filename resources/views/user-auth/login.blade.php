@@ -24,7 +24,7 @@
     <div class="col-md-7 mt-5 p-5">
         <div class="row m-0 p-0">
             <div class="col m-0 p-0 text-center">
-                <h1>WELCOMEEE TO BID 2 WIN dsdsd</h1>
+                <h1>WELCOMEEE TO BID 2 WIN</h1>
                 <p style="color: gray;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
                     doloremque nulla, tempore at
                     quam dolor assumenda porro corrupti quos consequuntur incidunt mollitia laudantium minus nobis
@@ -44,7 +44,7 @@
                     </div>
                         @if ($errors->has('email'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong class="text-danger" >{{ $errors->first('email') }}</strong>
                             </span>
                         @endif
                 </div>

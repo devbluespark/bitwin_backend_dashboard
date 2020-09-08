@@ -28,19 +28,19 @@ class RegisterController extends Controller
 
     protected function register(Request $request)
     {
+       
 
         $request->validate([
             'user_fname' => 'required|string|max:25|min:3',
-            'user_lname' => 'required|string|max:25|min:3',
             'email' => 'required|string|email|max:25|unique:bid_users',
             'username' => 'required|string|max:20|min:3|unique:bid_users|alpha',
             'password' => 'required|string|min:6|confirmed|max:30',
             'password_confirmation' => 'required',
             'user_phn1' => 'required|min:8|max:20',
+            // 'parent_id' => ""
         ]);
 
         $token = str_random(30) . date('His');
-
 
 
 
@@ -53,10 +53,10 @@ class RegisterController extends Controller
             'user_phn1' => $request->user_phn1,
             'token' => $token,
             'user_active' => 1,
+            'timezone'=>$request->timezone,
         ]);
 
-
-
+       
 
         if (isset($request->parent_id)) {
             $referral = Referral::create([

@@ -30,6 +30,9 @@
             @endif
             <!-- End registration using referrals -->
 
+
+            <input type="hidden" name="timezone" id="timezone">
+
             <div class="form-row">
                 <div class="form-group{{ $errors->has('user_fname') ? ' has-error' : '' }} col-md-6 pr-3">
                     <div class="bs-form-group" id="fullNameDiv">
@@ -147,4 +150,13 @@
 
  <!-- Register Form js -->
    <script src="{{asset('assets/frontend/assets/js/register-form-focus.js')}}"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data-2012-2022.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            $('#timezone').val(moment.tz.guess())
+        });        
+    </script>
+
 @endsection

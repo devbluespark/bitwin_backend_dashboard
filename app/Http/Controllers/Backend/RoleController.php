@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Permission;
+use App\Role_Has_Permission;
 
 class RoleController extends Controller
 {
@@ -18,11 +19,9 @@ class RoleController extends Controller
     public function index(){
         try {
 
-            $roles = Role::all();
+           $roles = Role::all();
 
-            // foreach ($roles as $role){
-            //     $role->permissions = Role 
-            // }
+           
 
             return view('backend.roles.index',compact('roles'));
 
