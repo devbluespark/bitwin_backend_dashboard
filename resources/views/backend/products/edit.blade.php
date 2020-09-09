@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="row">
                                     <div class="form-group col">
-                                      <label for="inputAddress">Product Bit Value</label>
+                                      <label for="inputAddress">How Many Rolls</label>
                                       <input type="text" class="form-control"required name="product_bid_rolls"value="{{$product->product_bid_rolls}}" id="inputAddress" placeholder="">
                                       @if ($errors->has('product_name'))
                                       <span class="help-block">
@@ -92,7 +92,7 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_1'] != "noimage.jpg") 
-                                              <img class="rounded-circle "  src="/storage/images/{{$product->product_img_1}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle "  src="/storage/images/products/{{$product->product_img_1}}" width="150px" alt="Card image cap">
                                               @else
                                               <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
                                             @endif
@@ -110,7 +110,7 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_2'] != "noimage.jpg") 
-                                            <img class="rounded-circle " src="/storage/images/{{$product->product_img_2}}" width="150px" alt="Card image cap">
+                                            <img class="rounded-circle " src="/storage/images/products/{{$product->product_img_2}}" width="150px" alt="Card image cap">
                                             @else
                                             <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
                                             @endif
@@ -128,7 +128,7 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_3'] != "noimage.jpg") 
-                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_3}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="/storage/images/products/{{$product->product_img_3}}" width="150px" alt="Card image cap">
                                               @else
                                               <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
                                               @endif
@@ -146,7 +146,7 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_4'] != "noimage.jpg") 
-                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_4}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="/storage/images/products/{{$product->product_img_4}}" width="150px" alt="Card image cap">
                                               @else
                                               <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
                                               @endif
@@ -164,7 +164,7 @@
                                         <div class="card-body">
                                           <div class="  mb-3">
                                             @if ($product['product_img_5'] != "noimage.jpg") 
-                                              <img class="rounded-circle " src="/storage/images/{{$product->product_img_5}}" width="150px" alt="Card image cap">
+                                              <img class="rounded-circle " src="/storage/images/products/{{$product->product_img_5}}" width="150px" alt="Card image cap">
                                               @else
                                               <img class="rounded-circle " src="{{asset('assets/backend/images/admin.jpg')}}" width="150px" alt="Card image cap">
                                             @endif

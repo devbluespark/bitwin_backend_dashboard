@@ -23,22 +23,22 @@
                                 <h5 style="color: gray;">All Rolls</h5>
                                 <div class="row m-0 p-0">
                                     <div class="col p-0 m-0">
-                                        <p class="m-0" style="color: black; font-weight: 700;">05</p>
+                                    <p class="m-0" style="color: black; font-weight: 700;">{{ $rolls['buy'] }}</p>
                                         <p class="mb-0"><small style="color: gray; font-weight: 600;">Buy</small>
                                         </p>
                                     </div>
                                     <div class="col p-0 m-0 bs-card-border-left">
-                                        <p class="m-0" style="color: black; font-weight: 700;">05</p>
+                                        <p class="m-0" style="color: black; font-weight: 700;">{{ $rolls['bonus'] }}</p>
                                         <p class="mb-0"><small style="color: gray; font-weight: 600;">Bonus</small>
                                         </p>
                                     </div>
                                     <div class="col p-0 m-0 bs-card-border-left">
-                                        <p class="m-0" style="color: black; font-weight: 700;">05</p>
+                                        <p class="m-0" style="color: black; font-weight: 700;">{{ $rolls['free'] }}</p>
                                         <p class="mb-0"><small style="color: gray; font-weight: 600;">Free</small>
                                         </p>
                                     </div>
                                     <div class="col p-0 m-0 bs-card-border-left">
-                                        <p class="m-0" style="color: black; font-weight: 700;">05</p>
+                                        <p class="m-0" style="color: black; font-weight: 700;">{{ $rolls['sum'] }}</p>
                                         <p class="mb-0"><small style="color: gray; font-weight: 600;">All</small>
                                         </p>
                                     </div>
@@ -51,12 +51,12 @@
                     <div class="col-md-4">
                         <div class="card m-0 dashboard-card">
                             <div class="card-body text-center">
-                                @if (isset($dashboard_details))
+                              
                                     
                                
-                                @foreach($dashboard_details as $dashboard_detail )
-                                <h1>{{ $dashboard_detail->count_referells }}</h1>
-                                @endforeach
+                                
+                                <h1>{{ $referels_count }}</h1>
+            
                                 <p style="color: gray;" class="mb-0">All Refferals</p>
                             </div>
                         </div>
@@ -64,10 +64,8 @@
                     <div class="col-md-4">
                         <div class="card m-0 dashboard-card">
                             <div class="card-body text-center">
-                                @foreach($dashboard_details as $dashboard_detail )
-                                <h1>200</h1>
-                                @endforeach
-                                @endif
+                            
+                                <h1>{{ $win_products_count}}</h1>
                                 <p style="color: gray;" class="mb-0">All Win Items</p>
                             </div>
                         </div>
@@ -165,7 +163,7 @@
             <div class="col-md-3 m-0 p-3 pt-4" style="background-color: white;">
                 <h5 style="font-weight: 700;">New Items</h5>
 
-                @if (isset($last_products))
+                @if (isset($latest_products))
                     
                
                 @foreach($latest_products as $latest_product)
@@ -173,9 +171,10 @@
                     <div
                         style="width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
                         @if ($latest_product['product_img_1'] != "noimage.jpg") 
-                        <img src="/storage/images/{{$latest_product->product_img_1}}" alt="Image" style="width: 100%; border-radius: 10px;">
+                        {{-- <img src="/storage/images/{{$latest_product->product_img_1}}" alt="Image" style="width: 100%; border-radius: 10px;"> --}}
+                          <img src="{{asset('storage/images/products').'/'.$latest_product->product_img_1 }}" alt="Image" style="width: 100%; border-radius: 10px;">
                         @else
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image" style="width: 100%; border-radius: 10px;">
+                        <img src="{{asset('storage/images/products/noimage.jpg')}}" alt="Image" style="width: 100%; border-radius: 10px;">
                         @endif
                     </div>
                     <div class="pl-2" style="padding-top: 12px;">
@@ -183,10 +182,14 @@
                         <small style="color: gray; font-weight: 600;">20/200</small>
                     </div>
                     <div class="col m-0 p-0 text-right pr-2" style="margin-top: 5px !important;">
-                        <a href="#" class="btn btn-sm rounded-pill btn-outline-primary item-card-button"
+                        <a href="#" onclick="show_details({{ $latest_product }})" class="btn btn-sm rounded-pill btn-outline-primary item-card-button"
                             data-toggle="modal" data-target="#viewItemModal">BID</a>
                     </div>
                 </div>
+
+                 {{-- For Image show on model --}}
+                 <span  style="display:none;" id="{{ $latest_product->id }}-image" >{{ asset('storage/images/products').'/'.$latest_product->product_img_1}}</span>
+
                 @endforeach
 
                 @endif
@@ -215,26 +218,29 @@
                 </div>
                 <div class="row m-0">
                     <div class="col-md-4">
-                        <img src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Image" class="w-100">
+                        <img src="" alt="Image" class="w-100" id="img_1" >
                     </div>
                     <div class="col-md-8">
-                        <h5 class="font-weight-bold">Product Title</h5>
-                        <p class="product-modal-description-p">Max Bid <a
-                                class="product-modal-description-val">4000</a></p>
-                        <p class="product-modal-description-p">Min Bid <a
-                                class="product-modal-description-val">1000</a></p>
-                        <p class="product-modal-description-p">One Bid Price <a
-                                class="product-modal-description-val">10</a></p>
+                        <h5 class="font-weight-bold"> <span id="product_name"></span></h5>
+                        <p class="product-modal-description-p">Min Bid Value <a
+                                class="product-modal-description-val"><span id="product_bid_min_value"></a></p>
+                        <p class="product-modal-description-p">Max Bid Value <a
+                                class="product-modal-description-val"><span id="product_bid_max_value"></a></p>
+                        <p class="product-modal-description-p">How Many Rolls <a
+                                class="product-modal-description-val"><span id="product_bid_rolls"></a></p>
 
                         <div class="row m-0 mt-2">
                             <div class="col-10 m-0 p-0">
-                                <div class="progress">
+                                {{-- <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 25%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div> --}}
+                                <div class="progress" id="progress">
+                                
                                 </div>
                             </div>
                             <div class="col-2 m-0">
-                                10%
+                                <span id="product_bid_records_percentage"></span> %
                             </div>
 
                         </div>
@@ -290,4 +296,62 @@ crossorigin="anonymous"></script>
 
 <!-- Dashboard JS -->
 <script src="{{asset('assets/frontend/assets/js/dashboard.js')}}"></script>
+
+
+
+<script>
+
+
+    function show_details(product) {
+        var result = Object.entries(product);      
+
+        console.log(product['id']);
+        // Printing values 
+        for(var i = 0; i < result.length; i++) { 
+                for(var z = 0; z < result[i].length; z++) { 
+                    result[i][z]; 
+                } 
+               
+         } 
+
+
+         let product_id= result[0][1];
+         
+         let product_name= result[1][1];
+         let product_bid_rolls= result[3][1];
+         let product_bid_min_value= result[4][1];
+         let product_bid_max_value= result[5][1];
+         let product_img_1= result[6][1];
+
+         console.log(product_img_1);
+         
+         let product_bid_records_percentage= result[19][1];
+
+
+        document.getElementById("product_name").innerHTML = product_name;
+        document.getElementById("product_bid_rolls").innerHTML = product_bid_rolls;
+        document.getElementById("product_bid_min_value").innerHTML = product_bid_min_value;
+        document.getElementById("product_bid_max_value").innerHTML=product_bid_max_value;
+        document.getElementById("product_bid_records_percentage").innerHTML = product_bid_records_percentage;
+        // document.getElementById("img_1").src = '/storage/images/products/'.product_img_1;
+
+        let image = document.getElementById(product['id']+'-image').innerHTML;
+        document.getElementById("img_1").src = image;
+
+        document.getElementById("progress").innerHTML =""
+
+        document.getElementById("progress").innerHTML = '<div class="progress-bar" role="progressbar" style="width:'+product_bid_records_percentage+'%"  aria-valuemin="0" aria-valuemax="100"></div>'
+
+    }
+
+
+
+</script>
+
+
+
+
+
+
+
 @endsection

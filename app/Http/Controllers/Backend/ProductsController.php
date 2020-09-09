@@ -12,7 +12,7 @@ class ProductsController extends Controller
    
     public function index()
     {
-        $products=Product::where('product_delete_status','0')->get();
+       $products=Product::where('product_delete_status','0')->get();
     
         return view('backend/products/index',compact('products'));
     }
@@ -47,7 +47,7 @@ class ProductsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('product_img_1')->getClientOriginalExtension();
                 $img_1_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
-                $path = $request->file('product_img_1')->storeAs('public/images',$img_1_filenameToStore);
+                $path = $request->file('product_img_1')->storeAs('public/images/products',$img_1_filenameToStore);
     
             }
             else{
@@ -58,7 +58,7 @@ class ProductsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('product_img_2')->getClientOriginalExtension();
                 $img_2_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
-                $path = $request->file('product_img_2')->storeAs('public/images',$img_2_filenameToStore);
+                $path = $request->file('product_img_2')->storeAs('public/images/products',$img_2_filenameToStore);
     
             }
             else{
@@ -69,7 +69,7 @@ class ProductsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('product_img_3')->getClientOriginalExtension();
                 $img_3_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
-                $path = $request->file('product_img_3')->storeAs('public/images',$img_3_filenameToStore);
+                $path = $request->file('product_img_3')->storeAs('public/images/products',$img_3_filenameToStore);
     
             }
             else{
@@ -80,7 +80,7 @@ class ProductsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('product_img_4')->getClientOriginalExtension();
                 $img_4_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
-                $path = $request->file('product_img_4')->storeAs('public/images',$img_4_filenameToStore);
+                $path = $request->file('product_img_4')->storeAs('public/images/products',$img_4_filenameToStore);
     
             }
             else{
@@ -91,7 +91,7 @@ class ProductsController extends Controller
                 $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
                 $extension = $request->file('product_img_5')->getClientOriginalExtension();
                 $img_5_filenameToStore = $filename.'_'.time().'.'.$extension; //The Timestamp makes each image's name unique
-                $path = $request->file('product_img_5')->storeAs('public/images',$img_5_filenameToStore);
+                $path = $request->file('product_img_5')->storeAs('public/images/products',$img_5_filenameToStore);
     
             }
             else{
@@ -262,7 +262,7 @@ class ProductsController extends Controller
             
             $product_id= $request->id;
             $product=Product::find($product_id);
-            $product->product_delete_status = "0";
+            $product->product_delete_status = 1;
     
             $product->save();
             return redirect('backend/products');

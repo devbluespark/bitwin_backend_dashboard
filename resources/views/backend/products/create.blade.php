@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 @section('content')
 
-<div class="container" >
+<div class="col-12" >
     <div class="row">
        <div class="col-md-12 col-md-offset-1">
           <div class="panel panel-default">
@@ -48,28 +48,18 @@
                                       </div>
                                     </div>
                                     <div class="form-row">
-                                    <div class="form-group col-md-6 ">
-                                      <label for="inputAddress">Product Bit Value</label>
-                                      <input type="text" class="form-control"required name="product_bid_rolls" value="{{ $product['product_bid_rolls'] ?? old('product_bid_rolls') }}" id="inputAddress" placeholder="">
-                                      @if ($errors->has('product_bid_rolls'))
-                                      <span class="help-block">
-                                        <div class='alert alert-danger text-center'>
-                                          {{ $errors->first('product_bid_rolls') }}
-                                        </div>
-                                      </span>
-                                    @endif
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <label for="inputAddress2">Product Bid Min Value</label>
-                                      <input type="text" class="form-control"required name="product_bid_min_value" value="{{ $product['product_bid_min_value'] ?? old('product_bid_min_value') }}" id="inputAddress2" placeholder="">
-                                      @if ($errors->has('product_bid_min_value'))
-                                      <span class="help-block">
-                                        <div class='alert alert-danger text-center'>
-                                          {{ $errors->first('product_bid_min_value') }}
-                                        </div>
-                                      </span>
-                                    @endif
-                                    </div>
+                                  
+                                      <div class="form-group col-md-6">
+                                        <label for="inputAddress2">Product Bid Min Value</label>
+                                        <input type="text" class="form-control"required name="product_bid_min_value" value="{{ $product['product_bid_min_value'] ?? old('product_bid_min_value') }}" id="inputAddress2" placeholder="">
+                                        @if ($errors->has('product_bid_min_value'))
+                                        <span class="help-block">
+                                          <div class='alert alert-danger text-center'>
+                                            {{ $errors->first('product_bid_min_value') }}
+                                          </div>
+                                        </span>
+                                      @endif
+                                      </div>
                                     {{-- <div class="form-row"> --}}
                                       <div class="form-group col-md-6">
                                         <label for="inputCity">Product Bid Max Value</label>
@@ -81,7 +71,22 @@
                                           </div>
                                         </span>
                                       @endif
-                                      </div>                                                             
+                                      </div> 
+                                      
+                                     
+
+                                      <div class="form-group col-md-6 ">
+                                        <label for="inputAddress">How many rolls</label>
+                                        <input type="text" class="form-control"required name="product_bid_rolls" value="{{ $product['product_bid_rolls'] ?? old('product_bid_rolls') }}" id="inputAddress" placeholder="">
+                                        @if ($errors->has('product_bid_rolls'))
+                                        <span class="help-block">
+                                          <div class='alert alert-danger text-center'>
+                                            {{ $errors->first('product_bid_rolls') }}
+                                          </div>
+                                        </span>
+                                      @endif
+                                      </div>
+                                      
                                     </div>
                                     <div class="wrapper_">
                                       <div class="box">

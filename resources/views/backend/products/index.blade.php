@@ -91,17 +91,7 @@
                               </tr>
                               @endforeach           
                           </tbody>
-                          <tfoot>
-                              <tr>
-                                  <th>ID</th>
-                                  <th>Name</th>
-                                  <th>Price</th>
-                                  <th>Price</th>
-                                  <th>Price</th>
-                                  <th>Status</th>               
-                                  <th>Actions</th>
-                              </tr>
-                          </tfoot>
+                        
                     </table>
                 </div>
             </div>
