@@ -15,10 +15,11 @@ class ReferralController extends Controller
     public function index(){
 
 
-    $referel_count= DB::table('referrals')->where('parent_user_id',Auth::guard('biduser')->user()->id)->count();
-    // $bid_user= Bid_User::find((Auth::guard('biduser')->user()->id));
-    //    echo $refferalUrl=url('reg',$bid_user->token);
-    return view('frontend/referels/index',compact('referel_count')) ;   
+     $referel_count= DB::table('referrals')->where('parent_user_id',Auth::guard('biduser')->user()->id)->count();
+     $bid_user= Bid_User::find((Auth::guard('biduser')->user()->id));
+      $refferalUrl=url('reg',$bid_user->token);
+      $refferalUrl=str_replace('http://', '', $refferalUrl);
+    return view('frontend/referels/index',compact('referel_count','refferalUrl')) ;   
 
 
         

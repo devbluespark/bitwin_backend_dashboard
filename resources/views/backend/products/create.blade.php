@@ -37,7 +37,7 @@
                                       </div>
                                       <div class="form-group col-md-6">
                                         <label for="inputPassword4">Product Price</label>
-                                        <input type="text" class="form-control"required name="product_price" value="{{ $product['product_price'] ?? old('product_price') }}" id="inputPassword4" placeholder="">
+                                        <input type="number" class="form-control"required name="product_price" value="{{ $product['product_price'] ?? old('product_price') }}" id="inputPassword4" placeholder="">
                                         @if ($errors->has('product_price'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -50,8 +50,8 @@
                                     <div class="form-row">
                                   
                                       <div class="form-group col-md-6">
-                                        <label for="inputAddress2">Product Bid Min Value</label>
-                                        <input type="text" class="form-control"required name="product_bid_min_value" value="{{ $product['product_bid_min_value'] ?? old('product_bid_min_value') }}" id="inputAddress2" placeholder="">
+                                        <label for="inputAddress2"> Bid Min Value</label>
+                                        <input type="number" class="form-control"required name="product_bid_min_value" value="{{ $product['product_bid_min_value'] ?? old('product_bid_min_value') }}" id="inputAddress2" placeholder="">
                                         @if ($errors->has('product_bid_min_value'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -62,8 +62,8 @@
                                       </div>
                                     {{-- <div class="form-row"> --}}
                                       <div class="form-group col-md-6">
-                                        <label for="inputCity">Product Bid Max Value</label>
-                                        <input type="text" class="form-control"required name="product_bid_max_value" value="{{ $product['product_bid_max_value'] ?? old('product_bid_max_value') }}" id="inputCity">
+                                        <label for="inputCity"> Bid Max Value</label>
+                                        <input type="number" class="form-control"required name="product_bid_max_value" value="{{ $product['product_bid_max_value'] ?? old('product_bid_max_value') }}" id="inputCity">
                                         @if ($errors->has('product_bid_max_value'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -77,7 +77,7 @@
 
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">How many rolls</label>
-                                        <input type="text" class="form-control"required name="product_bid_rolls" value="{{ $product['product_bid_rolls'] ?? old('product_bid_rolls') }}" id="inputAddress" placeholder="">
+                                        <input type="number" class="form-control"required name="product_bid_rolls" value="{{ $product['product_bid_rolls'] ?? old('product_bid_rolls') }}" id="inputAddress" placeholder="">
                                         @if ($errors->has('product_bid_rolls'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -86,6 +86,33 @@
                                         </span>
                                       @endif
                                       </div>
+
+                                      <div class="form-group col-md-6 ">
+                                        <label for="inputAddress">Select Product Level</label>
+                                       
+                                        <select id="inputState" class="form-control">
+                                          <option selected disabled>Choose...</option>
+                                          <option>free</option>
+                                          <option>intermediate</option>
+                                          <option>high</option>
+                                        </select>
+
+                                        @if ($errors->has('product_bid_rolls'))
+                                        <span class="help-block">
+                                          <div class='alert alert-danger text-center'>
+                                            {{ $errors->first('product_bid_rolls') }}
+                                          </div>
+                                        </span>
+                                      @endif
+                                      </div>
+
+                                      <div class="form-group col-md-6 ">
+                                        <label for="inputAddress">Offers : </label>
+                                       
+                                        <label class="switch switch-text switch-primary switch-pill"><input type="checkbox" name="product_offers" class="switch-input" > <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label>
+                                        
+                                      </div>
+                                      
                                       
                                     </div>
                                     <div class="wrapper_">
@@ -150,12 +177,12 @@
                                     <div class="form-row">
                                       <div class="form-group col-md-6">
                                         <br>
-                                        <label for="inputCity">Product Featured</label>                                        
-                                        <label class="switch switch-default switch-primary mr-2"><input type="checkbox" class="switch-input" name="product_featured" > <span class="switch-label"></span> <span class="switch-handle"></span></label>
+                                        {{-- <label for="inputCity">Product Featured</label>                                        
+                                        <label class="switch switch-default switch-primary mr-2"><input type="checkbox" class="switch-input" name="product_featured" > <span class="switch-label"></span> <span class="switch-handle"></span></label> --}}
 
                                       </div>                                                             
                                     </div>
-                                    <button type="submit" class="btn btn-primary">ADD</button>
+                                    <button type="submit" class="btn btn-primary">Create</button>
                                 </form>
                             </div>
                         </div>

@@ -128,6 +128,9 @@ Route::group(['prefix' => 'backend'], function() {
        Route::get('history','Frontend\HistoryController@index')->name('user.history.index');
        Route::get('referrals','Frontend\ReferralController@index')->name('user.referrals.index');
        Route::get('packages','Frontend\PackagesController@index')->name('user.packages.index');
+
+       //ajax data
+       Route::post('ajax-users-rolls','Frontend\ProductController@ajaxUsersRolls')->name('ajax.users.rolls');
        
     });
 

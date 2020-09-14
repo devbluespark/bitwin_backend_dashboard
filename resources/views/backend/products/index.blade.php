@@ -45,8 +45,9 @@
                                   <th >ID</th>
                                   <th>Name</th>
                                   <th>Product(Rs.)</th>
-                                  <th>Min(Rs.)</th>
-                                  <th>Max (Rs.)</th>
+                                  <th>Min Bid</th>
+                                  <th>Max Bid</th>
+                                  <th>Product Level</th>
                                   <th>Status</th>
                                   <th >Actions</th>
                               </tr>
@@ -59,6 +60,7 @@
                                   <td>{{ $product->product_price }}</td>
                                   <td>{{ $product->product_bid_min_value }}</td>               
                                   <td>{{ $product->product_bid_max_value }}</td>
+                                  <td>{{ $product->product_level }}</td>
                                   @if ($product['product_active'==1])
                                   <td>Active</td>
                                   @else

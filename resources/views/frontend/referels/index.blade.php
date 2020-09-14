@@ -26,14 +26,17 @@
                     <div class="form-group col-md-8 pr-3">
                         <div class="bs-form-group" id="referelLinkDiv" style="background-color: white;">
                             <label class="mb-0">Referel link</label>
-                            <input type="text" class="form-control rounded-0 bs-input" id="referelLink">
+                        <input type="text" class="form-control rounded-0 bs-input" id="referelLink" value="{{ $refferalUrl}}">
                         </div>
                     </div>
 
                     <div class="form-group col-md-4 pr-3">
-                        <button type="button" class="btn btn-primary btn-lg btn-block"
-                            style="height: 62px;">Copy</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="copyFunction()" onmouseout="outFunction()" style="height: 62px;">
+                            
+                            Copy
+                        </button>
                     </div>
+                    
                 </div>
 
                 <div class="row m-0 p-0 mt-4 pb-4">
@@ -79,5 +82,24 @@
 
 <!-- Referel Form js -->
 <script src="{{asset('assets/frontend/assets/js/referels-form-focus.js')}}"></script>
+
+<script>
+    
+    function copyFunction() {
+        var copyText = document.getElementById("referelLink");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copied: " + copyText.value;
+    }
+
+    function outFunction() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copy to clipboard";
+    }
+
+</script>
 
 @endsection

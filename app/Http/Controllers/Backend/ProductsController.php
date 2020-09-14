@@ -25,19 +25,25 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
-        if($request->has('product_featured')){
-            $featured=1;
+   
+
+        if($request->has('product_offers')){
+           echo $product_offers=1;
         }else{
-            $featured=0;
+           echo $product_offers=0;
         }
+        
         $validatedData = $request->validate([
-            'product_name' => 'required',
-            'product_price' => 'required|numeric|min:1|max:1000000',
-            'product_bid_rolls' => 'required|numeric|min:1|max:1000000',
-            'product_bid_min_value' =>'required|numeric|min:1|max:1000000',
-            'product_bid_max_value' =>'required|numeric|min:1|max:1000000',
-            'product_img_1' =>'required',
-            'product_img_2' =>'required',           
+            'product_name' => 'required|min:5',
+            'product_price' => 'required|numeric|min:1|max:10000000000',
+            'product_bid_rolls' => 'required|numeric|min:1|max:100000',
+            'product_bid_min_value' =>'required|numeric|min:1|max:100000',
+            'product_bid_max_value' =>'required|numeric|min:1|max:100000',
+            'product_img_1' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_2' =>'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_3' =>'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_4' =>'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_5' =>'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',           
         ]);
 
         try{
@@ -120,7 +126,7 @@ class ProductsController extends Controller
         catch(Exception $e){
             return redirect()->back()->with('er','Something Wrong') ;       
     
-        }
+        } 
     }
 
     public function show($id)

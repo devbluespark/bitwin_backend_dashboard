@@ -16,17 +16,12 @@ class PackagesController extends Controller
             $packages =Package::where('package_active','1')
                         ->where('package_delete_status','0')
                         ->get();
-           if($packages){
-            
-            return view('frontend/package/index',compact('packages')) ;  
-           }else{
-            return redirect()->back(); 
-           }
+           
+                        return view('frontend/package/index',compact('packages')) ;
             
         
-        }catch(Exception $e){
-
-            return redirect()->back();
+        }catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 

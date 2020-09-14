@@ -24,17 +24,68 @@ class DashboardController extends Controller
     public function index()
     {
         $user_id = Auth::guard('biduser')->user()->id;
-       $user_timezone = Auth::guard('biduser')->user()->timezone;
+       
 
-        $latest_products = Product::orderBy('id', 'desc')->where('product_delete_status',0)->take(15)->get();
+        $latest_products = Product::orderBy('id', 'desc')
+        ->where('product_delete_status',0)
+        ->where('product_active',1)
+        ->where('product_expired',0)
+        ->take(15)->get();
 
         foreach($latest_products as $product){
 
             $product['bid_records_percentage']= $this->status_bar($product);
         }
 
+        //get user Rolls(free,bonus,buy)
+        $rolls=$this->getUserRolls();
 
 
+         //calcilation win products
+         $win_products_count=Win_Record::where('bid_users_id',$user_id)->count();
+
+
+         //Get All Referels 
+         $referels_count = Referral::where('parent_user_id',$user_id)->count();
+         
+
+       
+         return view('frontend/dashboard/index',compact('latest_products','rolls','win_products_count','referels_count')); ;        
+
+
+    }
+
+
+   
+
+    public function status_bar($product){
+
+        try {      
+                $how_many_bids= ($product->product_price /( $product->product_bid_rolls * 0.027 )); 
+              
+              $how_many_bids_int=intval($how_many_bids);
+   
+               if (($how_many_bids - $how_many_bids_int) > 0) {
+                   $how_many_bids_int = $how_many_bids_int + 1 ;
+               }
+   
+            
+             $bid_records_count = Bid_Record::where('products_id', $product->id)->count();
+       
+            $bid_records_percentage =(( $bid_records_count/$how_many_bids_int )*100);
+            return $bid_records_percentage;
+
+
+        }catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        
+        
+    }
+
+
+
+    public function getUserRolls(){
 
 
         // Rolls Calculate (Free, Buy, Bonus)
@@ -42,6 +93,8 @@ class DashboardController extends Controller
         // date_default_timezone_set("Africa/Niamey");   //India time (GMT+5:30)
         // echo date('d-m-Y H:i:s');
         // echo "<br>";
+        $user_id = Auth::guard('biduser')->user()->id;
+        $user_timezone = Auth::guard('biduser')->user()->timezone;
 
         $user_timezone_date= date_default_timezone_set($user_timezone);
         $user_timezone_date= date('Y-m-d');
@@ -95,48 +148,9 @@ class DashboardController extends Controller
 
          $rolls['sum'] = $rolls['free'] + $rolls['buy'] + $rolls['bonus'];
 
+         return $rolls;
 
 
-         //calcilation win products
-         $win_products_count=Win_Record::where('bid_users_id',$user_id)->count();
-
-
-         //Get All Referels 
-         $referels_count = Referral::where('parent_user_id',$user_id)->count();
-         
-
-       
-         return view('frontend/dashboard/index',compact('latest_products','rolls','win_products_count','referels_count')); ;        
-
-
-    }
-
-
-   
-
-    public function status_bar($product){
-
-        try {      
-                $how_many_bids= ($product->product_price /( $product->product_bid_rolls * 0.027 )); 
-              
-              $how_many_bids_int=intval($how_many_bids);
-   
-               if (($how_many_bids - $how_many_bids_int) > 0) {
-                   $how_many_bids_int = $how_many_bids_int + 1 ;
-               }
-   
-            
-             $bid_records_count = Bid_Record::where('products_id', $product->id)->count();
-       
-            $bid_records_percentage =(( $bid_records_count/$how_many_bids_int )*100);
-            return $bid_records_percentage;
-
-
-        }catch (\Exception $e) {
-            return $e->getMessage();
-        }
-        
-        
     }
 
 

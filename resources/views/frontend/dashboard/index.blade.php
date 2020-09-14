@@ -305,7 +305,7 @@ crossorigin="anonymous"></script>
     function show_details(product) {
         var result = Object.entries(product);      
 
-        console.log(product['id']);
+
         // Printing values 
         for(var i = 0; i < result.length; i++) { 
                 for(var z = 0; z < result[i].length; z++) { 
@@ -323,7 +323,7 @@ crossorigin="anonymous"></script>
          let product_bid_max_value= result[5][1];
          let product_img_1= result[6][1];
 
-         console.log(product_img_1);
+    
          
          let product_bid_records_percentage= result[19][1];
 
