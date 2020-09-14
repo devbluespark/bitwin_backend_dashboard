@@ -90,17 +90,17 @@
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">Select Product Level</label>
                                        
-                                        <select id="inputState" class="form-control">
+                                        <select id="inputState" class="form-control" name="product_level" required>
                                           <option selected disabled>Choose...</option>
                                           <option>free</option>
                                           <option>intermediate</option>
                                           <option>high</option>
                                         </select>
 
-                                        @if ($errors->has('product_bid_rolls'))
+                                        @if ($errors->has('product_level'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
-                                            {{ $errors->first('product_bid_rolls') }}
+                                            {{ $errors->first('product_level') }}
                                           </div>
                                         </span>
                                       @endif
@@ -112,8 +112,49 @@
                                         <label class="switch switch-text switch-primary switch-pill"><input type="checkbox" name="product_offers" class="switch-input" > <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label>
                                         
                                       </div>
+
+                                   
+
+
+                                      {{-- ---------------------------------------------------------------- --}}
+
+
+                                      <div class="form-group col-md-6 ">
+                                        <label for="inputAddress">Expired Date:</label>
+                                        
+                                        <i class="fa fa-calendar">
+                                        </i>
+                                        <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" type="text" value="{{ $product['date'] ?? old('date') }}"  required  />
+          
+                                        @if ($errors->has('date'))
+                                        <span class="help-block">
+                                          <div class='alert alert-danger text-center'>
+                                            {{ $errors->first('date') }}
+                                          </div>
+                                        </span>
+                                      @endif
+
+                                      </div>
+
+
+
+                                    
+                                      {{-- ------------------------------------------ --}}
                                       
-                                      
+                                      <div class="form-group col-md-6 ">
+                                        <label for="inputAddress">Product Description :</label>
+                                        <textarea  class="form-control" name="product_discription" id="product_discription" value="{{ $product['product_discription'] ?? old('product_discription') }}"></textarea>
+                                       
+                                        @if ($errors->has('product_discription'))
+                                        <span class="help-block">
+                                          <div class='alert alert-danger text-center'>
+                                            {{ $errors->first('product_discription') }}
+                                          </div>
+                                        </span>
+                                      @endif
+                                      </div>
+
+
                                     </div>
                                     <div class="wrapper_">
                                       <div class="box">
@@ -194,5 +235,22 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'yyyy/mm/dd',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+
+</script>
 
 @endsection

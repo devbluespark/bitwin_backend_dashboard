@@ -17,3 +17,11 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
+
+{{-- datepicker --}}
+<!--formden.js communicates with FormDen server to validate fields and submit via AJAX -->
+{{-- <script type="text/javascript" src="https://formden.com/static/cdn/formden.js"></script> --}}
+
+<!-- Special version of Bootstrap that is isolated to content wrapped in .bootstrap-iso -->
+{{-- <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> --}}
+

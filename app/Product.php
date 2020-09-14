@@ -8,6 +8,8 @@ class Product extends Model
 {
     protected $table = 'products';
     protected $primaryKey ='id';
+
+    protected $guarded = [];
    
 
     public function bid_records()
@@ -20,8 +22,9 @@ class Product extends Model
         return $this->hasOne(Win_Record::class);
     }
 
-    
-
+    public function user(){
+        return $this->hasOne(User::class);
+    }
 
 
 }

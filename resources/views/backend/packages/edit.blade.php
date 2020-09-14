@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="container">
+<div class="col-12">
 
     <h1>Packages Edit</h1><br><br>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center col-12">
       <div class="col-md-12">
           <div class="card p-3">
 

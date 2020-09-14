@@ -15,7 +15,7 @@ class Bid_User extends Authenticatable
     protected $table = 'bid_users';
     protected $primaryKey ='id';
 
-    protected $guarded = [];
+    
 
     protected $fillable = [
         'user_fname', 'email', 'password',
@@ -67,5 +67,7 @@ class Bid_User extends Authenticatable
     public function win_records(){
         return $this->hasmany(Win_Record::class);
     }
+
+    
 
 }
