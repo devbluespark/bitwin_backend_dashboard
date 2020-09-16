@@ -167,37 +167,103 @@ class ProductController extends Controller
         $sum_bonus_buy_rolls = $user_buy_rolls + $user_bonus_rolls;
 
 
-        if ($product_rolls === 1) {
 
-            if ($user_free_rolls === 1) {
-                $user_can_bid = 1;
-                $success = "you can bid using today free bit";
+        // --------------------------------------------
+            // new requremnt with
+
+        $product_level =$product->product_level;
+
+        if ($product_level === "free"){
+
+
+            if( ($user_free_rolls + $user_buy_rolls + $user_bonus_rolls) > 0){
+
                 $errors = "";
-            } else {
-
-                if ($sum_bonus_buy_rolls > 0) {
-                    $user_can_bid = 1;
-                    $success = "you can bid using Buy or Bonus Rolls";
-                } else {
-                    $user_can_bid = 0;
-                    $errors = "you dont have even 1 roll";
-                }
-            }
-        }
-
-
-
-        if ($product_rolls > 1) {
-
-            if ($sum_bonus_buy_rolls >= $product_rolls) {
                 $user_can_bid = 1;
-                $success = "you can bid using Buy or Bonus Rolls";
-            } else {
+
+                if($user_free_rolls === 1){
+                    $success = "you can bid using today free bit or Buy ,bonus Rolls";
+                }elseif($user_free_rolls === 0){
+                    $success = "you can only pay using Buy ,bonus Rolls";
+                }
+
+            }elseif(($user_free_rolls + $user_buy_rolls + $user_bonus_rolls) == 0){
+                $errors = "you dont have free roll and any buy ,bonus";
                 $user_can_bid = 0;
-                // $errors = "you dont have enought buy and bonus rolls ";
-                $errors = "you can't bid (haven't enought rolls)";
+                $success ="";
             }
+
+
+        }elseif($product_level === "intermediate"){
+            // Intermediate
+
+
+            if(($user_free_rolls + $user_buy_rolls + $user_bonus_rolls) >= $product_rolls){
+
+                $user_can_bid = 1;
+                $success ="you can bid using free roll and buy,bonus rollssss(intermediate)";
+
+            }elseif(($user_free_rolls + $user_buy_rolls + $user_bonus_rolls) < $product_rolls){
+
+                $errors = "You dont have enought rolls to bid this product..(inrtemediate)";
+                $user_can_bid = 0;
+
+            }
+
+
+        }elseif($product_level === "high"){
+
+
+            if(($user_buy_rolls + $user_bonus_rolls) >= $product_rolls){
+                $user_can_bid = 1;
+                $success ="you can bid using buy and bonus rolls(high)";
+            }elseif(($user_buy_rolls + $user_bonus_rolls) < $product_rolls){
+                $errors = "You dont have enought rolls to bid this product..(high)";
+                $user_can_bid = 0;
+            }
+
+
+
+
         }
+
+
+
+
+        // -------------------------------------------------
+
+
+        // if ($product_rolls === 1) {
+
+        //     if ($user_free_rolls === 1) {
+        //         $user_can_bid = 1;
+        //         $success = "you can bid using today free bit";
+        //         $errors = "";
+        //     } else {
+
+        //         if ($sum_bonus_buy_rolls > 0) {
+        //             $user_can_bid = 1;
+        //             $success = "you can bid using Buy or Bonus Rolls";
+        //         } else {
+        //             $user_can_bid = 0;
+        //             $errors = "you dont have even 1 roll";
+        //         }
+        //     }
+        // }
+
+
+
+        // if ($product_rolls > 1) {
+
+        //     if ($sum_bonus_buy_rolls >= $product_rolls) {
+        //         $user_can_bid = 1;
+        //         $success = "you can bid using Buy or Bonus Rolls";
+        //     } else {
+        //         $user_can_bid = 0;
+        //         // $errors = "you dont have enought buy and bonus rolls ";
+        //         $errors = "you can't bid (haven't enought rolls)";
+        //     }
+        // }
 
 
         return response()->json([
@@ -208,7 +274,8 @@ class ProductController extends Controller
             'bonus_rolls' => $user_bonus_rolls,
             'can' => $user_can_bid,
             'error' => $errors,
-            'success' => $success
+            'success' => $success,
+            // 'data'=>$data
         ]);
     }
 }

@@ -255,7 +255,7 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                     dataType : "json",
                     success : function (response) {
 
-                        // console.log(response);
+                        console.log(response);
                         // console.log(response.product.id);
 
                         var img_1 = '{{ asset("storage/images/products")}}/'+response.product.product_img_1;
@@ -325,7 +325,7 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                                                                             '<label class="text-danger">'+response.error+'</label><br>'+
                                                                                             '<label class="product-modal-description-val">Your Bid</label>'+
                                                                                             '<div class="form-row m-0 p-0 mb-1">'+
-                                                                                                '<input type="text" class="form-control col-md-8 mr-3 mt-3" disabled >'+
+                                                                                                '<input type="text" class="form-control col-md-8 mr-3 mt-3 " disabled >'+
                                                                                                 '<button type="submit" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3 disabled" disabled >Bid</button>'+
                                                                                             '</div>'+
                                                                                         '</form>';
@@ -336,31 +336,16 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                         if(response.can===1){
 
                             document.getElementById("form-inside-modal").innerHTML = "";
-                            document.getElementById("form-inside-modal").innerHTML = '<form class="mt-2">'+
+                            document.getElementById("form-inside-modal").innerHTML = '<form class="mt-2" method="post" action="">'+
                                                                                             '<span id="response.free_rolls" hidden >'+response.free_rolls+'</span>'+
                                                                                             '<p>Buy Rolls Amount: <span id="response.buy_rolls">'+response.buy_rolls+'</span></P>'+
                                                                                             '<p>Bonus Rolls Amount: <span id="response.bonus_rolls">'+response.bonus_rolls+'</span></P>'+
                                                                                             '<label class="text-success">'+response.success+'</label><br>'+
                                                                                             '<label class="product-modal-description-val">Your Bid</label>'+
                                                                                             '<div class="form-row m-0 p-0 mb-1">'+
-                                                                                                '<input type="text" class="form-control col-md-8 mr-3 mt-3"  >'+
-                                                                                                '<button type="button"  onClick="bidValidate()" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3 bid-validate " >Bid</button>'+
+                                                                                                '<input type="text" class="form-control col-md-8 mr-3 mt-3 bid-input"   id="bid-input" >'+
+                                                                                                '<button type="submit"  onClick="return bidValidate()" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3 bid-validate " >Bid</button>'+
                                                                                             '</div>'+
-                                                                                            '<div class="form-group row">'+
-                                                                                                '<div class="col-3">'+
-                                                                                                '<label for="ex1">Free</label>'+
-                                                                                                '<input class="form-control" id="filled.free_rolls" type="number">'+
-                                                                                            '</div>'+
-                                                                                            '<div class="col-3">'+
-                                                                                                '<label for="ex1">Buy</label>'+
-
-                                                                                                '<input class="form-control" id="filled.buy_rolls" type="number">'+
-                                                                                            '</div>'+
-                                                                                            '<div class="col-3">'+
-                                                                                                '<label for="ex1">Bonus</label>'+
-                                                                                                '<input class="form-control" id="filled.bonus_rolls" type="number">'+
-                                                                                            '</div>'+
-                                                                                            '</div>'
                                                                                         '</form>';
 
                         }
@@ -383,9 +368,6 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
 
 
-            // $(".bid-validate").click(function(){
-            //    alert("hii");
-            // });
 
 
     });
@@ -394,22 +376,19 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
     function bidValidate(){
 
-        var product_rolls=  document.getElementById("response.product.bid_rolls").innerHTML ;
-       var bid_min_value=  document.getElementById("response.product.min_value").innerHTML ;
-       var bid_max_value=  document.getElementById("response.product.max_value").innerHTML ;
-
-       var free_rolls=  document.getElementById("response.free_rolls").innerHTML ;
-       var buy_rolls=  document.getElementById("response.buy_rolls").innerHTML ;
-       var bonus_rolls=  document.getElementById("response.bonus_rolls").innerHTML ;
-
-       var filled_free_rolls = document.getElementById("filled.free_rolls").innerHTML ;
-       var filled_buy_rolls = document.getElementById("filled.buy_rolls").innerHTML ;
-       var filled_bonus_rolls = document.getElementById("filled.bonus_rolls").innerHTML ;
+       var bid_min_value=  parseInt(document.getElementById("response.product.min_value").innerHTML) ;
+       var bid_max_value=  parseInt(document.getElementById("response.product.max_value").innerHTML) ;
+       var bidinput = parseInt(document.getElementById("bid-input").value);
 
 
 
-        var error = "";
+        if(bidinput >= bid_min_value && bidinput<= bid_max_value){
 
+            return true;
+        }else{
+            alert("Enterd value should be between min and max bid values");
+            return false;
+        }
 
 
 

@@ -12,6 +12,7 @@ use App\VerifyUser;
 use Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
 
     protected function register(Request $request)
     {
-       
+
 
         $request->validate([
             'user_fname' => 'required|string|max:25|min:3',
@@ -40,7 +41,7 @@ class RegisterController extends Controller
             // 'parent_id' => ""
         ]);
 
-        $token = str_random(30) . date('His');
+        $token = Str::random(30).date('His');
 
 
 
@@ -56,7 +57,7 @@ class RegisterController extends Controller
             'timezone'=>$request->timezone,
         ]);
 
-       
+
 
         if (isset($request->parent_id)) {
             $referral = Referral::create([
@@ -72,7 +73,7 @@ class RegisterController extends Controller
 
         $verifyUser = verifyUser::create([
             'user_id' => $user->id,
-            'token' => str_random(40)
+            'token' => Str::random(40)
         ]);
 
 
