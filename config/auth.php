@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'biduser' => [
+            'driver' => 'session',
+            'provider' => 'bidusers',
+        ],
     ],
 
     /*
@@ -70,6 +75,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        'bidusers' => [
+            'driver' => 'eloquent',
+            'model' => App\Bid_User::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
@@ -98,6 +108,12 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+
+        'bidusers' => [
+            'provider' => 'bidusers',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 
