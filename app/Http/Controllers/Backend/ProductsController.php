@@ -136,86 +136,81 @@ class ProductsController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        dd($request->all());
-        // try {
-
-        //     $validatedData = $request->validate([
-        //         'product_name' => 'required',
-        //         'product_price' => 'required|numeric|min:1',
-        //         'product_bid_rolls' => 'required|numeric|min:1|max:1000',
-        //         'product_bid_min_value' => 'required|numeric|min:1|max:1000',
-        //         'product_bid_max_value' => 'required|numeric|min:1|max:1000',
-
-        //     ]);
-        //     if ($request->hasFile('product_img_1')) {
-        //         $filenameWithExt = $request->file('product_img_1')->getClientOriginalName();
-        //         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //         $extension = $request->file('product_img_1')->getClientOriginalExtension();
-        //         $img_1_filenameToStore = $filename . '_' . time() . '.' . $extension; //The Timestamp makes each image's name unique
-        //         $path = $request->file('product_img_1')->storeAs('public/images', $img_1_filenameToStore);
-        //     }
-
-        //     if ($request->hasFile('product_img_2')) {
-        //         $filenameWithExt = $request->file('product_img_2')->getClientOriginalName();
-        //         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //         $extension = $request->file('product_img_2')->getClientOriginalExtension();
-        //         $img_2_filenameToStore = $filename . '_' . time() . '.' . $extension; //The Timestamp makes each image's name unique
-        //         $path = $request->file('product_img_2')->storeAs('public/images', $img_2_filenameToStore);
-        //     }
-
-        //     if ($request->hasFile('product_img_3')) {
-        //         $filenameWithExt = $request->file('product_img_3')->getClientOriginalName();
-        //         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //         $extension = $request->file('product_img_3')->getClientOriginalExtension();
-        //         $img_3_filenameToStore = $filename . '_' . time() . '.' . $extension; //The Timestamp makes each image's name unique
-        //         $path = $request->file('product_img_3')->storeAs('public/images', $img_3_filenameToStore);
-        //     }
-
-        //     if ($request->hasFile('product_img_4')) {
-        //         $filenameWithExt = $request->file('product_img_4')->getClientOriginalName();
-        //         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //         $extension = $request->file('product_img_4')->getClientOriginalExtension();
-        //         $img_4_filenameToStore = $filename . '_' . time() . '.' . $extension; //The Timestamp makes each image's name unique
-        //         $path = $request->file('product_img_4')->storeAs('public/images', $img_4_filenameToStore);
-        //     }
-
-        //     if ($request->hasFile('product_img_5')) {
-        //         $filenameWithExt = $request->file('product_img_5')->getClientOriginalName();
-        //         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //         $extension = $request->file('product_img_5')->getClientOriginalExtension();
-        //         $img_5_filenameToStore = $filename . '_' . time() . '.' . $extension; //The Timestamp makes each image's name unique
-        //         $path = $request->file('product_img_5')->storeAs('public/images', $img_5_filenameToStore);
-        //     }
+        // dd($request->all());
 
 
-        //     $product->update($request->all());
-        //     if ($request->hasFile('product_img_1')) {
-        //         $product->product_img_1 = $img_1_filenameToStore;
-        //     }
-        //     if ($request->hasFile('product_img_2')) {
-        //         $product->product_img_2 = $img_2_filenameToStore;
-        //     }
-        //     if ($request->hasFile('product_img_3')) {
-        //         $product->product_img_3 = $img_3_filenameToStore;
-        //     }
-        //     if ($request->hasFile('product_img_4')) {
-        //         $product->product_img_4 = $img_4_filenameToStore;
-        //     }
-        //     if ($request->hasFile('product_img_5')) {
-        //         $product->product_img_5 = $img_5_filenameToStore;
-        //     }
-        //     $product->save();
+        $data = $request->validate([
+            'product_name' => 'required|min:5',
+            'product_price' => 'required|numeric|min:1|max:10000000000',
+            'product_bid_rolls' => 'required|numeric|min:1|max:100000',
+            'product_bid_min_value' => 'required|numeric|min:1|max:100000',
+            'product_bid_max_value' => 'required|numeric|min:1|max:100000',
+            'product_img_1' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_2' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_3' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_4' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_img_5' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+            'product_level' => 'required',
+            'product_discription' => 'required|min:5',
+            'product_offer' => 'required',
+            //  'date'          => 'sometimes|date_format:Y-m-d'
+        ]);
 
-        //     return redirect('backend/products')->with('suc', 'Successfully Updated');
-        // } catch (Exeption $e) {
-        //     return redirect()->back()->with('er', 'Updating canselled');
-        // }
+        if ($files = $request->file('product_img_1')) {
+            $destinationPath = 'storage/images/products/'; // upload path
+            $profileImage = date('YmdHis') . Str::random(10) . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            // $insert['product_img_1'] = "$profileImage";
+            $data['product_img_1'] = $profileImage;
+        }
+
+        if ($files = $request->file('product_img_2')) {
+            $destinationPath = 'storage/images/products'; // upload path
+            $profileImage = date('YmdHis') . Str::random(10) . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            // $insert['product_img_2'] = "$profileImage";
+
+            $data['product_img_2'] = $profileImage;
+        }
+
+        if ($files = $request->file('product_img_3')) {
+            $destinationPath = 'storage/images/products'; // upload path
+            $profileImage = date('YmdHis') . Str::random(10) . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            // $insert['product_img_3'] = "$profileImage";
+
+            $data['product_img_3'] = $profileImage;
+        }
+
+        if ($files = $request->file('product_img_4')) {
+            $destinationPath = 'storage/images/products'; // upload path
+            $profileImage = date('YmdHis') . Str::random(10) . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            // $insert['product_img_4'] = "$profileImage";
+
+            $data['product_img_4'] = $profileImage;
+        }
+
+        if ($files = $request->file('product_img_5')) {
+            $destinationPath = 'storage/images/products'; // upload path
+            $profileImage = date('YmdHis') . Str::random(10) . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            // $insert['product_img_5'] = "$profileImage";
+
+            $data['product_img_5'] = $profileImage;
+        }
+
+
+        $data['product_expired_date'] = $request->date;
+
+
+
+        $product->update($data);
+        return redirect('backend/products')->with('suc', 'Successfully Updated');
+
     }
 
 
-    public function destroy($id)
-    {
-    }
     public function publish(Request $request)
     {
         try {

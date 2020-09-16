@@ -48,7 +48,7 @@
                                       </div>
                                     </div>
                                     <div class="form-row">
-                                  
+
                                       <div class="form-group col-md-6">
                                         <label for="inputAddress2"> Bid Min Value</label>
                                         <input type="number" class="form-control"required name="product_bid_min_value" value="{{ $product['product_bid_min_value'] ?? old('product_bid_min_value') }}" id="inputAddress2" placeholder="">
@@ -71,9 +71,9 @@
                                           </div>
                                         </span>
                                       @endif
-                                      </div> 
-                                      
-                                     
+                                      </div>
+
+
 
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">How many rolls</label>
@@ -89,7 +89,7 @@
 
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">Select Product Level</label>
-                                       
+
                                         <select id="inputState" class="form-control" name="product_level" required>
                                           <option selected disabled>Choose...</option>
                                           <option>free</option>
@@ -108,12 +108,12 @@
 
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">Offers : </label>
-                                       
+
                                         <label class="switch switch-text switch-primary switch-pill"><input type="checkbox" name="product_offers" class="switch-input" > <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label>
-                                        
+
                                       </div>
 
-                                   
+
 
 
                                       {{-- ---------------------------------------------------------------- --}}
@@ -121,11 +121,11 @@
 
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">Expired Date:</label>
-                                        
+
                                         <i class="fa fa-calendar">
                                         </i>
-                                        <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" type="text" value="{{ $product['date'] ?? old('date') }}"  required  />
-          
+                                        <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" type="text" value="{{ $product['date'] ?? old('date') }}"  />
+
                                         @if ($errors->has('date'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -138,13 +138,13 @@
 
 
 
-                                    
+
                                       {{-- ------------------------------------------ --}}
-                                      
+
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">Product Description :</label>
                                         <textarea  class="form-control" name="product_discription" id="product_discription" value="{{ $product['product_discription'] ?? old('product_discription') }}"></textarea>
-                                       
+
                                         @if ($errors->has('product_discription'))
                                         <span class="help-block">
                                           <div class='alert alert-danger text-center'>
@@ -170,7 +170,7 @@
                                           </label>
                                         </div>
                                       </div>
-                                  
+
                                       <div class="box">
                                         <div class="js--image-preview"></div>
                                         <div class="upload-options_">
@@ -199,7 +199,7 @@
                                             <input type="file" class="image-upload_" name="product_img_4" accept="image/*" />
                                           </label>
                                         </div>
-                                      </div>           
+                                      </div>
                                       <div class="box">
                                         <div class="js--image-preview"></div>
                                         <div class="upload-options_">
@@ -213,15 +213,15 @@
                                       <div class="form-group col-md-6">
                                         <label for="inputCity">Product Expired</label>
                                         <input type="text" class="form-control"required name="product_expired" id="inputCity">
-                                      </div>                                                             
+                                      </div>
                                     </div> --}}
                                     <div class="form-row">
                                       <div class="form-group col-md-6">
                                         <br>
-                                        {{-- <label for="inputCity">Product Featured</label>                                        
+                                        {{-- <label for="inputCity">Product Featured</label>
                                         <label class="switch switch-default switch-primary mr-2"><input type="checkbox" class="switch-input" name="product_featured" > <span class="switch-label"></span> <span class="switch-handle"></span></label> --}}
 
-                                      </div>                                                             
+                                      </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </form>

@@ -12,7 +12,7 @@
                               <br>
                               {{-- <a href="/backend/addproducts"><button class="btn btn-primary mb-3 ml-5">Add </button></a> --}}
 
-                              @can('addProduct') 
+                              @can('addProduct')
                               <a href="{{ route('products.create') }}"><button class="btn btn-primary mb-3 "> <i class="fa fa-plus"></i> </button></a>
                               @endcan
 
@@ -34,8 +34,8 @@
 </div>
 
 <div class="container col-12">
-    <div class="">  
-      
+    <div class="">
+
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card p-3">
@@ -48,52 +48,52 @@
                                   <th>Min Bid</th>
                                   <th>Max Bid</th>
                                   <th>Product Level</th>
-                                  <th>Status</th>
+                                  {{-- <th>Status</th> --}}
                                   <th >Actions</th>
                               </tr>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                               @foreach ($products as $product)
                               <tr>
                                   <td>{{ $product->id }}</td>
                                   <td>{{ $product->product_name }}</td>
                                   <td>{{ $product->product_price }}</td>
-                                  <td>{{ $product->product_bid_min_value }}</td>               
+                                  <td>{{ $product->product_bid_min_value }}</td>
                                   <td>{{ $product->product_bid_max_value }}</td>
                                   <td>{{ $product->product_level }}</td>
-                                  @if ($product['product_active'==1])
+                                  {{-- @if ($product['product_active'==1])
                                   <td>Active</td>
                                   @else
                                   <td>Inactive</td>
-                                  @endif
-                                  <td>                                 
-                                    <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>  
+                                  @endif --}}
+                                  <td>
+                                    <a class="mr-3" href='{{ route("products.show",[ 'product' => $product->id ]) }}' > <button class="btn btn-primary"> <i class="fa fa-info mx-2"></i></button></a>
 
                                     @can('editProduct')
                                     <a class="mr-3" href='{{ route("products.edit",[ 'product' => $product->id ]) }}' > <button class="btn btn-warning"> <i class="fa fa-pencil mx-2"></i></button></a>
                                     @endcan
 
                                     @can('deleteProduct')
-                                    <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash mx-2"></i></button>   
+                                    <button type="button" onclick="sweet_delete({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-trash mx-2"></i></button>
                                     @endcan
-                                    
+
 
                                     @can('changeActiveProduct')
                                     @if ($product['product_active'] == 1)
                                     {{-- <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                 --}}
-                                    <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-check mx-2"></i></button>                
+                                    <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check-square-o mx-2"></i></button>
                                     @else
                                     {{-- <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                 --}}
-                                    <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check mx-2"></i></button>                
+                                    <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-times mx-2"></i></button>
                                     @endif
                                     @endcan
 
 
                                   </th>
                               </tr>
-                              @endforeach           
+                              @endforeach
                           </tbody>
-                        
+
                     </table>
                 </div>
             </div>
@@ -113,13 +113,13 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"> 
+          <div class="modal-body">
             Are you Sure...?
           </div>
           <form action="productdelete" method="POST" id="delete_form">
               {{csrf_field()}}
           <input  type="hidden" name="id"  id="hidden_delete">
-           
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Delete</button>
@@ -139,13 +139,13 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"> 
+          <div class="modal-body">
             Are you Sure...?
           </div>
           <form action="productpublish" method="POST" id="publish_form">
               {{csrf_field()}}
           <input  type="hidden" name="id" id="hidden_publish" >
-           
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Publish</button>
@@ -165,13 +165,13 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body"> 
+        <div class="modal-body">
           Are you Sure...?
         </div>
         <form action="productunpublish" method="POST" id="unpublish_form">
             {{csrf_field()}}
         <input  type="hidden" name="id" id="hidden_unpublish" >
-         
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Unublish</button>
@@ -180,7 +180,7 @@
       </div>
     </div>
   </div>
-  
+
   <?php } ?>
 
 <script>
@@ -189,7 +189,7 @@
             $('#example').DataTable();
         });
 
-  
+
      //publish button scirpt
      function sweet_alert_publish(id){
       Swal.fire({
@@ -207,9 +207,9 @@
               }
             })
      }
-                        
-                        
-     
+
+
+
       function sweet_alert_unpublish(id){
         Swal.fire({
             title: 'Do you want to unpublish ?',
@@ -224,8 +224,8 @@
               if (result.value) {
                 return unpublish_product(id)
               }
-            })           
-     } 
+            })
+     }
      function sweet_delete(id){
       Swal.fire({
             title: 'Do you want to delete ?',
@@ -240,26 +240,26 @@
               if (result.value) {
                 return delete_product(id)
          }
-      })     
+      })
     }
 
 
      function publish_product(id) {
-       
+
         document.querySelector('#hidden_publish').value = id;
-        document.querySelector('#publish_form').submit()     
+        document.querySelector('#publish_form').submit()
     }
     //publish button scirpt
-    function unpublish_product(id) {     
+    function unpublish_product(id) {
        document.querySelector('#hidden_unpublish').value = id;
        document.querySelector('#unpublish_form').submit()
    }
     //Delete button scirpt
-    function delete_product(id) {   
+    function delete_product(id) {
       document.querySelector('#hidden_delete').value = id;
       document.querySelector('#delete_form').submit()
     }
-    
+
 
 </script>
 
