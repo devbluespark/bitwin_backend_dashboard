@@ -12,7 +12,9 @@ use App\Free_Roll;
 use App\Http\Controllers\Controller;
 use App\Parent_User_Has_Roll;
 use App\Product;
+use App\Bid_Rolls_Record;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 class ProductController extends Controller
@@ -162,6 +164,9 @@ class ProductController extends Controller
 
         $product_rolls = $product->product_bid_rolls;
         $user_free_rolls = $rolls['free'];
+
+
+
         $user_buy_rolls = $rolls['buy'];
         $user_bonus_rolls = $rolls['bonus'];
         $sum_bonus_buy_rolls = $user_buy_rolls + $user_bonus_rolls;
@@ -230,40 +235,6 @@ class ProductController extends Controller
 
 
 
-        // -------------------------------------------------
-
-
-        // if ($product_rolls === 1) {
-
-        //     if ($user_free_rolls === 1) {
-        //         $user_can_bid = 1;
-        //         $success = "you can bid using today free bit";
-        //         $errors = "";
-        //     } else {
-
-        //         if ($sum_bonus_buy_rolls > 0) {
-        //             $user_can_bid = 1;
-        //             $success = "you can bid using Buy or Bonus Rolls";
-        //         } else {
-        //             $user_can_bid = 0;
-        //             $errors = "you dont have even 1 roll";
-        //         }
-        //     }
-        // }
-
-
-
-        // if ($product_rolls > 1) {
-
-        //     if ($sum_bonus_buy_rolls >= $product_rolls) {
-        //         $user_can_bid = 1;
-        //         $success = "you can bid using Buy or Bonus Rolls";
-        //     } else {
-        //         $user_can_bid = 0;
-        //         // $errors = "you dont have enought buy and bonus rolls ";
-        //         $errors = "you can't bid (haven't enought rolls)";
-        //     }
-        // }
 
 
         return response()->json([
@@ -278,4 +249,146 @@ class ProductController extends Controller
             // 'data'=>$data
         ]);
     }
+
+
+
+    public function user_bid(Request $request){
+
+        $product_id =  (int)$request->product_id;
+        $product_level = $request->product_level;
+        $product_rolls = (int)$request->product_bid_rolls;
+
+        $bid_input = (int)$request->bid_input;
+
+        $user_buy_rolls=(int)$request->user_buy_rolls;
+        $user_bonus_rolls=(int)$request->user_bonus_rolls;
+
+        if($request->has('select_free_bid')){
+            $select_free_bid= true;
+        }else{
+            $select_free_bid= false;
+        }
+
+
+        $bid_record = new Bid_Record;
+        $bid_record->bid_value =$bid_input;
+        $bid_record->products_id = $product_id;
+        $bid_record->bid_users_id = Auth::guard('biduser')->user()->id;
+        $bid_record->save();
+
+
+        $last_bid_record_id = $bid_record->id;
+
+
+        if($product_level === "free"){
+
+            if($select_free_bid == true){
+                echo "saved free rolls ".$save_free_roll=1;
+                echo "saved buy rolls ".$save_buy_rolls=0;
+                echo "saved bonus rolls ".$save_bonus_rolls =0;
+            }elseif ($select_free_bid == false) {
+
+                echo "saved free rolls ".$save_free_roll = 0;
+
+                if($user_buy_rolls >= 1){
+                    echo "saved buy rolls ".$save_buy_rolls = 1;
+                    echo "saved bonus rolls ". $save_bonus_rolls =0;
+                }else{
+                    echo "saved buy rolls ".$save_buy_rolls =0;
+                    echo "saved bonus rolls ".$save_bonus_rolls = 1;
+                }
+            }
+
+        }elseif($product_level === "intermediate"){
+
+            if($select_free_bid == true){
+
+                $save_free_roll=1;
+
+                if(($product_rolls-1) <= $user_buy_rolls){
+                   echo "saved buy rolls ".$save_buy_rolls= ($product_rolls-1);
+                   echo "saved bonus rolls ".$save_bonus_rolls = 0;
+                   echo "i";
+
+                }elseif(($product_rolls-1) > $user_buy_rolls){
+                  echo  "saved buy rolls ".$save_buy_rolls= $user_buy_rolls;
+                  echo  "saved bonus rolls ".$save_bonus_rolls = ($product_rolls-1) - $user_buy_rolls;
+                }
+
+
+            }elseif($select_free_bid == false){
+                $save_free_roll=0;
+
+                if(($product_rolls) <= $user_buy_rolls){
+                    echo "saved buy rolls ".$save_buy_rolls= ($product_rolls);
+                    echo "saved bonus rolls ".$save_bonus_rolls = 0;
+                    echo "i";
+
+                 }elseif(($product_rolls) > $user_buy_rolls){
+                   echo  "saved buy rolls ".$save_buy_rolls= $user_buy_rolls;
+                   echo  "saved bonus rolls ".$save_bonus_rolls = ($product_rolls) - $user_buy_rolls;
+                 }
+
+            }
+
+        }elseif ($product_level === "high") {
+
+
+            $save_free_roll=0;
+
+                if(($product_rolls) <= $user_buy_rolls){
+                    echo "saved buy rolls ".$save_buy_rolls= ($product_rolls);
+                    echo "saved bonus rolls ".$save_bonus_rolls = 0;
+                    echo "i";
+
+                 }elseif(($product_rolls) > $user_buy_rolls){
+                   echo  "saved buy rolls ".$save_buy_rolls= $user_buy_rolls;
+                   echo  "saved bonus rolls ".$save_bonus_rolls = ($product_rolls) - $user_buy_rolls;
+                 }
+
+        }
+
+
+
+
+        $bid_rolls_record=new Bid_Rolls_Record;
+        $bid_rolls_record->free = $save_free_roll;
+        $bid_rolls_record->buy = $save_buy_rolls;
+        $bid_rolls_record->bonus = $save_bonus_rolls;
+        $bid_rolls_record->bid_records_id = $last_bid_record_id;
+        $bid_rolls_record->save();
+
+
+        if($save_free_roll === 1){
+            $user_timezone = Auth::guard('biduser')->user()->timezone;
+
+            $user_timezone_date = date_default_timezone_set($user_timezone);
+            $user_timezone_date = date('Y-m-d');
+
+            $free_roll_details = new Free_Roll;
+            $free_roll_details->used_date = $user_timezone_date;
+            $free_roll_details->bid_users_id = Auth::guard('biduser')->user()->id;
+            $free_roll_details->save();
+
+
+        }
+
+
+        if($save_buy_rolls > 0){
+         $remain_all_rolls= Bid_Users_Has_Package::select('remain_rolls')->where('bid_users_id', Auth::guard('biduser')->user()->id)->latest('id')->first();
+         $remain_rolls=$remain_all_rolls->remain_rolls;
+
+         $remain_all_rolls->remain_rolls = ($remain_rolls - $remain_rolls);
+         $remain_all_rolls->save();
+
+        }
+
+
+
+
+    }
+
+
+
+
 }

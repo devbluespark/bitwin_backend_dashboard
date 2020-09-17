@@ -129,7 +129,7 @@ Route::group(['middleware' => ['biduser']], function () {
 
 
     Route::get('products', 'Frontend\ProductController@index')->name('user.products.index');
-    Route::post('products-bid','Frontend\ProductController@index')->name('user.products.bid');
+    Route::post('products-bid','Frontend\ProductController@user_bid')->name('user.products.bid');
 
 
     Route::get('history', 'Frontend\HistoryController@index')->name('user.history.index');

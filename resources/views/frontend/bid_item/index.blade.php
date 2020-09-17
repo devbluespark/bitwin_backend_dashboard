@@ -291,7 +291,7 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                                                                         '<form class="mt-2">'+
                                                                                             '<label class="product-modal-description-val">Your Bid</label>'+
                                                                                             '<div class="form-row m-0 p-0 mb-1">'+
-                                                                                                '<input type="text" class="form-control col-md-8 mr-3 mt-3">'+
+                                                                                                '<input type="number" class="form-control col-md-8 mr-3 mt-3">'+
                                                                                                 '<button type="submit" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3">Bid</button>'+
                                                                                             '</div>'+
                                                                                         '</form>'+
@@ -325,7 +325,7 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                                                                             '<label class="text-danger">'+response.error+'</label><br>'+
                                                                                             '<label class="product-modal-description-val">Your Bid</label>'+
                                                                                             '<div class="form-row m-0 p-0 mb-1">'+
-                                                                                                '<input type="text" class="form-control col-md-8 mr-3 mt-3 " disabled >'+
+                                                                                                '<input type="number" class="form-control col-md-8 mr-3 mt-3 " disabled >'+
                                                                                                 '<button type="submit" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3 disabled" disabled >Bid</button>'+
                                                                                             '</div>'+
                                                                                         '</form>';
@@ -336,19 +336,64 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                         if(response.can===1){
 
                             document.getElementById("form-inside-modal").innerHTML = "";
-                            document.getElementById("form-inside-modal").innerHTML = '<form class="mt-2" method="post" action="">'+
+                            document.getElementById("form-inside-modal").innerHTML = '<form class="mt-2" method="post" action="{{ route('user.products.bid') }}" >'+
+                                                                                            '@csrf'+
                                                                                             '<span id="response.free_rolls" hidden >'+response.free_rolls+'</span>'+
                                                                                             '<p>Buy Rolls Amount: <span id="response.buy_rolls">'+response.buy_rolls+'</span></P>'+
                                                                                             '<p>Bonus Rolls Amount: <span id="response.bonus_rolls">'+response.bonus_rolls+'</span></P>'+
+                                                                                            '<input type="hidden" name="product_id" value="'+response.product.id+'">'+
+                                                                                            '<input type="hidden" name="product_level" id="product_level" value="'+response.product.product_level+'">'+
+                                                                                            '<input type="hidden" name="product_bid_rolls" id="product_bid_rolls" value="'+response.product.product_bid_rolls+'">'+
+                                                                                            '<input type="hidden" name="user_buy_rolls" id="user_buy_rolls" value="'+response.buy_rolls+'">'+
+                                                                                            '<input type="hidden" name="user_bonus_rolls" id="user_bonus_rolls" value="'+response.bonus_rolls+'">'+
                                                                                             '<label class="text-success">'+response.success+'</label><br>'+
                                                                                             '<label class="product-modal-description-val">Your Bid</label>'+
                                                                                             '<div class="form-row m-0 p-0 mb-1">'+
-                                                                                                '<input type="text" class="form-control col-md-8 mr-3 mt-3 bid-input"   id="bid-input" >'+
+                                                                                                '<input type="number" name="bid_input" class="form-control col-md-8 mr-3 mt-3 bid-input"   id="bid-input" >'+
                                                                                                 '<button type="submit"  onClick="return bidValidate()" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3 bid-validate " >Bid</button>'+
+                                                                                            '</div>'+
+                                                                                            '<div id="free_bid_options">'+
                                                                                             '</div>'+
                                                                                         '</form>';
 
+
+
+
+                                if(response.product.product_level === "free" ){
+
+                                    if(parseInt(response.free_rolls) === 1){
+                                    document.getElementById("free_bid_options").innerHTML="";
+                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
+                                                                                        '<label class="form-check-label" for="exampleCheck1">Pay using free bid</label>';
+                                    }else{
+                                        document.getElementById("free_bid_options").innerHTML="";
+                                        document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
+                                                                                        '<label class="form-check-label" for="exampleCheck1">You have used today Free bid</label>';
+                                    }
+                                }
+
+
+                                if(response.product.product_level === "intermediate"){
+
+                                if(parseInt(response.free_rolls) === 1){
+                                    document.getElementById("free_bid_options").innerHTML="";
+                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
+                                                                                        '<label class="form-check-label" for="exampleCheck1">Use free bid for  1 roll</label>';
+                                }else{
+                                    document.getElementById("free_bid_options").innerHTML="";
+                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
+                                                                                        '<label class="form-check-label" for="exampleCheck1">You have used today Free bid</label>';
+                                }
+                            }
+
                         }
+
+
+
+
+
+
+
 
 
 
@@ -379,12 +424,43 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
        var bid_min_value=  parseInt(document.getElementById("response.product.min_value").innerHTML) ;
        var bid_max_value=  parseInt(document.getElementById("response.product.max_value").innerHTML) ;
        var bidinput = parseInt(document.getElementById("bid-input").value);
+       var product_level =document.getElementById("product_level").value;
+
+        var product_rolls = document.getElementById("product_bid_rolls").value;
+       var free_rolls = parseInt(document.getElementById("response.free_rolls").innerHTML);
+       var buy_rolls = parseInt(document.getElementById("response.buy_rolls").innerHTML);
+       var bonus_rolls = parseInt(document.getElementById("response.bonus_rolls").innerHTML);
+
 
 
 
         if(bidinput >= bid_min_value && bidinput<= bid_max_value){
 
-            return true;
+
+            if(product_level === "free"){
+
+                if((buy_rolls+bonus_rolls) === 0){
+                    if(document.getElementById("select_free_bid").checked === false){
+                         alert("you dont have any Buy or bonus rolls, plese select free bid option");
+                         return false;
+                     }
+                }
+                return true;
+            }
+
+            if(product_level === "intermediate"){
+
+                if((buy_rolls+bonus_rolls) < product_rolls){
+                    if(document.getElementById("select_free_bid").checked === false){
+                         alert("you dont have any Buy or bonus rolls, plese select free bid option");
+                         return false;
+                     }
+                }
+                return true;
+            }
+
+
+
         }else{
             alert("Enterd value should be between min and max bid values");
             return false;
