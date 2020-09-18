@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bid_Users_Has_Package extends Model
+class Referral_Rolls_Record extends Model
 {
-
-    protected $table = 'bid_users_has_packages';
+    protected $table = 'referral_rolls_records';
     protected $primaryKey ='id';
     const UPDATED_AT=NULL;
 
     protected $guarded = [];
-
 }

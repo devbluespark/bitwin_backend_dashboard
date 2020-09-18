@@ -13,6 +13,11 @@ use App\Http\Controllers\Controller;
 use App\Parent_User_Has_Roll;
 use App\Product;
 use App\Bid_Rolls_Record;
+use App\Buy_Rolls_Record;
+use App\Referral_Rolls_Record;
+use App\Bid_User;
+
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -252,6 +257,7 @@ class ProductController extends Controller
 
 
 
+
     public function user_bid(Request $request){
 
         $product_id =  (int)$request->product_id;
@@ -283,19 +289,19 @@ class ProductController extends Controller
         if($product_level === "free"){
 
             if($select_free_bid == true){
-                echo "saved free rolls ".$save_free_roll=1;
-                echo "saved buy rolls ".$save_buy_rolls=0;
-                echo "saved bonus rolls ".$save_bonus_rolls =0;
+                $save_free_roll=1;
+                $save_buy_rolls=0;
+                $save_bonus_rolls =0;
             }elseif ($select_free_bid == false) {
 
-                echo "saved free rolls ".$save_free_roll = 0;
+                $save_free_roll = 0;
 
                 if($user_buy_rolls >= 1){
-                    echo "saved buy rolls ".$save_buy_rolls = 1;
-                    echo "saved bonus rolls ". $save_bonus_rolls =0;
+                    $save_buy_rolls = 1;
+                    $save_bonus_rolls =0;
                 }else{
-                    echo "saved buy rolls ".$save_buy_rolls =0;
-                    echo "saved bonus rolls ".$save_bonus_rolls = 1;
+                    $save_buy_rolls =0;
+                    $save_bonus_rolls = 1;
                 }
             }
 
@@ -306,13 +312,13 @@ class ProductController extends Controller
                 $save_free_roll=1;
 
                 if(($product_rolls-1) <= $user_buy_rolls){
-                   echo "saved buy rolls ".$save_buy_rolls= ($product_rolls-1);
-                   echo "saved bonus rolls ".$save_bonus_rolls = 0;
-                   echo "i";
+                   $save_buy_rolls= ($product_rolls-1);
+                   $save_bonus_rolls = 0;
+
 
                 }elseif(($product_rolls-1) > $user_buy_rolls){
-                  echo  "saved buy rolls ".$save_buy_rolls= $user_buy_rolls;
-                  echo  "saved bonus rolls ".$save_bonus_rolls = ($product_rolls-1) - $user_buy_rolls;
+                  $save_buy_rolls= $user_buy_rolls;
+                  $save_bonus_rolls = ($product_rolls-1) - $user_buy_rolls;
                 }
 
 
@@ -320,13 +326,12 @@ class ProductController extends Controller
                 $save_free_roll=0;
 
                 if(($product_rolls) <= $user_buy_rolls){
-                    echo "saved buy rolls ".$save_buy_rolls= ($product_rolls);
-                    echo "saved bonus rolls ".$save_bonus_rolls = 0;
-                    echo "i";
+                    $save_buy_rolls= ($product_rolls);
+                    $save_bonus_rolls = 0;
 
                  }elseif(($product_rolls) > $user_buy_rolls){
-                   echo  "saved buy rolls ".$save_buy_rolls= $user_buy_rolls;
-                   echo  "saved bonus rolls ".$save_bonus_rolls = ($product_rolls) - $user_buy_rolls;
+                   $save_buy_rolls= $user_buy_rolls;
+                   $save_bonus_rolls = ($product_rolls) - $user_buy_rolls;
                  }
 
             }
@@ -337,18 +342,18 @@ class ProductController extends Controller
             $save_free_roll=0;
 
                 if(($product_rolls) <= $user_buy_rolls){
-                    echo "saved buy rolls ".$save_buy_rolls= ($product_rolls);
-                    echo "saved bonus rolls ".$save_bonus_rolls = 0;
-                    echo "i";
+                    $save_buy_rolls= ($product_rolls);
+                    $save_bonus_rolls = 0;
 
                  }elseif(($product_rolls) > $user_buy_rolls){
-                   echo  "saved buy rolls ".$save_buy_rolls= $user_buy_rolls;
-                   echo  "saved bonus rolls ".$save_bonus_rolls = ($product_rolls) - $user_buy_rolls;
+                   $save_buy_rolls= $user_buy_rolls;
+                   $save_bonus_rolls = ($product_rolls) - $user_buy_rolls;
                  }
 
         }
 
-
+        echo $save_bonus_rolls."<br>";
+        echo $save_buy_rolls;
 
 
         $bid_rolls_record=new Bid_Rolls_Record;
@@ -374,16 +379,140 @@ class ProductController extends Controller
         }
 
 
+
         if($save_buy_rolls > 0){
-         $remain_all_rolls= Bid_Users_Has_Package::select('remain_rolls')->where('bid_users_id', Auth::guard('biduser')->user()->id)->latest('id')->first();
-         $remain_rolls=$remain_all_rolls->remain_rolls;
 
-         $remain_all_rolls->remain_rolls = ($remain_rolls - $remain_rolls);
-         $remain_all_rolls->save();
+            $remain_buy_rolls = Bid_Users_Has_Package::select('id', 'remain_rolls')->where('bid_users_id', Auth::guard('biduser')->user()->id)->where('remain_rolls','>', 0)->get();
 
+            $save_remain_buy_rolls_sum=0;
+            foreach($remain_buy_rolls as $remain_buy_roll){
+
+                if(($remain_buy_roll->remain_rolls) >= ($save_buy_rolls - $save_remain_buy_rolls_sum)){
+                    $save_remain_buy_rolls = ($remain_buy_roll->remain_rolls) - ($save_buy_rolls - $save_remain_buy_rolls_sum);
+                    Bid_Users_Has_Package::where('id',$remain_buy_roll->id)
+                                            ->update(['remain_rolls' => $save_remain_buy_rolls]);
+
+
+                    //save this record also on buy rolls record
+                    $buy_rolls_records=new Buy_Rolls_Record;
+                    $buy_rolls_records->rolls = ($save_buy_rolls - $save_remain_buy_rolls_sum);
+                    $buy_rolls_records->bid_users_has_packages_id = $remain_buy_roll->id;
+                    $buy_rolls_records->bid_records_id = $last_bid_record_id;
+                    $buy_rolls_records->save();
+
+
+                    exit;
+
+                }elseif(($remain_buy_roll->remain_rolls) < ($save_buy_rolls - $save_remain_buy_rolls_sum)){
+
+                    $save_remain_buy_rolls_sum = $save_remain_buy_rolls_sum + ($remain_buy_roll->remain_rolls);
+
+                    $save_remain_buy_rolls = 0;
+                    Bid_Users_Has_Package::where('id',$remain_buy_roll->id)
+                                            ->update(['remain_rolls' => $save_remain_buy_rolls]);
+
+
+                    //save this record also on buy rolls record
+                    $buy_rolls_records=new Buy_Rolls_Record;
+                    $buy_rolls_records->rolls = $remain_buy_roll->remain_rolls;
+                    $buy_rolls_records->bid_users_has_packages_id = $remain_buy_roll->id;
+                    $buy_rolls_records->bid_records_id = $last_bid_record_id;
+                    $buy_rolls_records->save();
+
+                }
+            }
         }
 
 
+
+        if($save_bonus_rolls > 0){
+
+
+            $remain_bonus_rolls = Parent_User_Has_Roll::select('id', 'remain_rolls')->where('bid_users_id', Auth::guard('biduser')->user()->id)->where('remain_rolls','>', 0)->get();
+
+            $save_remain_bonus_rolls_sum=0;
+            foreach($remain_bonus_rolls as $remain_bonus_roll){
+
+                if(($remain_bonus_roll->remain_rolls) >= ($save_bonus_rolls - $save_remain_bonus_rolls_sum)){
+                    $save_remain_bonus_rolls = ($remain_bonus_roll->remain_rolls) - ($save_bonus_rolls - $save_remain_bonus_rolls_sum);
+                    Parent_User_Has_Roll::where('id',$remain_bonus_roll->id)
+                                            ->update(['remain_rolls' => $save_remain_bonus_rolls]);
+
+
+                    //save this record also on buy rolls record
+                    $bonus_rolls_records=new Referral_Rolls_Record;
+                    $bonus_rolls_records->rolls = ($save_bonus_rolls - $save_remain_bonus_rolls_sum);
+                    $bonus_rolls_records->parent_user_has_rolls_id = $remain_bonus_roll->id;
+                    $bonus_rolls_records->bid_records_id = $last_bid_record_id;
+                    $bonus_rolls_records->save();
+
+
+                    exit;
+
+                }elseif(($remain_bonus_roll->remain_rolls) < ($save_bonus_rolls - $save_remain_bonus_rolls_sum)){
+
+                    $save_remain_bonus_rolls_sum = $save_remain_bonus_rolls_sum + ($remain_bonus_roll->remain_rolls);
+
+                    $save_remain_bonus_rolls = 0;
+                    Parent_User_Has_Roll::where('id',$remain_bonus_roll->id)
+                                            ->update(['remain_rolls' => $save_remain_bonus_rolls]);
+
+
+                    //save this record also on buy rolls record
+                    $bonus_rolls_records=new Referral_Rolls_Record;
+                    $bonus_rolls_records->rolls = $remain_bonus_roll->remain_rolls;
+                    $bonus_rolls_records->parent_user_has_rolls_id = $remain_bonus_roll->id;
+                    $bonus_rolls_records->bid_records_id = $last_bid_record_id;
+                    $bonus_rolls_records->save();
+
+                }
+            }
+        }
+
+
+
+            $product_status_bar= Product::find($product_id);
+
+            $product_percentage_value = $this->status_bar($product_status_bar);
+
+            if($product_percentage_value >= 100){
+
+
+
+                $bid_record=Bid_Record::select('bid_value')->where('products_id',$product_id)->orderBy('bid_value', 'asc')->get();
+
+                foreach($bid_record as $bid_record){
+                    $bid_values_array[]= $bid_record->bid_value;
+                }
+
+                $bid_values_counts = array_count_values($bid_values_array);
+
+
+                foreach($bid_values_counts as $bid_valus_count){
+
+                    if($bid_valus_count === 1){
+                   echo   $win_bid_value = array_search($bid_valus_count, $bid_values_counts);
+                      $win_user_id = Bid_Record::select('bid_users_id')->where('products_id',$product_id)->where('bid_value',$win_bid_value)->get();
+                    break;
+                    }
+                }
+
+                if(isset($win_user_id)){
+
+                    foreach($win_user_id as $win_user_id){
+                        $win_user_id=$win_user_id->bid_users_id;
+                    }
+
+                    $win_user= Bid_User::find($win_user_id);
+                    echo $win_user;
+
+                }else{
+                    echo "No Winner";
+                }
+
+            }else{
+                // retuen redirect
+            }
 
 
     }

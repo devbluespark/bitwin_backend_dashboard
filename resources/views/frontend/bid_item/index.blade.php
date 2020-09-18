@@ -24,6 +24,17 @@
                     </li>
                 </ul>
             </nav>
+
+
+
+            @if ($message = Session::get('bid-success'))
+            <div class="alert alert-warning alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+            </div>
+            @endif
+
+
             <nav aria-label="Page navigation calander" class="mt-4 ml-4 nav-right">
                 <ul class="pagination justify-content-end">
                     <li class="page-item mr-2"><a class="page-link" href="#">
@@ -302,7 +313,7 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                                                                 '</div>'+
                                                                                 '<div class="row m-0 p-3">'+
                                                                                     '<h5 class="font-weight-bold">Item Description</h5>'+
-                                                                                    '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem reiciendis deserunt accusantium aperiam sequi voluptatum ea rem animi perferendis, doloribus iste. Recusandae rerum sunt sint nulla ducimus officiis iure corporis!</p>'+
+                                                                                    '<p>eriam sequi voluptatum ea rem animi perferendis, doloribus iste. Recusandae rerum sunt sint ! '+response.product.product_discription+'</p>'+
                                                                                 '</div>'+
                                                                             '</div>';
 
@@ -365,10 +376,11 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                     document.getElementById("free_bid_options").innerHTML="";
                                     document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
                                                                                         '<label class="form-check-label" for="exampleCheck1">Pay using free bid</label>';
-                                    }else{
+                                    }
+                                    if(response.free_rolls === 0){
                                         document.getElementById("free_bid_options").innerHTML="";
-                                        document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
-                                                                                        '<label class="form-check-label" for="exampleCheck1">You have used today Free bid</label>';
+                                        document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" disabled >'+
+                                                                                        '<label class="form-check-label text-danger" for="exampleCheck1">You have used today Free bid</label>';
                                     }
                                 }
 
@@ -377,12 +389,13 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
                                 if(parseInt(response.free_rolls) === 1){
                                     document.getElementById("free_bid_options").innerHTML="";
-                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
+                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid">'+
                                                                                         '<label class="form-check-label" for="exampleCheck1">Use free bid for  1 roll</label>';
-                                }else{
+                                }
+                                if(response.free_rolls === 0){
                                     document.getElementById("free_bid_options").innerHTML="";
-                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" >'+
-                                                                                        '<label class="form-check-label" for="exampleCheck1">You have used today Free bid</label>';
+                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid" disabled>'+
+                                                                                        '<label class="form-check-label text-danger" for="exampleCheck1">You have used today Free bid</label>';
                                 }
                             }
 
