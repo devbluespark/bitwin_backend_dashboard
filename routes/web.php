@@ -56,9 +56,21 @@ Route::group(['prefix' => 'backend'], function () {
 
 
         Route::get('/dashboard', 'Backend\DashboardController@index')->name('dashboard.index');
+        Route::get('/refferal-packages-price', 'Backend\RefferalPackagesController@index')->name('refferal-packages.index');
+
+        //find winner
+        Route::get('/find-winner','Backend\FindWinnerController@index')->name('findwinner.index');
+        Route::get('/find-winner-finished/{product_id}','Backend\FindWinnerController@find_winner')->name('findwinner.cal');
+
+
+        //US VS LKR
+        Route::get('/currency','Backend\CurrencyController@index')->name('currency.index');
 
         //ajax Routes call
         Route::post('ajax-image-delete', 'Backend\ProductsController@ajaxImageDelete')->name('ajax-image-delete');
+        Route::post('ajax-roll-price', 'Backend\CurrencyController@ajaxUpdateRollPrice')->name('ajax-roll-price');
+        Route::post('ajax-convert-us-lkr', 'Backend\CurrencyController@ajaxUpdateUsLkr')->name('ajax-convert-us-lkr');
+
     });
 });
 

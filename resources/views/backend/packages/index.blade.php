@@ -6,7 +6,7 @@
 
     <h1>Packages</h1><br><br>
 
-    @can('addPackage') 
+    @can('addPackage')
         <a href="{{ route('packages.create') }}" class="btn btn-success px-4 mb-3" ><i class="fa fa-plus"></i></a>
     @endcan
 
@@ -14,13 +14,14 @@
       <div class="col-md-12">
           <div class="card p-3">
 
-        
+
     <table id="example" class="display" style="width:100%" class="table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Price</th>
+                <th>US Price</th>
+                <th>LK Price</th>
                 <th>Rolls</th>
                 <th>Active/Deactive</th>
                 <th class="text-center">Actions</th>
@@ -28,8 +29,8 @@
         </thead>
         <tbody>
 
-            
-            
+
+
 
             <?php if(isset($packages)) {  ?>
 
@@ -38,6 +39,7 @@
                 <td>{{ $package->id }}</td>
                 <td>{{ $package->package_name }}</td>
                 <td>{{ $package->package_price }}</td>
+                <td>{{ $package->package_us_to_lk * $package->package_price }}</td>
             <td>{{ $package->package_rolls }}</td>
                 <td>
                     <?php if (($package->package_active) === 1) { ?>
@@ -49,27 +51,27 @@
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="mr-3 px-3 btn btn-primary" href='{{ route("packages.show",[ 'package' => $package->id ]) }}' ><i class="fa fa-info mx-2"></i></a>
-                
+
                 <!-- Add Permission Edit Packages-->
                 @can('editPackage')
                     <a class="mr-3 btn btn-warning" href='{{ route("packages.edit",[ 'package' => $package->id ]) }}' ><i class="fa fa-pencil mx-2"></i></a>
-                @endcan   
-                
+                @endcan
+
                 @can('deletePackage')
                     <button class="btn btn-danger btn-flat btn-sm delete-confirm" data-id="{{ $package->id }}" data-action="{{ route('packages.destroy',$package->id) }}">
                         <i class="fa fa-trash mx-3"></i>
                     </button>
                  @endcan
                     </div>
-                    
+
                 </td>
             </tr>
             @endforeach
-         
-        <?php } ?> 
 
-      
-            
+        <?php } ?>
+
+
+
         </tbody>
         <tfoot>
             <tr>
@@ -101,7 +103,7 @@
         } );
 
 
-    
+
 
 
 
@@ -128,7 +130,7 @@
         }
     });
 });
-    
+
 
 </script>
 

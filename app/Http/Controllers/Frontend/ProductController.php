@@ -16,6 +16,9 @@ use App\Bid_Rolls_Record;
 use App\Buy_Rolls_Record;
 use App\Referral_Rolls_Record;
 use App\Bid_User;
+use App\Win_Record;
+
+use App\Http\Traits\bidCalTrait;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +27,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+
+    use bidCalTrait;
+
     //return all active products in frontend
     public function index()
     {
@@ -64,27 +71,7 @@ class ProductController extends Controller
     }
 
 
-    public function status_bar($product)
-    {
 
-        try {
-            $how_many_bids = ($product->product_price / ($product->product_bid_rolls * 0.027));
-
-            $how_many_bids_int = intval($how_many_bids);
-
-            if (($how_many_bids - $how_many_bids_int) > 0) {
-                $how_many_bids_int = $how_many_bids_int + 1;
-            }
-
-
-            $bid_records_count = Bid_Record::where('products_id', $product->id)->count();
-
-            $bid_records_percentage = (($bid_records_count / $how_many_bids_int) * 100);
-            return $bid_records_percentage;
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-    }
 
 
     public function getUserRolls()
@@ -352,9 +339,6 @@ class ProductController extends Controller
 
         }
 
-        echo $save_bonus_rolls."<br>";
-        echo $save_buy_rolls;
-
 
         $bid_rolls_record=new Bid_Rolls_Record;
         $bid_rolls_record->free = $save_free_roll;
@@ -380,6 +364,8 @@ class ProductController extends Controller
 
 
 
+
+
         if($save_buy_rolls > 0){
 
             $remain_buy_rolls = Bid_Users_Has_Package::select('id', 'remain_rolls')->where('bid_users_id', Auth::guard('biduser')->user()->id)->where('remain_rolls','>', 0)->get();
@@ -401,7 +387,7 @@ class ProductController extends Controller
                     $buy_rolls_records->save();
 
 
-                    exit;
+                     break;
 
                 }elseif(($remain_buy_roll->remain_rolls) < ($save_buy_rolls - $save_remain_buy_rolls_sum)){
 
@@ -471,6 +457,7 @@ class ProductController extends Controller
 
 
 
+            //get prouct for check percentage status
             $product_status_bar= Product::find($product_id);
 
             $product_percentage_value = $this->status_bar($product_status_bar);
@@ -479,40 +466,27 @@ class ProductController extends Controller
 
 
 
-                $bid_record=Bid_Record::select('bid_value')->where('products_id',$product_id)->orderBy('bid_value', 'asc')->get();
+                $has_winner = $this->findWinner($product_id);
 
-                foreach($bid_record as $bid_record){
-                    $bid_values_array[]= $bid_record->bid_value;
-                }
+                if($has_winner == true){
 
-                $bid_values_counts = array_count_values($bid_values_array);
+                    //update product as Expired with expirad state auto
 
 
-                foreach($bid_values_counts as $bid_valus_count){
-
-                    if($bid_valus_count === 1){
-                   echo   $win_bid_value = array_search($bid_valus_count, $bid_values_counts);
-                      $win_user_id = Bid_Record::select('bid_users_id')->where('products_id',$product_id)->where('bid_value',$win_bid_value)->get();
-                    break;
-                    }
-                }
-
-                if(isset($win_user_id)){
-
-                    foreach($win_user_id as $win_user_id){
-                        $win_user_id=$win_user_id->bid_users_id;
-                    }
-
-                    $win_user= Bid_User::find($win_user_id);
-                    echo $win_user;
+                    Product::where('id', $product_id)
+                    ->update([
+                        'product_expired' => 1,
+                        'product_expired_date' => now(),
+                        'product_expired_auto' => 1,
+                    ]);
 
                 }else{
-                    echo "No Winner";
+                    return redirect()->route('findwinner.index');
                 }
 
-            }else{
-                // retuen redirect
             }
+
+            return redirect()->route('user.products.index');
 
 
     }

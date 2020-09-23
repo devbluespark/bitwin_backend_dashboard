@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Package;
 use App\User;
+use App\Us_To_Lkr;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+
 
 class PackagesController extends Controller
 {
@@ -44,6 +46,8 @@ class PackagesController extends Controller
            $data['created_at'] = Carbon::now()->timestamp;
            $data['updated_at'] = null;
 
+           $us_to_lkr = Us_To_Lkr::find(1);
+           $data['package_us_to_lk'] =$us_to_lkr->us_to_lkr ;
 
 
            Package::create($data);

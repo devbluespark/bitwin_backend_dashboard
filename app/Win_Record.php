@@ -8,6 +8,7 @@ class Win_Record extends Model
 {
     protected $table = 'win_records';
     protected $primaryKey ='id';
+    const UPDATED_AT=NULL;
 
 
     public function product()
