@@ -24,8 +24,8 @@
                       </span>
                     @endif
                 </div>
-                  
-                  
+
+
                   <div class="form-group col-md-6">
                     <label for="inputPassword4">Package Descriptions</label>
                     <textarea id="package_description" type="text" class="form-control" name="package_description"  required autofocus>{{ $package['package_description'] ?? old('package_description') }}</textarea>
@@ -35,7 +35,7 @@
                         </span>
                      @endif
                   </div>
-                  
+
 
                 </div>
                 <div class="form-row">
@@ -61,18 +61,18 @@
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label for="inputState">Active/Deactive</label>
-    
+
                         <select class="form-control" id="package_active" name="package_active" value="{{ $package['package_active'] ?? old('package_active') }}" required >
                             @if ($package['package_active']===1)
                             <option value="1">Active</option>
                             <option value="0">Deactive</option>
                             @else
-                            <option value="0">Deactive</option> 
+                            <option value="0">Deactive</option>
                             <option value="1">Active</option>
                             @endif
-                             
+
                         </select>
 
                         @if ($errors->has('package_active'))
@@ -82,10 +82,23 @@
                   @endif
                       </div>
 
+
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Parent user rolls:</label>
+                        <input type="number" name="parent_user_roll" class="form-control"  value="{{  $parent_user_roll ?? old('parent_user_roll') }}" id="parent_user_roll" placeholder="how many rolls add parent user when buy this package" required autofocus>
+                        @if ($errors->has('parent_user_roll'))
+                        <span class="help-block">
+                            <strong class="text-danger">{{ $errors->first('parent_user_roll') }}</strong>
+                        </span>
+                     @endif
+                      </div>
+
                   </div>
 
 
-                
+
+
+
                 <button type="submit" class="btn btn-primary">Update</button>
               </form>
 

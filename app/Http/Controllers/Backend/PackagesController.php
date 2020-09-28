@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Package;
 use App\User;
 use App\Us_To_Lkr;
+use App\Referral_Package_Roll;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,6 +42,15 @@ class PackagesController extends Controller
 
             ]);
 
+
+            $parent_user_rolls = $request->validate([
+                'parent_user_roll' => 'required|numeric|min:1|max:1000'
+            ]);
+
+            // echo $parent_user_rolls['parent_user_roll'];
+
+
+
            $data['package_delete_status'] = 0;
            $data['users_id'] = Auth::id();
            $data['created_at'] = Carbon::now()->timestamp;
@@ -50,7 +60,16 @@ class PackagesController extends Controller
            $data['package_us_to_lk'] =$us_to_lkr->us_to_lkr ;
 
 
-           Package::create($data);
+           $pack = Package::create($data);
+           $pack->id;
+
+            // $rolls_data = new Referral_Package_Roll;
+            $roll_data['rolls_amount'] = $parent_user_rolls['parent_user_roll'];
+            $roll_data['packages_id'] = $pack->id;
+            Referral_Package_Roll::create($roll_data);
+
+
+
            $request->session()->flash('message', 'Package has been successfully add..');
            return view('backend.packages.create');
 
@@ -63,7 +82,13 @@ class PackagesController extends Controller
 
        try {
             $user = User::find($package->users_id);
-            return view('backend.packages.show',compact('package','user'));
+            $parent_user_rolls = Referral_Package_Roll::where('packages_id',$package->id)->get();
+
+            foreach($parent_user_rolls as $parent_user_roll){
+                $parent_user_roll = $parent_user_roll->rolls_amount;
+            }
+            // dd($parent_user_rolls);
+            return view('backend.packages.show',compact('package','user','parent_user_roll'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -74,7 +99,15 @@ class PackagesController extends Controller
     public function edit(Package $package){
 
         try {
-            return view('backend.packages.edit',compact('package'));
+
+            $user = User::find($package->users_id);
+            $parent_user_rolls = Referral_Package_Roll::where('packages_id',$package->id)->get();
+
+            foreach($parent_user_rolls as $parent_user_roll){
+                $parent_user_roll = $parent_user_roll->rolls_amount;
+            }
+
+            return view('backend.packages.edit',compact('package','parent_user_roll'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -97,6 +130,13 @@ class PackagesController extends Controller
 
            $package->update($validate_data);
 
+           Referral_Package_Roll::where('packages_id', $package->id)
+          ->update([
+              'rolls_amount' => $request->parent_user_roll,
+              ]);
+
+
+//
            return redirect('backend/packages');
 
     }

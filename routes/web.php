@@ -7,7 +7,12 @@
 //**************  All   Backends Routes     */
 Route::group(['prefix' => 'backend'], function () {
 
-    Auth::routes();
+    Auth::routes(['register' => false]);
+    // Route::view('register', '')->name('register');
+    Route::get('register', function () {
+        return "<h1>404 Error</h1>";
+        // view('errors/404');
+    })->name('register');
 
     Route::get('/home', 'HomeController@index')->name('home');
 

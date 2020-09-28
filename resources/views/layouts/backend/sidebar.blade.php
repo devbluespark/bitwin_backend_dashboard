@@ -40,10 +40,7 @@
                 </li>
                 @endcan
 
-                <li class="">
-                    <a href="{{ route('refferal-packages.index')}}"> <i class="menu-icon fa fa-briefcase"></i>Refferal Packages Rolls</a>
-                </li>
-
+            
 
                 @can('accessProduct')
                 <li class="">

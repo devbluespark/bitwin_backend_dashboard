@@ -11,7 +11,7 @@
             <div class="mx-auto d-block">
                 <?php 
                   if ($customer->user_image === NULL) {
-                     $customer->user_image = "default.jpg";
+                     $customer->user_image = "default.png";
                   }
 
                 ?>
