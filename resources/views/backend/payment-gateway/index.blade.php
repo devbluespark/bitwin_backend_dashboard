@@ -5,12 +5,12 @@
 <div class="col-12">
 
     <h1>Payments with payment gateway</h1><br><br>
- 
+
 <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="card p-3">
 
-        
+
     <table id="example" class="display" style="width:100%" class="table">
         <thead>
             <tr>
@@ -23,8 +23,8 @@
         </thead>
         <tbody>
 
-            
-            
+
+
 
             <?php if(isset($payments)) {  ?>
 
@@ -38,18 +38,18 @@
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="mr-3 px-3 btn btn-primary" href='{{ route("payments-gateways.show",[ 'payment-gateway' => $payment->id ]) }}' ><i class="fa fa-info mx-2"></i></a>
-    
-                
+
+
                     </div>
-                    
+
                 </td>
             </tr>
             @endforeach
-         
-        <?php } ?> 
 
-      
-            
+        <?php } ?>
+
+
+
         </tbody>
         <tfoot>
             <tr>
@@ -81,7 +81,7 @@
         } );
 
 
-    
+
 
 </script>
 

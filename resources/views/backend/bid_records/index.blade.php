@@ -1,23 +1,11 @@
 @extends('layouts.backend.app')
 
 @section('content')
-<div>
-     <div class="container col-12 ">
-        <div class="panel panel-default">
-           <div class="panel-heading">
-                  <div class="col-md-12">
-                      <div class="card">
-                          <div class="card-body">
-                              <strong class="mr-5 ">Bid Details</strong>
-                            </div>
-                      </div>
-                  </div>
-              </div>
-        </div>
-     </div>
-</div>
+
 
 <div class="container col-12">
+
+    <h1>Bid details</h1><br><br>
     <div class="">
         <div class="row justify-content-center">
             <div class="col-md-12">

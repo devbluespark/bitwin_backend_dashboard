@@ -1,18 +1,31 @@
 @extends('layouts.backend.app')
 
 @section('content')
+<div>
+     <div class=" col-12 ">
+        <div class="panel panel-default">
+           <div class="panel-heading">
+                  <div class="col-md-12">
+                      <div class="card">
+                          <div class="card-body">
+                              <strong class="mr-5 ">Products</strong>
+                              <br>
+                              {{-- <a href="/backend/addproducts"><button class="btn btn-primary mb-3 ml-5">Add </button></a> --}}
 
+                              @can('addProduct')
+                              <a href="{{ route('products.create') }}"><button class="btn btn-primary mb-3 "> <i class="fa fa-plus"></i> </button></a>
+                              @endcan
 
-<div class="col-12">
+                            </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+     </div>
+</div>
 
-    <h1>Products</h1><br><br>
-
-    @can('addProduct')
-    <a href="{{ route('products.create') }}"><button class="btn btn-success px-4 mb-3"> <i class="fa fa-plus"></i> </button></a>
-    @endcan
-
-
-
+<div class="container col-12">
+    <div class="">
 
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -59,10 +72,10 @@
                                     @can('changeActiveProduct')
                                     @if ($product['product_active'] == 1)
                                     {{-- <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                 --}}
-                                    <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check-square-o mx-2"></i>Published</button>
+                                    <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check-square-o mx-2"></i></button>
                                     @else
                                     {{-- <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                 --}}
-                                    <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-times  mx-2"></i>unpublished</button>
+                                    <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-times mx-2"></i></button>
                                     @endif
                                     @endcan
 
@@ -156,7 +169,8 @@
         </div>
     </form>
       </div>
-
+    </div>
+  </div>
 
   <?php } ?>
 

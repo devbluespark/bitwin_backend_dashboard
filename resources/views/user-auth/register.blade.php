@@ -80,7 +80,7 @@
                         </span>
                     @endif
                 </div>
-                
+
             </div>
             <div class="form-row">
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6 pr-3">
@@ -94,7 +94,7 @@
                         </span>
                     @endif
                 </div>
-                
+
                 <div class="form-group col-md-6 pr-3">
                     <div class="bs-form-group" id="confirmPasswordDiv">
                         <label class="mb-0">Confirm Password</label>
@@ -111,7 +111,7 @@
             </div>
         </form>
 
-       
+
         <div class="row m-0 pr-2 mt-4">
             <div class="col text-center">
             <a href="{{ route('user.login')}}" style="color: gray;">Back to login</a>
@@ -156,7 +156,7 @@
     <script>
         $( document ).ready(function() {
             $('#timezone').val(moment.tz.guess())
-        });        
+        });
     </script>
 
 @endsection

@@ -20,6 +20,7 @@ use App\Win_Record;
 
 use App\Http\Traits\bidCalTrait;
 
+use App\Events\TestEvent;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -456,6 +457,9 @@ class ProductController extends Controller
         }
 
 
+
+            //call event with pusher
+            event(new TestEvent("hii"));
 
             //get prouct for check percentage status
             $product_status_bar= Product::find($product_id);

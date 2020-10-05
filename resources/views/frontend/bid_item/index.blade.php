@@ -35,13 +35,13 @@
             @endif
 
 
-            <nav aria-label="Page navigation calander" class="mt-4 ml-4 nav-right">
+            {{--  <nav aria-label="Page navigation calander" class="mt-4 ml-4 nav-right">
                 <ul class="pagination justify-content-end">
                     <li class="page-item mr-2"><a class="page-link" href="#">
                             <i class="fa fa-calendar"></i>
                         </a></li>
                 </ul>
-            </nav>
+            </nav>  --}}
         </div>
 
         <div class="row m-0 pl-5 pr-5 pb-5 justify-content-center">
@@ -87,83 +87,8 @@
 <!-- End main div -->
 
 
-{{-- <!-- Start - Item view modal -->
-<div class="modal fade" id="viewItemModal" tabindex="-1" aria-labelledby="viewItemModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content" style="border-radius: 15px;">
-            <div class="modal-body pt-1">
-                <div class="row m-0">
-                    <div class="col p-0 text-right">
-                        <a type="button" class="btn p-0" data-dismiss="modal"><i class="fa fa-times"></i></a>
-                    </div>
-                </div>
-                <div class="row m-0">
-                    <div class="col-md-4">
-                        <img src="" alt="Image" class="w-100" id="img_1">
-                    </div>
-                    <div class="col-md-8 model-ajax-load" id="model-ajax-load">
-                        <h5  class="font-weight-bold"> <span id="product_name"></span> </h5>
-                        <p class="product-modal-description-p">How Many Rolls <a
-                            class="product-modal-description-val"><span id="product_bid_rolls"></span></a></p>
-                        <p class="product-modal-description-p">Min Bid <a
-                                class="product-modal-description-val"><span id="product_bid_min_value"></span></a></p>
-                        <p class="product-modal-description-p">Max Bid <a
-                                class="product-modal-description-val"><span id="product_bid_max_value"></span></a></p>
 
 
-                        <div class="row m-0 mt-2">
-                            <div class="col-10 m-0 p-0">
-                                <div class="progress" id="progress">
-
-                                </div>
-                            </div>
-                            <div class="col-2 m-0">
-                                <span id="product_bid_records_percentage"></span> %
-                            </div>
-
-                        </div>
-
-
-                        <form class="mt-2">
-                            <label class="product-modal-description-val">Your Bid</label>
-                            <div class="form-row m-0 p-0 mb-1">
-                                <input type="text" class="form-control col-md-8 mr-3 mt-3">
-                                <button type="submit" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3">Bid</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="row m-0 p-3">
-                    <h5 class="font-weight-bold">Item Description</h5>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem reiciendis deserunt
-                        accusantium aperiam sequi voluptatum ea rem animi perferendis, doloribus iste. Recusandae
-                        rerum sunt sint nulla ducimus officiis iure corporis!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-<!-- End - Item view model -->
-
-
-
-
-{{-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">Modal</h4>
-        </div>
-        <div class="modal-body">
-          Modal content
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div> --}}
 
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -398,6 +323,30 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                                                                         '<label class="form-check-label text-danger" for="exampleCheck1">You have used today Free bid</label>';
                                 }
                             }
+
+                        }
+
+
+
+
+                        if(response.product.product_offer === 1){
+                            var expired_date = response.product.product_expired_date;
+                            // Get today's date and time
+                            var now = new Date().getTime();
+
+                            // Find the distance between now and the count down date
+                            var distance = expired_date - now;
+
+
+                            // Time calculations for days, hours, minutes and seconds
+                            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            console.log(now);
+                            console.log(expired_date);
+                            console.log(distance);
 
                         }
 

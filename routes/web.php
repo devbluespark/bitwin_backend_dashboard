@@ -126,20 +126,12 @@ Route::group(['middleware' => ['biduser']], function () {
         'profile' => 'Frontend\ProfileController',
 
     ]);
-    //Frontend Products
-    // Route::resources([
 
-    //     'dashboard'=> 'Frontend\DashboardController',   //return to frontend dashboard
-    // ]);
 
     Route::get('dashboard/{timezone}', 'Frontend\DashboardController@index')->name('user.dashboard.timezone');
 
 
-    //tempory routes
-    // Route::get('products/{id}','Frontend\ProductController@show');
-    // Route::get('packages/{id}','Frontend\PackagesController@show');
 
-    // Route::get('/referrals', 'Frontend\ReferralController@index');
 
     //frontend routes to return dashboard views
     Route::get('dashboard', 'Frontend\DashboardController@index')->name('user.dashboard.index');

@@ -1,0 +1,5 @@
+laravel 6,
+sparties library has installed..
+pusher library hs been installed.
+npm install --save laravel-echo pusher-js has been installed
+

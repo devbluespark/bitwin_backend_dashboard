@@ -107,7 +107,7 @@ class ProductsController extends Controller
         // $data['updated_at'] = null;
         $data['product_active'] = 0;
         $data['product_delete_status'] = 0;
-        $data['product_expired_date'] = $request->date;
+        $data['product_expired_date'] = strtotime($request->date);
 
 
         Product::create($data);
@@ -201,7 +201,7 @@ class ProductsController extends Controller
         }
 
 
-        $data['product_expired_date'] = $request->date;
+        $data['product_expired_date'] = strtotime($request->date);
 
 
 

@@ -16,7 +16,7 @@
 
 
 
-<div class="container">
+<div class="col-12">
 
     <h1>Packages Create</h1><br><br>
   <div class="row justify-content-center">
@@ -55,7 +55,7 @@
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
-                      <label for="inputEmail4">Package Price</label>
+                      <label for="inputEmail4">Package Price ($ dollers)</label>
                       <input type="number" class="form-control" id="package_price" value="{{ old('package_price') }}" name="package_price" placeholder="Package price" autofocus required>
                       @if ($errors->has('package_price'))
                       <span class="help-block">

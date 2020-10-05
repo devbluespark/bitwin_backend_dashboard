@@ -36,7 +36,7 @@
                                       @endif
                                       </div>
                                       <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Product Price</label>
+                                        <label for="inputPassword4">Product Price(us dollers $)</label>
                                         <input type="number" class="form-control"required name="product_price" value="{{ $product['product_price'] ?? old('product_price') }}" id="inputPassword4" placeholder="">
                                         @if ($errors->has('product_price'))
                                         <span class="help-block">
@@ -143,7 +143,7 @@
 
                                       <div class="form-group col-md-6 ">
                                         <label for="inputAddress">Product Description :</label>
-                                        <textarea  class="form-control" name="product_discription" id="product_discription" value="{{ $product['product_discription'] ?? old('product_discription') }}"></textarea>
+                                        <textarea  class="form-control" name="product_discription" id="product_discription" >{{ $product['product_discription'] ?? old('product_discription') }}</textarea>
 
                                         @if ($errors->has('product_discription'))
                                         <span class="help-block">
@@ -161,7 +161,7 @@
                                         <div class="js--image-preview"></div>
                                         <div class="upload-options_">
                                           <label>
-                                            <input type="file" class="image-upload_" name="product_img_1" accept="image/*" />
+                                            <input type="file" class="image-upload_" name="product_img_1" accept="image/*" /><B class="text-info">1st Image Shoud be Upload</B>
                                             @if ($errors->has('product_img_1'))
                                             <span class="help-block">
                                               <div class='alert alert-danger text-center'>{{ $errors->first('product_img_1') }}</div>
@@ -223,7 +223,7 @@
 
                                       </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="submit" onclick="return validateType()" class="btn btn-primary">Create</button>
                                 </form>
                             </div>
                         </div>
@@ -249,7 +249,25 @@
 			todayHighlight: true,
 			autoclose: true,
 		})
-	})
+    })
+
+
+
+    function validateType(){
+
+        var value_package_type = document.getElementById('product_level').value;
+        return false;
+        {{--  if(!uname){
+            document.getElementById("error").innerHTML = "Enter a username";
+            return false;
+        }
+        else{
+            return true;
+        }  --}}
+    }
+
+
+
 
 </script>
 

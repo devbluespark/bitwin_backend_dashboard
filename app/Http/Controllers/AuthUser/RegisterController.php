@@ -41,7 +41,7 @@ class RegisterController extends Controller
             // 'parent_id' => ""
         ]);
 
-        $token = Str::random(30).date('His');
+        // $token = Str::random(30).date('His');
 
 
 
@@ -52,11 +52,18 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'user_phn1' => $request->user_phn1,
-            'token' => $token,
+            // 'token' => $token,
             'user_active' => 1,
             'timezone'=>$request->timezone,
         ]);
 
+
+
+            echo $user->id;
+            $token = Str::random(2).$user->id.Str::random(2);
+
+            Bid_User::where('id',$user->id)
+                      ->update(['token' => $token]);
 
 
         if (isset($request->parent_id)) {

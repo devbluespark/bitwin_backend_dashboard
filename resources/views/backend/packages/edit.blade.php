@@ -41,7 +41,7 @@
                 <div class="form-row">
 
                     <div class="form-group col-md-6">
-                      <label for="inputEmail4">Package Price</label>
+                      <label for="inputEmail4">Package Price ($ dollers)</label>
                       <input type="number" class="form-control" id="package_price" value="{{ $package['package_price'] ?? old('package_price') }}" name="package_price" placeholder="Package price" autofocus required>
                       @if ($errors->has('package_price'))
                       <span class="help-block">
