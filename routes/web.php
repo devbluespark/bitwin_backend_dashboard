@@ -1,7 +1,10 @@
 <?php
 
 
-// Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/home', 'Backend\DashboardController@index')->middleware('auth','has_permission');
+
+
 
 
 //**************  All   Backends Routes     */
@@ -17,6 +20,7 @@ Route::group(['prefix' => 'backend'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::middleware(['auth', 'has_permission'])->group(function () {
+
 
 
         Route::resources([
@@ -122,10 +126,10 @@ Route::get('/reg/{token}', 'Frontend\ReferralController@showRegisterForm');
 
 Route::group(['middleware' => ['biduser']], function () {
 
-    Route::resources([
-        'profile' => 'Frontend\ProfileController',
 
-    ]);
+
+    Route::get('profiles','Frontend\ProfileController@index')->name('user.profiles.index');
+    Route::post('profiles','Frontend\ProfileController@store')->name('user.profiles.store');
 
 
     Route::get('dashboard/{timezone}', 'Frontend\DashboardController@index')->name('user.dashboard.timezone');
@@ -139,9 +143,12 @@ Route::group(['middleware' => ['biduser']], function () {
 
     Route::get('products', 'Frontend\ProductController@index')->name('user.products.index');
     Route::post('products-bid','Frontend\ProductController@user_bid')->name('user.products.bid');
-
+    // Route::post('payment-process','Frontend\ProductController@user_bid')
 
     Route::get('history', 'Frontend\HistoryController@index')->name('user.history.index');
+    Route::get('Bid-product/{bid_product}','Frontend\HistoryController@product_details')->name('user.bid_products.show');
+
+
     Route::get('referrals', 'Frontend\ReferralController@index')->name('user.referrals.index');
     Route::get('packages', 'Frontend\PackagesController@index')->name('user.packages.index');
 

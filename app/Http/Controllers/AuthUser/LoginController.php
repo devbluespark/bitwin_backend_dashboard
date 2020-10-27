@@ -16,19 +16,19 @@ class LoginController extends Controller{
 
 	use AuthenticatesUsers;
     protected $redirectTo = '/';
-   
+
     public function __construct(){
         $this->middleware('guest:biduser')->except('logout');
     }
 
     public function showLoginForm(){
-      
+
         if (auth()->guard('biduser')->user()) return redirect()->route('user.dashboard.index');
         return view('user-auth.login');
     }
 
     public function login(Request $request){
-        
+
         $request->validate([
             'email' => 'required|string|email|max:25',
             'password' => 'required|string|min:6|max:30'
@@ -43,14 +43,14 @@ class LoginController extends Controller{
          // Load user from database
          $bid_user = Bid_User::where($this->username(), $request->{$this->username()})->first();
 
-         
-        
+
+
         if($bid_user){
             if($bid_user->user_active && $bid_user->verified){
 
                 if ($this->attemptLogin($request)) {
                     return redirect()->route('user.dashboard.index');
-                     
+
                 }else{
                     $errors = [$this->username() => trans('auth.failed')];
                 }
@@ -69,25 +69,37 @@ class LoginController extends Controller{
 
         $this->incrementLoginAttempts($request);
 
-        
+
 
        return redirect()->back()
             ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors($errors);  
+            ->withErrors($errors);
     }
 
-   
+
     protected function guard(){
         return Auth::guard('biduser');
     }
 
-    public function logout(Request $request) {
-        $this->guard('admin')->logout();
+    // public function logout(Request $request) {
+    //     $this->guard('admin')->logout();
+    //     $request->session()->invalidate();
+    //     return redirect('/login');
+
+    //    }
+
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
         $request->session()->invalidate();
-        return redirect('/login');
- 
-       }
-   
+
+        $request->session()->regenerateToken();
+
+        return $this->loggedOut($request) ?: redirect('/');
+    }
+
 
 
 }

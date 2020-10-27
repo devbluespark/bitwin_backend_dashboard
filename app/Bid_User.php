@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Notifications\UserResetPasswordNotification;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Notifications\Notifiable;
@@ -15,7 +15,7 @@ class Bid_User extends Authenticatable
     protected $table = 'bid_users';
     protected $primaryKey ='id';
 
-    
+
 
     protected $fillable = [
         'user_fname', 'email', 'password',
@@ -23,7 +23,7 @@ class Bid_User extends Authenticatable
         'user_address', 'user_nic', 'user_active',
         'user_image','username','token','timezone'
     ];
-  
+
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -31,7 +31,7 @@ class Bid_User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new UserResetPasswordNotification($token));
+        $this->notify(new ResetPasswordNotification($token));
     }
 
     public function verifyUser()
@@ -43,7 +43,7 @@ class Bid_User extends Authenticatable
         return $this->hasMany(Payments_Gateway::class);
     }
 
-    
+
     public function payments_receipts(){
         return $this->hasMany(Payments_Receipt::class);
     }
@@ -55,7 +55,7 @@ class Bid_User extends Authenticatable
     public function win_details(){
         return $this->hasmany(Win_Detail::class);
     }
-    
+
     public function referrals(){
         return $this->hasmany(Referral::class);
     }
@@ -68,6 +68,6 @@ class Bid_User extends Authenticatable
         return $this->hasmany(Win_Record::class);
     }
 
-    
+
 
 }

@@ -22,13 +22,13 @@
             <a href="{{ route("user.packages.index")}}" class="left-nav-link n"><i class="material-icons mr-3">redeem</i> Packages</a>
         </div>
         <div class="p-2">
-            <a href="#" class="left-nav-link"><i class="material-icons mr-3">contacts</i> Profile</a>
+            <a href="{{ route("user.profiles.index")}}" class="left-nav-link"><i class="material-icons mr-3">contacts</i> Profile</a>
         </div>
         <div class="p-2">
             <a class="left-nav-link" href="{{ route('user.logout') }}"
                                           onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();"><i class="material-icons mr-3">login</i> Logout</a>
-                    
+
                     <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
