@@ -8,6 +8,7 @@ class Receipt extends Model
 {
     protected $table = 'receipts';
     protected $primaryKey ='id';
+    public $timestamps = false;
 
     protected $guarded = [];
 
@@ -16,11 +17,11 @@ class Receipt extends Model
         return $this->belongsTo(Payments_Gateway::class);
     }
 
-    
+
     public function payments_receipt(){
         return $this->hasOne(Payments_Receipt::class);
     }
 
-   
-    
+
+
 }

@@ -143,7 +143,7 @@ Route::group(['middleware' => ['biduser']], function () {
 
     Route::get('products', 'Frontend\ProductController@index')->name('user.products.index');
     Route::post('products-bid','Frontend\ProductController@user_bid')->name('user.products.bid');
-    // Route::post('payment-process','Frontend\ProductController@user_bid')
+    Route::post('payment-process','Frontend\PaymentController@index')->name('user.payment.process');
 
     Route::get('history', 'Frontend\HistoryController@index')->name('user.history.index');
     Route::get('Bid-product/{bid_product}','Frontend\HistoryController@product_details')->name('user.bid_products.show');
@@ -154,11 +154,18 @@ Route::group(['middleware' => ['biduser']], function () {
 
     //ajax data
     Route::post('ajax-users-rolls', 'Frontend\ProductController@ajaxUsersRolls')->name('ajax.users.rolls');
+
+
+    route::get('check','Frontend\PaypalController@check');
+
+
 });
 
 
 
-
+Route::post('paypal/notify','Frontend\PaypalController@nofiry_url');
+Route::post('paypal/cancel','Frontend\PaypalController@cancel_url');
+Route::get('paypal/return','Frontend\PaypalController@return_url');
 
 
 
@@ -177,3 +184,8 @@ Route::get('/', function () {
     // Route::get('/fregister', function () {
     //     return view('frontend/register');
     // });
+
+
+
+    // route::post('check_form','Frontend\PaypalController@check_form');
+

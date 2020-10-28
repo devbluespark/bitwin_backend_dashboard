@@ -17,7 +17,7 @@
                 <th>ID</th>
                 <th>Payment Date</th>
                 <th>Pyment Amount</th>
-                <th>Bank</th>
+                <th>Method</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
@@ -33,11 +33,11 @@
                 <td>{{ $payment->id }}</td>
                 <td>{{ $payment->created_at }}</td>
                 <td>{{ $payment->payment_amount }}</td>
-                <td>{{ $payment->payment_bank }}</td>
+                <td>{{ $payment->payment_method }}</td>
 
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                    <a class="mr-3 px-3 btn btn-primary" href='{{ route("payments-gateways.show",[ 'payment-gateway' => $payment->id ]) }}' ><i class="fa fa-info mx-2"></i></a>
+                    <a class="mr-3 px-3 btn btn-primary" href='{{ route("payments-gateways.show",[ 'payments_gateway' => $payment->id ]) }}' ><i class="fa fa-info mx-2"></i></a>
 
 
                     </div>
