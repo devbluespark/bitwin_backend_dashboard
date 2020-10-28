@@ -21,7 +21,7 @@ class HistoryController extends Controller
     {
 
        $logged_user_id =Auth::guard('biduser')->user()->id;
-       $all_bid_records = Bid_Record::where('bid_users_id', $logged_user_id)->get();
+       $all_bid_records = Bid_Record::where('bid_users_id', $logged_user_id)->paginate(5);
 
        foreach ($all_bid_records as $all_bid_record) {
                $product_details= Product::find($all_bid_record->products_id);

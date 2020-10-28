@@ -86,7 +86,9 @@ h3 {
 .page-title {
     margin-left: 39px !important;
 }
-
+.page-item{
+    margin: 4px;
+}
 .page-link {
     border-radius: 50% !important;
     color: gray;

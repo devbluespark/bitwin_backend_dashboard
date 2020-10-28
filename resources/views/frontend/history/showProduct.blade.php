@@ -18,7 +18,7 @@
                     </div>
                     @else
                     <div class="alert alert-info font-weight-bold" role="alert">
-                        <i class="fa fa-trophy mr-2"></i> Has Winner
+                        <i class="fa fa-trophy mr-2"></i> Winner is, Tharindu
                     </div>
                     @endif
                 </div>

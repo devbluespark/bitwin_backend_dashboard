@@ -5,7 +5,7 @@
 <div id="main" class="p-5">
 
   <div class="card border-info">
-    <div class="card-header pb-0">
+    <div class="card-header pb-0 justify-content-center">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active rounded-pill" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Bid Records</a>
@@ -59,25 +59,7 @@
 
           <!-- Pagination - Start -->
           <div class="row m-0 justify-content-center">
-            <nav aria-label="...">
-              <ul class="pagination">
-                <li class="page-item m-2">
-                  <a class="page-link" href="#"><i class="fa fa fa-angle-double-left"></i></a>
-                </li>
-                <li class="page-item m-2 active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item m-2">
-                  <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item m-2">
-                  <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item m-2">
-                  <a class="page-link" href="#"><i class="fa fa fa-angle-double-right"></i></a>
-                </li>
-              </ul>
-            </nav>
+            {{ $all_bid_records->links() }}
           </div>
           <!-- Pagination - End -->
 
@@ -85,7 +67,6 @@
 
         {{-- Second tab --}}
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
 
           <table class="table table-hover">
             <thead>
