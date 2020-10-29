@@ -1,7 +1,7 @@
 
     <!-- Start side nav -->
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
         <div class="text-center mb-4">
             <h1>LOGO</h1>
         </div>
@@ -35,3 +35,5 @@
         </div>
     </div>
     <!-- End side nav -->
+
+    <a class="btn" id="sideNavToggleBtn" onclick="navToggle()"><i class="fa fa-bars"></i></a>

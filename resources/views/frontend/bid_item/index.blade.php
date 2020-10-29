@@ -10,22 +10,6 @@
 
         <div class="row m-0">
             <h3 class="mt-4 page-title">Bid Items</h3>
-            <nav aria-label="Page navigation example" class="mt-4 w-75">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item mr-2 disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i
-                                class="fa fa-angle-double-left"></i></a>
-                    </li>
-                    <li class="page-item mr-2"><a class="page-link currunt-page-link" href="#">1</a></li>
-                    <li class="page-item mr-2"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item mr-2"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item mr-2">
-                        <a class="page-link" href="#"><i class="fa fa-angle-double-right"></i></a>
-                    </li>
-                </ul>
-            </nav>
-
-
 
             @if ($message = Session::get('bid-success'))
             <div class="alert alert-warning alert-block">

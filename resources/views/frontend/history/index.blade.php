@@ -26,7 +26,6 @@
 
         {{-- first Tab --}}
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-
           <table class="table table-hover">
             <thead>
               <tr>
@@ -39,8 +38,6 @@
             </thead>
             <tbody>
               @foreach ($all_bid_records as $all_bid_record)
-
-
               <tr>
                 <td>#</td>
                 <td>{{$all_bid_record->product_name }}</td>
@@ -52,7 +49,6 @@
                   </a>
                 </td>
               </tr>
-
               @endforeach
             </tbody>
           </table>

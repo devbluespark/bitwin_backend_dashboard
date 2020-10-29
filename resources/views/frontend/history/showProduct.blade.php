@@ -18,7 +18,14 @@
                     </div>
                     @else
                     <div class="alert alert-info font-weight-bold" role="alert">
-                        <i class="fa fa-trophy mr-2"></i> Winner is, Tharindu
+                        <p class="small font-weight-bold"><i class="fa fa-trophy mr-2"></i>Win by,</p>
+                        <div class="text-center">
+                            <img class="showProcutWinCard" src="{{asset('assets/frontend/assets/img/noimage.jpg')}}" alt="Winner">
+                        </div>
+                        <div class="text-center mt-2">
+                            FirstName
+                        </div>
+
                     </div>
                     @endif
                 </div>
