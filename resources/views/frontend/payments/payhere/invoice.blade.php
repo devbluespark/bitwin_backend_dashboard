@@ -141,12 +141,12 @@ background:#eee;
                         </div>
 
                         <div class="col-sm-6 top-right">
-                                <h3 class="marginright">INVOICE-1234578</h3>
-                                <span class="marginright">14 April 2014</span>
+                                <h3 class="marginright">INVOICE-{{ $receipt_code }}</h3>
+                                <span class="marginright">{{ $payment_gateway['created_at'] }}</span>
                         </div>
 
-                        <button class="btn btn-success  mx-5 " id="invoice-print"><i class="fa fa-print"></i> Print Invoice</button>
-                        <button class="btn btn-danger "><i class="fa fa-envelope-o"></i> Mail Invoice</button>
+                        <button class="btn btn-success  mx-5 " id="invoice-print" onclick="window.print()"><i class="fa fa-print"></i> Print Invoice</button>
+                        <!--<button class="btn btn-danger "><i class="fa fa-envelope-o"></i> Mail Invoice</button>-->
 
                     </div>
                     <hr>
@@ -160,36 +160,38 @@ background:#eee;
                       <div class="col-sm-6">
                       <h6 class="mb-3">From:</h6>
                       <div>
-                      <strong>Webz Poland</strong>
+                      <strong>Bid Win</strong>
                       </div>
-                      <div>Madalinskiego 8</div>
-                      <div>71-101 Szczecin, Poland</div>
-                      <div>Email: info@webz.com.pl</div>
-                      <div>Phone: +48 444 666 3333</div>
+                      <div>No-123, Minuwangoda</div>
+                      <div>Sri Lanka</div>
+                      <div>Email: info@bluespark.lk</div>
+                      <div>Phone: +94 77 060 4104</div>
                       </div>
 
                       <div class="col-sm-6">
                       <h6 class="mb-3">To:</h6>
                       <div>
-                      <strong>Bob Mart</strong>
+                      <strong>{{ $user_details['user_fname']." ".$user_details['user_lname'] }}</strong>
                       </div>
-                      <div>Attn: Daniel Marek</div>
+                      <div>{{$user_details['user_address'] }}</div>
                       <div>43-190 Mikolow, Poland</div>
-                      <div>Email: marek@daniel.com</div>
-                      <div>Phone: +48 123 456 789</div>
+                      <div>Email: {{ $user_details['email'] }}</div>
+                      <div>Phone: {{ $user_details['user_phn1'] }}</div>
                       </div>
 
 
 
                       </div>
+
+                      <p>You Have Successfully buy a new Package</p>
 
                       <div class="table-responsive-sm">
                       <table class="table table-striped">
                       <thead>
                       <tr>
                       <th class="center">#</th>
-                      <th>Item</th>
                       <th>Description</th>
+                      <th>Payment method</th>
 
                       <th class="right">Unit Cost</th>
                         <th class="center">Qty</th>
@@ -197,41 +199,30 @@ background:#eee;
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
-                      <td class="center">1</td>
-                      <td class="left strong">Origin License</td>
-                      <td class="left">Extended License</td>
 
-                      <td class="right">$999,00</td>
-                        <td class="center">1</td>
-                      <td class="right">$999,00</td>
-                      </tr>
-                      <tr>
-                      <td class="center">2</td>
-                      <td class="left">Custom Services</td>
-                      <td class="left">Instalation and Customization (cost per hour)</td>
 
-                      <td class="right">$150,00</td>
-                        <td class="center">20</td>
-                      <td class="right">$3.000,00</td>
-                      </tr>
-                      <tr>
-                      <td class="center">3</td>
-                      <td class="left">Hosting</td>
-                      <td class="left">1 year subcription</td>
 
-                      <td class="right">$499,00</td>
-                        <td class="center">1</td>
-                      <td class="right">$499,00</td>
-                      </tr>
                       <tr>
-                      <td class="center">4</td>
-                      <td class="left">Platinum Support</td>
-                      <td class="left">1 year subcription 24/7</td>
+                          <td class="center">1</td>
+                          <td class="left">{{ $package_details['package_name'] }}</td>
+                          <td class="left">{{ $payment_gateway['payment_method'] }}</td>
 
-                      <td class="right">$3.999,00</td>
-                        <td class="center">1</td>
-                      <td class="right">$3.999,00</td>
+                          <td class="right">@if($payment_gateway['currency'] =="LKR" )
+                                LKR
+                              @else
+                                $
+                              @endif
+                              {{$payment_gateway['payment_amount'] }}</td>
+                            <td class="center">1</td>
+                          <td class="right">
+                              @if($payment_gateway['currency'] =="LKR" )
+                                LKR
+                              @else
+                                $
+                              @endif
+                              {{$payment_gateway['payment_amount'] }}
+
+                              </td>
                       </tr>
                       </tbody>
                       </table>
@@ -244,30 +235,48 @@ background:#eee;
                       <div class="col-lg-4 col-sm-5 ml-auto">
                       <table class="table table-clear">
                       <tbody>
-                      <tr>
-                      <td class="left">
-                      <strong>Subtotal</strong>
-                      </td>
-                      <td class="right">$8.497,00</td>
-                      </tr>
-                      <tr>
-                      <td class="left">
-                      <strong>Discount (20%)</strong>
-                      </td>
-                      <td class="right">$1,699,40</td>
-                      </tr>
-                      <tr>
-                      <td class="left">
-                       <strong>VAT (10%)</strong>
-                      </td>
-                      <td class="right">$679,76</td>
-                      </tr>
+                      <!--<tr>-->
+                      <!--<td class="left">-->
+                      <!--<strong>Subtotal</strong>-->
+                      <!--</td>-->
+                      <!--<td class="right">$8.497,00</td>-->
+                      <!--</tr>-->
+                      <!--<tr>-->
+                      <!--<td class="left">-->
+                      <!--<strong>Discount (20%)</strong>-->
+                      <!--</td>-->
+                      <!--<td class="right">$1,699,40</td>-->
+                      <!--</tr>-->
+                      <!--<tr>-->
+                      <!--<td class="left">-->
+                      <!-- <strong>VAT (10%)</strong>-->
+                      <!--</td>-->
+                      <!--<td class="right">$679,76</td>-->
+                      <!--</tr>-->
                       <tr>
                       <td class="left">
                       <strong>Total</strong>
                       </td>
                       <td class="right">
-                      <strong>$7.477,36</strong>
+                      <strong>@if($payment_gateway['currency'] =="LKR" )
+                                LKR
+                              @else
+                                $
+                              @endif
+                              {{$payment_gateway['payment_amount'] }}</strong>
+                      </td>
+                      </tr>
+                      <tr>
+                      <td class="left">
+                      <strong>Paid</strong>
+                      </td>
+                      <td class="right">
+                      <strong>@if($payment_gateway['currency'] =="LKR" )
+                                LKR
+                              @else
+                                $
+                              @endif
+                              {{$payment_gateway['payment_amount'] }}</strong>
                       </td>
                       </tr>
                       </tbody>

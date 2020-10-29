@@ -26,9 +26,9 @@
 
 
         <input type="hidden" name="merchant_id" value="1215318">    <!-- Replace your Merchant ID -->
-        <input type="hidden" name="return_url" value="http://localhost:8000/paypal/return">
-        <input type="hidden" name="cancel_url" value="http://localhost:8000/paypal/cancel">
-        <input type="hidden" name="notify_url" value="http://localhost:8000/paypal/notify">
+        <input type="hidden" name="return_url" value="http://bidwin2.vemza.net/paypal/return">
+        <input type="hidden" name="cancel_url" value="http://bidwin2.vemza.net/paypal/cancel">
+        <input type="hidden" name="notify_url" value="http://bidwin2.vemza.net/paypal/notify">
 
 
         <div class="row">
@@ -126,12 +126,12 @@
 
 
 
-        <input type="hidden" name="order_id" value="{{ $data['package_id']}}">
+        <input type="hidden" name="order_id" value="{{ $data['oder_id']}}">
         <input type="hidden" name="items" value="{{ $data['package_name']}}"><br>
         <input type="hidden" name="currency" value="LKR">
         <input type="hidden" name="amount" value="{{ $data['lk_price']}}">
-        <input type="hidden" name="custom_1" value="{{ $data['custom_1']}}">
-
+        <input type="hidden" name="custom_1" value="{{ $data['user_id']}}">
+        <input type="hidden" name="custom_2" value="{{ $data['package_id']}}">
 
 
     <input type="hidden" name="country" value="Sri Lanka"><br><br>

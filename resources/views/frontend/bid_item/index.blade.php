@@ -67,7 +67,7 @@
                     </p>
                 </div>
                 <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block getCustomeDetails"    data-id="{{ $product->id }}">BID</button>
+                    <button class="btn btn-outline-primary btn-block getCustomeDetails"    data-id="{{ $product->id }}">BIssD</button>
                 </div>
             </div>
             <!-- Sample Card -->
