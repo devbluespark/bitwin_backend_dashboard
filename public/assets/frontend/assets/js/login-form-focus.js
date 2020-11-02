@@ -15,3 +15,9 @@ $('#pwResetEmail').on('focus', function () {
 }).on('blur', function () {
     $('#pwResetEmailDiv').removeClass('bs-form-group-focused');
 });
+
+$('#email').on('focus', function () {
+    $('#usernameDiv').addClass('bs-form-group-focused');
+}).on('blur', function () {
+    $('#usernameDiv').removeClass('bs-form-group-focused');
+});

@@ -1,7 +1,6 @@
 <?php
 
 
-
     Route::get('/home', 'Backend\DashboardController@index')->middleware('auth','has_permission');
 
 

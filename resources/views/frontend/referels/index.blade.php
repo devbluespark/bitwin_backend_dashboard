@@ -48,10 +48,10 @@
                         <p class="mb-0" style="color: gray;">3 Limited to up to 4 friends</p>
                         <p class="mb-0" style="color: gray;">4 Feel free to copy the link and share with anyone</p>
 
-                        <h5 class="mt-4" style="font-weight: 700;">Share your link</h5>
+                        <!-- <h5 class="mt-4" style="font-weight: 700;">Share your link</h5>
                         <a href="#" class="btn btn-primary social-link-btn"><i class="fa fa-facebook"></i></a>
                         <a href="#" class="btn btn-primary social-link-btn"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="btn btn-primary social-link-btn"><i class="fa fa-google"></i></a>
+                        <a href="#" class="btn btn-primary social-link-btn"><i class="fa fa-google"></i></a> -->
                     </div>
                 </div>
 
