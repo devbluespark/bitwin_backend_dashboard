@@ -51,7 +51,7 @@
                     </p>
                 </div>
                 <div class="card-footer bid-item-card-footer mt-3">
-                    <button class="btn btn-outline-primary btn-block getCustomeDetails"    data-id="{{ $product->id }}">BIssD</button>
+                    <button class="btn btn-outline-primary btn-block getCustomeDetails"    data-id="{{ $product->id }}">BID</button>
                 </div>
             </div>
             <!-- Sample Card -->
@@ -154,7 +154,7 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
 <!-- Side Nav JS -->
 <script src="{{asset('assets/frontend/assets/js/side-nav.js')}}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
 
 
@@ -387,7 +387,14 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
                 if((buy_rolls+bonus_rolls) === 0){
                     if(document.getElementById("select_free_bid").checked === false){
-                         alert("you dont have any Buy or bonus rolls, plese select free bid option");
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'you dont have any Buy or bonus rolls, plese select free bid option!',
+                            })
+
+
                          return false;
                      }
                 }
@@ -398,7 +405,14 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
                 if((buy_rolls+bonus_rolls) < product_rolls){
                     if(document.getElementById("select_free_bid").checked === false){
-                         alert("you dont have any Buy or bonus rolls, plese select free bid option");
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'you dont have any Buy or bonus rolls, plese select free bid option!',
+                            })
+
+
                          return false;
                      }
                 }
@@ -408,7 +422,14 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
 
         }else{
-            alert("Enterd value should be between min and max bid values");
+
+
+            Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Enterd value should be between min and max bid values!',
+                            })
+
             return false;
         }
 

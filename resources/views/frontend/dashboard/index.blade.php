@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="col m-0 p-0 text-right pr-2" style="margin-top: 5px !important;">
                                     <a href="#"
-                                        class="btn btn-sm rounded-pill btn-outline-primary item-card-button">BID</a>
+                                        class="btn btn-sm rounded-pill btn-outline-primary item-card-button">BIDss</a>
                                 </div>
                             </div>
                         </div>
@@ -148,8 +148,9 @@
                                     <small style="color: gray; font-weight: 600;">20/200</small>
                                 </div>
                                 <div class="col m-0 p-0 text-right pr-2" style="margin-top: 5px !important;">
-                                    <a href="#"
-                                        class="btn btn-sm rounded-pill btn-outline-primary item-card-button">BID</a>
+                                    <a href="#" class="btn btn-sm rounded-pill btn-outline-primary item-card-button">
+                                         BID
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -182,10 +183,8 @@
                         <small style="color: gray; font-weight: 600;">20/200</small>
                     </div>
                     <div class="col m-0 p-0 text-right pr-2" style="margin-top: 5px !important;">
-                        {{-- <a href="#" onclick="show_details({{ $latest_product }})" class="btn btn-sm rounded-pill btn-outline-primary item-card-button getCustomeDetails"
-                            data-toggle="modal" data-target="#viewItemModal">BID</a> --}}
 
-                            <button class="btn btn-outline-primary btn-block getCustomeDetails"    data-id="{{ $latest_product->id }}">BID</button>
+                            <a class="btn btn-sm rounded-pill btn-outline-primary item-card-button getCustomeDetails"    data-id="{{ $latest_product->id }}">BID</a>
                     </div>
                 </div>
 
@@ -305,7 +304,7 @@ crossorigin="anonymous"></script>
 <!-- Dashboard JS -->
 <script src="{{asset('assets/frontend/assets/js/dashboard.js')}}"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script>
 
@@ -519,53 +518,73 @@ $(document).ready(function(){
 });
 
 
-
 function bidValidate(){
 
-   var bid_min_value=  parseInt(document.getElementById("response.product.min_value").innerHTML) ;
-   var bid_max_value=  parseInt(document.getElementById("response.product.max_value").innerHTML) ;
-   var bidinput = parseInt(document.getElementById("bid-input").value);
-   var product_level =document.getElementById("product_level").value;
+var bid_min_value=  parseInt(document.getElementById("response.product.min_value").innerHTML) ;
+var bid_max_value=  parseInt(document.getElementById("response.product.max_value").innerHTML) ;
+var bidinput = parseInt(document.getElementById("bid-input").value);
+var product_level =document.getElementById("product_level").value;
 
-    var product_rolls = document.getElementById("product_bid_rolls").value;
-   var free_rolls = parseInt(document.getElementById("response.free_rolls").innerHTML);
-   var buy_rolls = parseInt(document.getElementById("response.buy_rolls").innerHTML);
-   var bonus_rolls = parseInt(document.getElementById("response.bonus_rolls").innerHTML);
-
-
-
-
-    if(bidinput >= bid_min_value && bidinput<= bid_max_value){
-
-
-        if(product_level === "free"){
-
-            if((buy_rolls+bonus_rolls) === 0){
-                if(document.getElementById("select_free_bid").checked === false){
-                     alert("you dont have any Buy or bonus rolls, plese select free bid option");
-                     return false;
-                 }
-            }
-            return true;
-        }
-
-        if(product_level === "intermediate"){
-
-            if((buy_rolls+bonus_rolls) < product_rolls){
-                if(document.getElementById("select_free_bid").checked === false){
-                     alert("you dont have any Buy or bonus rolls, plese select free bid option");
-                     return false;
-                 }
-            }
-            return true;
-        }
+ var product_rolls = document.getElementById("product_bid_rolls").value;
+var free_rolls = parseInt(document.getElementById("response.free_rolls").innerHTML);
+var buy_rolls = parseInt(document.getElementById("response.buy_rolls").innerHTML);
+var bonus_rolls = parseInt(document.getElementById("response.bonus_rolls").innerHTML);
 
 
 
-    }else{
-        alert("Enterd value should be between min and max bid values");
-        return false;
-    }
+
+ if(bidinput >= bid_min_value && bidinput<= bid_max_value){
+
+
+     if(product_level === "free"){
+
+         if((buy_rolls+bonus_rolls) === 0){
+             if(document.getElementById("select_free_bid").checked === false){
+
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: 'you dont have any Buy or bonus rolls, plese select free bid option!',
+                     })
+
+
+                  return false;
+              }
+         }
+         return true;
+     }
+
+     if(product_level === "intermediate"){
+
+         if((buy_rolls+bonus_rolls) < product_rolls){
+             if(document.getElementById("select_free_bid").checked === false){
+
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: 'you dont have any Buy or bonus rolls, plese select free bid option!',
+                     })
+
+
+                  return false;
+              }
+         }
+         return true;
+     }
+
+
+
+ }else{
+
+
+     Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: 'Enterd value should be between min and max bid values!',
+                     })
+
+     return false;
+ }
 
 
 

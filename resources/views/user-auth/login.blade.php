@@ -9,7 +9,7 @@
     </div>
 
             <!--    Sessions  -->
-            @if (session('status'))
+            {{-- @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
                 </div>
@@ -18,7 +18,7 @@
                 <div class="alert alert-warning">
                     {{ session('warning') }}
                 </div>
-            @endif
+            @endif --}}
              <!--   End Sessions  -->
 
     <div class="col-md-7 mt-5 p-5">
@@ -56,7 +56,7 @@
                         <input type="password" class="form-control rounded-0 bs-input" id="password" name="password" required >
                     </div>
 
-                    
+
                     @if ($errors->has('password'))
                     <span class="help-block">
                         <strong class="text-danger" >{{ $errors->first('password') }}</strong>

@@ -58,7 +58,17 @@
 
                     </tbody>
                 </table>
+
             </div>
+
+
+
+                 <!-- Pagination - Start -->
+          <div class="row m-0 justify-content-center">
+            {{ $bid_records->links() }}
+          </div>
+          <!-- Pagination - End -->
+
         </div>
     </div>
 
