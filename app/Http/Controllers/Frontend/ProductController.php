@@ -16,6 +16,7 @@ use App\Bid_Rolls_Record;
 use App\Buy_Rolls_Record;
 use App\Referral_Rolls_Record;
 use App\Bid_User;
+use App\Events\BidEvent;
 use App\Win_Record;
 
 use App\Http\Traits\bidCalTrait;
@@ -75,7 +76,7 @@ class ProductController extends Controller
 
 
 
-   
+
 
     public function ajaxUsersRolls()
     {
@@ -392,9 +393,10 @@ class ProductController extends Controller
         }
 
 
-
+            $message = "Bid a product";
+            $user_to_event = Bid_User::find(Auth::guard('biduser')->user()->id);
             //call event with pusher
-            event(new TestEvent("hii"));
+            event(new BidEvent($message,$user_to_event));
 
             //get prouct for check percentage status
             $product_status_bar= Product::find($product_id);

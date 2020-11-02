@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Permission;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -47,12 +46,11 @@ class UserController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $data['password'] = Hash::make($request->password);
-
         // $data['password'] = bcrypt($request->password);
 
         try {
 
+            // $user = User::create($request->except('roles'));
             $user = User::create($data);
 
             if($request->roles <> ''){
@@ -84,22 +82,18 @@ class UserController extends Controller
     public function update(Request $request, $id) {
 
 
-       $data = $this->validate($request, [
+       $this->validate($request, [
             'name'=>'required|max:20|min:3',
             'email'=>'required|email|unique:users,email,'.$id,
             'password'=>'required|string|min:6|confirmed',
-
+            'roles' => 'required'
         ]);
 
-        $request->validate([
-            'roles' => 'required',
-        ]);
 
-        $data['password'] = Hash::make($request->password);
 
         try {
             $user = User::findOrFail($id);
-            $input = $data;
+            $input = $request->except('roles');
             $user->fill($input)->save();
             if ($request->roles <> '') {
                 $user->roles()->sync($request->roles);
