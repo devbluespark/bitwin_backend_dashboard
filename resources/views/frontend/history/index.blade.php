@@ -4,7 +4,15 @@
 <!-- Start main div -->
 <div id="main" class="p-5">
 
-  <div class="card border-info">
+  <div class="card border-info shadow mb-3">
+    <div class="card-header bg-info text-light">
+      <h5 class="mb-0">History</h5>
+    </div>
+    <!-- <div class="card-body">
+            </div> -->
+  </div>
+
+  <div class="card border-info shadow">
     <div class="card-header pb-0 justify-content-center">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">

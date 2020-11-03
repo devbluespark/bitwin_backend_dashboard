@@ -3,13 +3,20 @@
 
 <!-- Start main div -->
 <div id="main">
-    <!-- <a style="cursor: pointer;" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
-
+    
     <!-- Start main div content -->
-    <div class="content">
+    <div class="content pl-5" style="padding-right: 3rem!important;">
 
+        <div class="card border-info shadow mt-5 mb-5">
+            <div class="card-header bg-info text-light">
+                <h5 class="mb-0">Bid Items</h5>
+            </div>
+            <!-- <div class="card-body">
+            </div> -->
+        </div>
+        
         <div class="row m-0">
-            <h3 class="mt-4 page-title">Bid Items</h3>
+            <!-- <h3 class="mt-4 page-title">Bid Items</h3> -->
 
             @if ($message = Session::get('bid-success'))
             <div class="alert alert-warning alert-block">
@@ -35,7 +42,7 @@
 
             <!-- Sample Card -->
             @foreach($products as $product)
-            <div class="col-md-2 mt-3 card p-3 bid-item-card">
+            <div class="col-md-2 mt-3 card p-3 bid-item-card shadow">
              @if ($product['product_img_1'] != "noimage.jpg")
             <img src="/storage/images/products/{{$product->product_img_1}}" class="card-img-top w-100 bid-item-card-img" alt="Image">
             @else
@@ -156,12 +163,6 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 <script src="{{asset('assets/frontend/assets/js/side-nav.js')}}"></script>
 
 <script>
-
-
-
-
-
-
 
     $(document).ready(function(){
             $(document).on('click','.getCustomeDetails',function(){

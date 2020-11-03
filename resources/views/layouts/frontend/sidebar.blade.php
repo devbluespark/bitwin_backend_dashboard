@@ -1,6 +1,6 @@
 
     <!-- Start side nav -->
-    <div id="mySidenav" class="sidenav">
+    <div id="mySidenav" class="sidenav" style="border-right: 2px solid var(--info);">
         <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
         <div class="text-center mb-4">
             <h1>LOGO</h1>

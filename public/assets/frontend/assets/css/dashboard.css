@@ -265,6 +265,9 @@ h3 {
 }
 
 /* New */
+body{
+    background-color: whitesmoke;
+}
 
 .showProcutWinCard{
     height: 80px; 

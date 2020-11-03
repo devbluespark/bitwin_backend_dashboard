@@ -10,15 +10,20 @@
 
         <div class="row m-0">
             <div class="col-md-9 m-0 p-0 pl-4">
-                <!-- <a style="cursor: pointer; float: left;" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
-                <div class="row m-0 pt-4 p-0">
+                <!-- <div class="row m-0 pt-4 p-0">
                     <h3 style="margin-left: 15px;">Dashboard</h3>
+                </div> -->
+                <div class="row card-deck m-0 p-0 pr-4 mt-4">
+                <div class="card border-info shadow mb-3">
+                    <div class="card-header bg-info text-light">
+                        <h5 class="mb-0">Dashboard</h5>
+                    </div>
                 </div>
-
+                </div>
+                
                 <div class="row card-deck m-0 p-0 pr-4">
-
                     <div class="col-md-4">
-                        <div class="card m-0 dashboard-card">
+                        <div class="card m-0 dashboard-card shadow">
                             <div class="card-body text-center">
                                 <h5 style="color: gray;">All Rolls</h5>
                                 <div class="row m-0 p-0">
@@ -46,35 +51,25 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="col-md-4">
-                        <div class="card m-0 dashboard-card">
+                        <div class="card m-0 dashboard-card shadow">
                             <div class="card-body text-center">
-
-
-
-
                                 <h1>{{ $referels_count }}</h1>
-
                                 <p style="color: gray;" class="mb-0">All Refferals</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card m-0 dashboard-card">
+                        <div class="card m-0 dashboard-card shadow">
                             <div class="card-body text-center">
-
                                 <h1>{{ $win_products_count}}</h1>
                                 <p style="color: gray;" class="mb-0">All Win Items</p>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
-                <div class="row m-0 pt-4 dashboard-card dashboard-row">
+                <div class="row m-0 pt-4 dashboard-card dashboard-row shadow">
                     <div class="row m-0 w-100">
                         <div class="col">
                             <h5 class="mb-0" style="font-weight: 700;">Bid Chart</h5>
@@ -87,7 +82,7 @@
                     <canvas id="myChart" width="300" height="100"></canvas>
                 </div>
 
-                <div class="row m-0 pt-4 dashboard-card dashboard-row mb-5">
+                <div class="row m-0 pt-4 dashboard-card dashboard-row mb-5 shadow">
                     <div class="row m-0 w-100">
                         <div class="col">
                             <h5 class="mb-0" style="font-weight: 700;">Current Sale Items</h5>
@@ -101,7 +96,7 @@
 
                     <div class="row m-0 w-100 pb-3">
                         <div class="col-md-4 mt-3">
-                            <div class="row m-0 item-card">
+                            <div class="row m-0 item-card" style="border: 1px solid var(--info)">
                                 <div style="background-color: white; width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
                                     <img src="{{asset('assets/frontend/assets/img/test-item-card-img.png')}}" alt="Image" style="width: 80%;">
                                 </div>
@@ -117,7 +112,7 @@
                         </div>
 
                         <div class="col-md-4 mt-3">
-                            <div class="row m-0 item-card">
+                            <div class="row m-0 item-card" style="border: 1px solid var(--info)">
                                 <div style="background-color: white; width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
                                     <img src="{{asset('assets/frontend/assets/img/test-item-card-img.png')}}" alt="Image" style="width: 80%;">
                                 </div>
@@ -133,7 +128,7 @@
                         </div>
 
                         <div class="col-md-4 mt-3">
-                            <div class="row m-0 item-card">
+                            <div class="row m-0 item-card" style="border: 1px solid var(--info)">
                                 <div style="background-color: white; width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
                                     <img src="{{asset('assets/frontend/assets/img/test-item-card-img.png')}}" alt="Image" style="width: 80%;">
                                 </div>
@@ -154,13 +149,13 @@
 
             </div>
 
-            <div class="col-md-3 m-0 p-3 pt-4" style="background-color: white;">
+            <div class="col-md-3 m-0 p-3 pt-4" style="background-color: white; border-left: 2px solid var(--info);">
                 <h5 style="font-weight: 700;">New Items</h5>
 
                 @if (isset($latest_products))
 
                 @foreach($latest_products as $latest_product)
-                <div class="row m-0 item-card mb-2">
+                <div class="row m-0 item-card mb-2" style="border: 1px solid var(--info)">
                     <div style="width: 40px; height: 40px; text-align: center; padding-top: 3px; border-radius: 10px;">
                         @if ($latest_product['product_img_1'] != "noimage.jpg")
                         {{-- <img src="/storage/images/{{$latest_product->product_img_1}}" alt="Image" style="width: 100%; border-radius: 10px;"> --}}

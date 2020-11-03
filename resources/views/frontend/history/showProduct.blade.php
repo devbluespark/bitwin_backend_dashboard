@@ -4,7 +4,7 @@
 <!-- Start main div -->
 <div id="main" class="p-5">
 
-    <div class="card border-info">
+    <div class="card border-info shadow">
         <div class="card-header bg-info text-light">
             <h5 class="mb-0 text-center">Product Details</h5>
         </div>
