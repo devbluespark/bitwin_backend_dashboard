@@ -153,6 +153,8 @@ Route::group(['middleware' => ['biduser']], function () {
 
     //ajax data
     Route::post('ajax-users-rolls', 'Frontend\ProductController@ajaxUsersRolls')->name('ajax.users.rolls');
+
+    Route::get('dashboard-chart', 'Frontend\DashboardController@getBidChartVal')->name('dashboard.chart');
 });
 
 
