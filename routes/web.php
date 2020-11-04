@@ -1,7 +1,6 @@
 <?php
 
 
-
     Route::get('/home', 'Backend\DashboardController@index')->middleware('auth','has_permission');
 
 
@@ -157,6 +156,10 @@ Route::group(['middleware' => ['biduser']], function () {
 
 
     route::get('check','Frontend\PaypalController@check');
+
+    Route::get('listen', function(){
+       return view('frontend.test');
+    });
 
 
 });

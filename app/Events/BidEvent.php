@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Bid_User;
+use App\Product;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,18 +16,18 @@ class BidEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
-    public $user;
+    public $bid_item;
+    // public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message, Bid_User $user)
+    public function __construct( $bid_item)
     {
-         $this->message = $message;
-         $this->user = $user;
+         $this->bid_item = $bid_item;
+        //  $this->user = $user;
     }
 
     /**

@@ -14,7 +14,7 @@ use DB;
 
 class CustomerController extends Controller
 {
-  
+
     public function index()
     {
        try {
@@ -24,10 +24,10 @@ class CustomerController extends Controller
          }catch (\Exception $e) {
         return $e->getMessage();
         }
-        
+
     }
 
-  
+
 
     public function show($id)
     {
@@ -41,11 +41,11 @@ class CustomerController extends Controller
         }catch (\Exception $e) {
             return $e->getMessage();
         }
-       
+
     }
 
-    
-  
+
+
 
 
     //customer activate function
@@ -54,22 +54,22 @@ class CustomerController extends Controller
         try {
             $customer = DB::table('bid_users')
             ->where('id',$request->id)
-            ->update(['user_active'=>'1']);   
-            return redirect('backend/customers'); 
+            ->update(['user_active'=>'1']);
+            return redirect('backend/customers');
         }catch (\Exception $e) {
             return $e->getMessage();
         }
-    }   
-    
+    }
+
     //customer deactivate function
     public function deactivate(Request $request){
 
 
-        try {           
+        try {
             $customer = DB::table('bid_users')
             ->where('id',$request->id)
-            ->update(['user_active'=>'0']);  
-            return redirect('backend/customers');   
+            ->update(['user_active'=>'0']);
+            return redirect('backend/customers');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -78,16 +78,18 @@ class CustomerController extends Controller
     public function customer_details_all($id){
 
         try{
-            $bid_records = Bid_Record::where('bid_users_id',$id)->get();         
-            $bid_user = Bid_User::where('id',$id)->first();     
-            $win_details=Win_Record::where('bid_users_id',$id)->get(); 
-            
+            $bid_records = Bid_Record::where('bid_users_id',$id)->get();
+            $bid_user = Bid_User::where('id',$id)->first();
+            $win_details=Win_Record::where('bid_users_id',$id)->get();
+
             $user_has_packages=Bid_Users_Has_Package::where('bid_users_id',$id)->get();
 
+            $user_packages = NULL;
+
              foreach ($user_has_packages as $user_has_package){
-                $user_packages[] = package::find($user_has_package->packages_id);  
+                $user_packages[] = package::find($user_has_package->packages_id);
                 }
-          
+
             return view('backend/biddetails/show',compact('bid_records','bid_user','win_details','user_packages'));
         }catch (\Exception $e) {
             return $e->getMessage();

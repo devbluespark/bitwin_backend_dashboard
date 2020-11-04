@@ -42,6 +42,7 @@ class FindWinnerController extends Controller
 
         //update product as Expired with expirad state auto
 
+        // dd("winner Has Been Find");
 
         Product::where('id', $product_id)
         ->update([
@@ -50,7 +51,11 @@ class FindWinnerController extends Controller
             'product_expired_auto' => 0,
         ]);
 
+        return redirect()->route('findwinner.index');
+
       }else{
+
+        // dd("Can not Find Any Winner");
         return redirect()->route('findwinner.index');
       }
 

@@ -1,25 +1,19 @@
-$('#fullName').on('focus', function () {
-    $('#fullNameDiv').addClass('bs-form-group-focused');
+$('#user_fname').on('focus', function () {
+    $('#firstNameDiv').addClass('bs-form-group-focused');
 }).on('blur', function () {
-    $('#fullNameDiv').removeClass('bs-form-group-focused');
+    $('#firstNameDiv').removeClass('bs-form-group-focused');
 });
 
-$('#mobileNumber').on('focus', function () {
+$('#user_lname').on('focus', function () {
+    $('#lastNameDiv').addClass('bs-form-group-focused');
+}).on('blur', function () {
+    $('#lastNameDiv').removeClass('bs-form-group-focused');
+});
+
+$('#user_phn1').on('focus', function () {
     $('#mobileNumberDiv').addClass('bs-form-group-focused');
 }).on('blur', function () {
     $('#mobileNumberDiv').removeClass('bs-form-group-focused');
-});
-
-$('#username').on('focus', function () {
-    $('#usernameDiv').addClass('bs-form-group-focused');
-}).on('blur', function () {
-    $('#usernameDiv').removeClass('bs-form-group-focused');
-});
-
-$('#password').on('focus', function () {
-    $('#passwordDiv').addClass('bs-form-group-focused');
-}).on('blur', function () {
-    $('#passwordDiv').removeClass('bs-form-group-focused');
 });
 
 $('#email').on('focus', function () {
@@ -28,7 +22,13 @@ $('#email').on('focus', function () {
     $('#emailDiv').removeClass('bs-form-group-focused');
 });
 
-$('#confirmPassword').on('focus', function () {
+$('#password').on('focus', function () {
+    $('#passwordDiv').addClass('bs-form-group-focused');
+}).on('blur', function () {
+    $('#passwordDiv').removeClass('bs-form-group-focused');
+});
+
+$('#password-confirm').on('focus', function () {
     $('#confirmPasswordDiv').addClass('bs-form-group-focused');
 }).on('blur', function () {
     $('#confirmPasswordDiv').removeClass('bs-form-group-focused');
