@@ -3,8 +3,7 @@
 
 <!-- Start main div -->
 <div id="main">
-    <!-- <a style="cursor: pointer;" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
-
+    
     <!-- Start main div content -->
     <div class="content">
 
@@ -14,11 +13,11 @@
                     <h3 style="margin-left: 15px;">Dashboard</h3>
                 </div> -->
                 <div class="row card-deck m-0 p-0 pr-4 mt-4">
-                <div class="card border-info shadow mb-3">
-                    <div class="card-header bg-info text-light">
-                        <h5 class="mb-0">Dashboard</h5>
+                    <div class="card border-info shadow mb-3">
+                        <div class="card-header bg-info text-light w-100">
+                            <h5 class="mb-0">Dashboard</h5>
+                        </div>
                     </div>
-                </div>
                 </div>
                 
                 <div class="row card-deck m-0 p-0 pr-4">
