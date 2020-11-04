@@ -148,7 +148,7 @@
 
               <tr>
                 <td>{{$bonus_roll->child_user_name }}</td>
-                <td>{{$bonus_roll->received_rolls }}</td>
+                <td>{{$bonus_roll->rolls }}</td>
                 <td>{{$bonus_roll->remain_rolls}}</td>
                 <td>{{$bonus_roll->created_at }}</td>
                 {{-- <td><a class="btn btn-primary" href="{{ route('user.bid_products.show',['bid_product' => $win_detail->products_id ] )}}">Product Details</a></td> --}}

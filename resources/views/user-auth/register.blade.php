@@ -3,8 +3,8 @@
 
 
 
-     <!-- Start - Register form section -->
-   <div class="row m-0">
+<!-- Start - Register form section -->
+<div class="row m-0">
     <div class="col-md-5 p-0 register-form-img-col">
         <img src="{{asset('assets/frontend/assets/img/section-1-img.png')}}" alt="Image" class="p-5 register-img">
     </div>
@@ -26,7 +26,7 @@
 
             <!-- if registration using referrals -->
             @if (isset($parent_id))
-                            <input type="hidden" name="parent_id" value="{{ $parent_id }}" >
+            <input type="hidden" name="parent_id" value="{{ $parent_id }}">
             @endif
             <!-- End registration using referrals -->
 
@@ -35,38 +35,38 @@
 
             <div class="form-row">
                 <div class="form-group{{ $errors->has('user_fname') ? ' has-error' : '' }} col-md-6 pr-3">
-                    <div class="bs-form-group" id="fullNameDiv">
+                    <div class="bs-form-group" id="firstNameDiv">
                         <label class="mb-0">First Name</label>
-                        <input type="text" class="form-control rounded-0 bs-input" id="user_fname" name="user_fname" value="{{ old('user_fname') }}" required autofocus>
+                        <input type="text" class="form-control rounded-0 bs-input" id="user_fname" name="user_fname" value="{{ old('user_fname') }}" required>
                     </div>
                     @if ($errors->has('user_fname'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('user_fname') }}</strong>
-                        </span>
+                    <span class="help-block">
+                        <strong class="text-danger">{{ $errors->first('user_fname') }}</strong>
+                    </span>
                     @endif
                 </div>
-                <div class="form-group{{ $errors->has('user_phn1') ? ' has-error' : '' }} col-md-6 pr-3">
-                    <div class="bs-form-group" id="mobileNumberDiv">
-                        <label class="mb-0">Mobile Number</label>
-                        <input type="number" class="form-control rounded-0 bs-input" id="user_phn1"  name="user_phn1" value="{{ old('user_phn1') }}" required>
+                <div class="form-group{{ $errors->has('user_lname') ? ' has-error' : '' }} col-md-6 pr-3">
+                    <div class="bs-form-group" id="lastNameDiv">
+                        <label class="mb-0">Last Name</label>
+                        <input type="text" class="form-control rounded-0 bs-input" id="user_lname" name="user_lname" value="{{ old('user_lname') }}" required>
                     </div>
-                    @if ($errors->has('user_phn1'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('user_phn1') }}</strong>
-                        </span>
+                    @if ($errors->has('user_lname'))
+                    <span class="help-block">
+                        <strong class="text-danger">{{ $errors->first('user_lname') }}</strong>
+                    </span>
                     @endif
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} col-md-6 pr-3">
-                    <div class="bs-form-group" id="usernameDiv">
-                        <label class="mb-0">Username</label>
-                        <input type="text" class="form-control rounded-0 bs-input" id="username"  name="username" value="{{ old('username') }}" required >
+                <div class="form-group{{ $errors->has('user_phn1') ? ' has-error' : '' }} col-md-6 pr-3">
+                    <div class="bs-form-group" id="mobileNumberDiv">
+                        <label class="mb-0">Mobile Number</label>
+                        <input type="number" class="form-control rounded-0 bs-input" id="user_phn1" name="user_phn1" value="{{ old('user_phn1') }}" required>
                     </div>
-                    @if ($errors->has('username'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('username') }}</strong>
-                        </span>
+                    @if ($errors->has('user_phn1'))
+                    <span class="help-block">
+                        <strong class="text-danger">{{ $errors->first('user_phn1') }}</strong>
+                    </span>
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6 pr-3">
@@ -75,9 +75,9 @@
                         <input type="email" class="form-control rounded-0 bs-input" id="email" name="email" value="{{ old('email') }}" required>
                     </div>
                     @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('email') }}</strong>
-                        </span>
+                    <span class="help-block">
+                        <strong class="text-danger">{{ $errors->first('email') }}</strong>
+                    </span>
                     @endif
                 </div>
 
@@ -86,27 +86,26 @@
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6 pr-3">
                     <div class="bs-form-group" id="passwordDiv">
                         <label class="mb-0">Password</label>
-                        <input type="password" class="form-control rounded-0 bs-input" id="password"  name="password" required>
+                        <input type="password" class="form-control rounded-0 bs-input" id="password" name="password" required>
                     </div>
                     @if ($errors->has('password'))
-                        <span class="help-block">
-                            <strong class="text-danger">{{ $errors->first('password') }}</strong>
-                        </span>
+                    <span class="help-block">
+                        <strong class="text-danger">{{ $errors->first('password') }}</strong>
+                    </span>
                     @endif
                 </div>
 
                 <div class="form-group col-md-6 pr-3">
                     <div class="bs-form-group" id="confirmPasswordDiv">
                         <label class="mb-0">Confirm Password</label>
-                        <input type="password" class="form-control rounded-0 bs-input"  id="password-confirm"   name="password_confirmation" required>
+                        <input type="password" class="form-control rounded-0 bs-input" id="password-confirm" name="password_confirmation" required>
                     </div>
                 </div>
             </div>
 
             <div class="row m-0 pr-2 mt-5">
                 <div class="col text-center">
-                    <button type="submit" class="btn btn-primary rounded-0 btn-lg bs-btn-register" data-toggle="modal"
-                        data-target="#verifyEmailModal">REGISTER</button>
+                    <button type="submit" class="btn btn-primary rounded-0 btn-lg bs-btn-register" data-toggle="modal" data-target="#verifyEmailModal">REGISTER</button>
                 </div>
             </div>
         </form>
@@ -114,7 +113,7 @@
 
         <div class="row m-0 pr-2 mt-4">
             <div class="col text-center">
-            <a href="{{ route('user.login')}}" style="color: gray;">Back to login</a>
+                <a href="{{ route('user.login')}}" style="color: gray;">Back to login</a>
             </div>
         </div>
     </div>
@@ -122,8 +121,7 @@
 <!-- End - Register form section -->
 
 <!-- Start - Verify email modal  -->
-<div class="modal fade" id="verifyEmailModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="verifyEmailModalLabel" aria-hidden="true">
+<div class="modal fade" id="verifyEmailModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="verifyEmailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 15px;">
             <div class="modal-body pt-1">
@@ -148,15 +146,15 @@
 </div>
 <!-- End - Verify email modal  -->
 
- <!-- Register Form js -->
-   <script src="{{asset('assets/frontend/assets/js/register-form-focus.js')}}"></script>
+<!-- Register Form js -->
+<script src="{{asset('assets/frontend/assets/js/register-form-focus.js')}}"></script>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data-2012-2022.min.js"></script>
-    <script>
-        $( document ).ready(function() {
-            $('#timezone').val(moment.tz.guess())
-        });
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data-2012-2022.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#timezone').val(moment.tz.guess())
+    });
+</script>
 
 @endsection

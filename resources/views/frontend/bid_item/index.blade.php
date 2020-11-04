@@ -248,6 +248,8 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                                                                                 '<input type="number" class="form-control col-md-8 mr-3 mt-3 " disabled >'+
                                                                                                 '<button type="submit" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3 disabled" disabled >Bid</button>'+
                                                                                             '</div>'+
+                                                                                            '<div id="product_offer_options">'+
+                                                                                            '</div>'+
                                                                                         '</form>';
 
                         }
@@ -273,6 +275,8 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                                                                                 '<button type="submit"  onClick="return bidValidate()" class="btn btn-primary mb-2 col-md-3 mr-3 mt-3 bid-validate " >Bid</button>'+
                                                                                             '</div>'+
                                                                                             '<div id="free_bid_options">'+
+                                                                                            '</div>'+
+                                                                                            '<div id="product_offer_options">'+
                                                                                             '</div>'+
                                                                                         '</form>';
 
@@ -314,9 +318,20 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
 
                         if(response.product.product_offer === 1){
+
                             var expired_date = response.product.product_expired_date;
+                            var expired_date = expired_date+0+0+0;
+
+
                             // Get today's date and time
                             var now = new Date().getTime();
+
+                            if( expired_date > now){
+
+                            var x = setInterval(function() {
+
+                            var now = new Date().getTime();
+
 
                             // Find the distance between now and the count down date
                             var distance = expired_date - now;
@@ -328,11 +343,32 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                            console.log(now);
-                            console.log(expired_date);
-                            console.log(distance);
 
-                        }
+                            var timer = days + "d " + hours + "h "+ minutes + "m " + seconds + "s ";
+
+
+
+
+                                if (distance < 0) {
+                                    clearInterval(x);
+                                    timer = "EXPIRED";
+                                }
+
+                                // console.log(timer);
+
+                                document.getElementById("product_offer_options").innerHTML="";
+                                    document.getElementById("product_offer_options").innerHTML='<h3>'+timer+'</h3>';
+
+
+                                }, 1000);
+
+                            } //end if expiredate > now
+
+
+
+
+
+                        } //end fuction
 
 
 

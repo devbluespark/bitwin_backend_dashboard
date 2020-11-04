@@ -60,6 +60,8 @@ trait bidCalTrait {
             }
         }
 
+
+
         if(isset($win_user_id)){
 
             foreach($win_user_id as $win_user_id){
@@ -76,6 +78,7 @@ trait bidCalTrait {
 
             return true;
         }else{
+
             return false;
         }
 
