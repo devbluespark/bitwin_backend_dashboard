@@ -57,8 +57,8 @@ class ProfileController extends Controller
             $data['user_image'] = $profileImage;
 
             //delete old image
-            $image_path = public_path('storage/images/bid_users') . '/' . $request->old_image;
-             unlink($image_path);
+            // $image_path = public_path('storage/images/bid_users') . '/' . $request->old_image;
+            //  unlink($image_path);
 
         }
 

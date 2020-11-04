@@ -33,8 +33,9 @@ class RegisterController extends Controller
 
         $request->validate([
             'user_fname' => 'required|string|max:25|min:3',
+            'user_lname' => 'required|string|max:25|min:3',
             'email' => 'required|string|email|max:25|unique:bid_users',
-            'username' => 'required|string|max:20|min:3|unique:bid_users|alpha',
+            // 'username' => 'required|string|max:20|min:3|unique:bid_users|alpha',
             'password' => 'required|string|min:6|confirmed|max:30',
             'password_confirmation' => 'required',
             'user_phn1' => 'required|min:8|max:20',

@@ -3,22 +3,13 @@
 
 <!-- Start main div -->
 <div id="main">
-    <div class="container mt-5 mb-5">
+    <div class="container">
 
-        <div class="card border-info mb-3 shadow">
+        <div class="card border-info mb-5 mt-5 shadow">
             <div class="card-header bg-info text-light" style="margin-left: -1px;">
                 <h5 class="mb-0">Profile</h5>
             </div>
             <div class="card-body">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
 
                 <form action="{{ route('user.profiles.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -110,7 +101,6 @@
                         </div>
                     </div>
 
-
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
@@ -140,8 +130,6 @@
                             </div>
                         </div>
                     </div>
-
-
 
                     <div class="row">
                         <div class="col-12">
@@ -180,6 +168,11 @@
         </div>
 
     </div>
+</div>
+
+
+
+
 
 </div>
 <!-- End main div -->

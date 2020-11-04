@@ -59,10 +59,10 @@
                                     @can('changeActiveProduct')
                                     @if ($product['product_active'] == 1)
                                     {{-- <button type="button" onclick="unpublish_product({{ $product->id }})" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalunpublish"> <i class="fa fa-check"></i></button>                 --}}
-                                    <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check-square-o mx-2"></i>Published</button>
+                                    <button type="button" onclick="sweet_alert_unpublish({{ $product->id }})" class="btn btn-primary" > <i class="fa fa-check-square-o mx-2"></i></button>
                                     @else
                                     {{-- <button type="button" onclick="publish_product({{ $product->id }})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalpublish"> <i class="fa fa-check"></i></button>                 --}}
-                                    <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-times  mx-2"></i>unpublished</button>
+                                    <button type="button" onclick="sweet_alert_publish({{ $product->id }})" class="btn btn-danger" > <i class="fa fa-times  mx-2"></i></button>
                                     @endif
                                     @endcan
 

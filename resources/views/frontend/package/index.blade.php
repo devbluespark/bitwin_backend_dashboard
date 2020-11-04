@@ -50,8 +50,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{ route('') }}">
-            @csrf
+        <form method="post" action="{{ route('user.payment.process')}}" >
+              @csrf
             <div class="form-group">
               <label for="recipient-name" class="col-form-label">Select Country:</label>
               <select type="text" name="country" class="form-control" id="recipient-name">
@@ -65,6 +65,8 @@
                 <option value="payhere">Payhere</option>
               </select>
             </div>
+
+            <div id="hidden_datas" ></div>
 
         </div>
         <div class="modal-footer">
@@ -98,8 +100,20 @@
 <script>
   $(document).ready(function() {
 
+<<<<<<< HEAD
     // Attach Button click event listener
     // $("#myBtn").click(function(){
+=======
+    function loadPaymentModel(package_id , package_name, package_price, lk_price){
+        // alert(lk_price);
+        $('#exampleModal').modal('show');
+
+        document.getElementById('hidden_datas').innerHTML='<input type="hidden" value="'+package_id+'" name="package_id" >'+
+            '<input type="hidden" value="'+package_name+'" name="package_name" >'+
+            '<input type="hidden" value="'+package_price+'" name="package_price" >'+
+            '<input type="hidden" value="'+lk_price+'" name="lk_price" >';
+    }
+>>>>>>> a54b021b74d34245ded411518a4a08b8b5fec706
 
     //     // show Modal
     //     $('#exampleModal').modal('show');

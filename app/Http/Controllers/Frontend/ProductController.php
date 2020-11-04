@@ -16,6 +16,7 @@ use App\Bid_Rolls_Record;
 use App\Buy_Rolls_Record;
 use App\Referral_Rolls_Record;
 use App\Bid_User;
+use App\Events\BidEvent;
 use App\Win_Record;
 
 use App\Http\Traits\bidCalTrait;
@@ -37,6 +38,44 @@ class ProductController extends Controller
     {
 
         try {
+
+            //   Offers Products Auto Matic Choose a winne --//
+
+            $offers_products = Product::where('product_active', 1)
+                                    ->where('product_delete_status', 0)
+                                    ->where('product_expired', 0)
+                                    ->where('product_offer',1)
+                                    ->get();
+
+
+
+
+            foreach($offers_products as $offers_product){
+                if($offers_product['product_expired_date'] > 0){
+
+                    $expired_date = $offers_product['product_expired_date'];
+                    $now_date_timestamp = time();
+
+                    if($now_date_timestamp >= $expired_date){
+                        $has_winner = $this->findWinner($offers_product['id']);
+
+                        if($has_winner == true){
+
+                            Product::where('id', $offers_product['id'])
+                            ->update([
+                                'product_active' => 0,
+                                'product_expired' => 1,
+                                'product_expired_auto' => 1
+                                ]);
+                        }
+                    }
+
+                }
+
+            }
+
+
+            // end FInd Offers product winner //
 
             $products = Product::where('product_active', 1)
                 ->where('product_delete_status', 0)
@@ -75,72 +114,7 @@ class ProductController extends Controller
 
 
 
-    public function getUserRolls()
-    {
 
-
-        // Rolls Calculate (Free, Buy, Bonus)
-
-        // date_default_timezone_set("Africa/Niamey");   //India time (GMT+5:30)
-        // echo date('d-m-Y H:i:s');
-        // echo "<br>";
-        $user_id = Auth::guard('biduser')->user()->id;
-        $user_timezone = Auth::guard('biduser')->user()->timezone;
-
-        $user_timezone_date = date_default_timezone_set($user_timezone);
-        $user_timezone_date = date('Y-m-d');
-
-
-
-        $free_rolls_last_date = Free_Roll::where('bid_users_id', $user_id)->orderBy('id', 'DESC')->first();
-
-        if (isset($free_rolls_last_date)) {
-            $free_rolls_last_date = $free_rolls_last_date->used_date;
-        } else {
-            $free_rolls_last_date = 0;
-        }
-
-
-
-        if ($user_timezone_date > $free_rolls_last_date) {
-            $rolls['free'] = 1;
-        } else {
-            $rolls['free'] = 0;
-        }
-
-        $buy_packages = Bid_Users_Has_Package::select('remain_rolls')
-            ->where('bid_users_id', $user_id)
-            ->where('remain_rolls', '>', 0)
-            ->get();
-
-        $sum_buy_rolls = 0;
-        foreach ($buy_packages as $buy_package) {
-            $sum_buy_rolls = $sum_buy_rolls + $buy_package->remain_rolls;
-        }
-
-        $rolls['buy'] = $sum_buy_rolls;
-
-
-
-        $bonus_rolls = Parent_User_Has_Roll::select('remain_rolls')
-            ->where('bid_users_parent_id', $user_id)
-            ->where('remain_rolls', '>', 0)
-            ->get();
-
-
-
-        $sum_bonus_rolls = 0;
-        foreach ($bonus_rolls as $bonus_roll) {
-            $sum_bonus_rolls = $sum_bonus_rolls + $bonus_roll->remain_rolls;
-        }
-
-        $rolls['bonus'] = $sum_bonus_rolls;
-
-
-        $rolls['sum'] = $rolls['free'] + $rolls['buy'] + $rolls['bonus'];
-
-        return $rolls;
-    }
 
     public function ajaxUsersRolls()
     {
@@ -457,9 +431,18 @@ class ProductController extends Controller
         }
 
 
+            $message = "Bid a product";
+            $user_to_event = Bid_User::find(Auth::guard('biduser')->user()->id);
+            $product_to_event = Product::find($product_id);
 
+            $bid_item['product_name'] = $product_to_event['product_name'];
+            $bid_item['product_img_1'] = $product_to_event['product_img_1'];
+            $bid_item['product_level'] = $product_to_event['product_level'];
+            $bid_item['user_fname'] = $user_to_event['user_fname'];
+
+            // dd($product_to_event);
             //call event with pusher
-            event(new TestEvent("hii"));
+            event(new BidEvent($bid_item));
 
             //get prouct for check percentage status
             $product_status_bar= Product::find($product_id);

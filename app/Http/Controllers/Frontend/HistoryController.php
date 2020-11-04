@@ -58,7 +58,7 @@ class HistoryController extends Controller
 
     public function product_details($product_id){
         $product_details = Product::find($product_id);
-        $bid_records = Bid_Record::where('products_id',$product_id)->get();
+        $bid_records = Bid_Record::where('products_id',$product_id)->paginate(10);
         $win_details = Win_Record::where('products_id',$product_id)->first();
         return view('frontend/history/showProduct',compact('product_details','bid_records','win_details')) ;
     }

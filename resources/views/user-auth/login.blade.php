@@ -8,18 +8,19 @@
         <img src="{{asset('assets/frontend/assets/img/section-1-img.png')}}" alt="Image" class="p-5 register-img">
     </div>
 
-    <!--    Sessions  -->
-    @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-    @endif
-    @if (session('warning'))
-    <div class="alert alert-warning">
-        {{ session('warning') }}
-    </div>
-    @endif
-    <!--   End Sessions  -->
+
+            <!--    Sessions  -->
+            {{-- @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if (session('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+            @endif --}}
+             <!--   End Sessions  -->
 
     <div class="col-md-7 mt-5 p-5">
         <div class="row m-0 p-0">
