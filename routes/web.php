@@ -79,6 +79,9 @@ Route::group(['prefix' => 'backend'], function () {
         Route::post('ajax-roll-price', 'Backend\CurrencyController@ajaxUpdateRollPrice')->name('ajax-roll-price');
         Route::post('ajax-convert-us-lkr', 'Backend\CurrencyController@ajaxUpdateUsLkr')->name('ajax-convert-us-lkr');
 
+        // Cutomer Edit
+        Route::get('/customer/edit/{id}', 'Backend\CustomerController@editView');
+        Route::post('/customer/update', 'Backend\CustomerController@updateCustomer')->name('customer.update');
     });
 });
 

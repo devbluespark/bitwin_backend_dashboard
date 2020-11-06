@@ -11,34 +11,20 @@
             <div class="card-header bg-info text-light">
                 <h5 class="mb-0">Bid Items</h5>
             </div>
-            <!-- <div class="card-body">
-            </div> -->
         </div>
         
         <div class="row m-0">
-            <!-- <h3 class="mt-4 page-title">Bid Items</h3> -->
-
             @if ($message = Session::get('bid-success'))
             <div class="alert alert-warning alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
             </div>
             @endif
-
-
-            {{--  <nav aria-label="Page navigation calander" class="mt-4 ml-4 nav-right">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item mr-2"><a class="page-link" href="#">
-                            <i class="fa fa-calendar"></i>
-                        </a></li>
-                </ul>
-            </nav>  --}}
         </div>
 
         <div class="row m-0 pl-5 pr-5 pb-5 justify-content-center">
 
             @if (isset($products))
-
 
             <!-- Sample Card -->
             @foreach($products as $product)
@@ -53,16 +39,13 @@
                     <p class="card-text bid-item-card-text">
                         Max Bid <a class="bid-item-card-val">{{$product->product_bid_max_value}}</a><br>
                         Min Bid <a class="bid-item-card-val">{{$product->product_bid_min_value}}</a>
-
-
                     </p>
                 </div>
                 <div class="card-footer bid-item-card-footer mt-3">
                     <button class="btn btn-outline-primary btn-block getCustomeDetails"    data-id="{{ $product->id }}">BID</button>
                 </div>
             </div>
-            <!-- Sample Card -->
-             {{-- For Image show on model --}}
+            <!-- Sample Card - For Image show on model -->
              <span  style="display:none;" id="{{ $product->id }}-image" >{{ asset('storage/images/products').'/'.$product->product_img_1}}</span>
 
             @endforeach
@@ -149,9 +132,7 @@
 
 
 <p id="demo"></p>
-{{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-</script> --}}
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
 integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
 </script>
@@ -303,8 +284,8 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
                                 if(parseInt(response.free_rolls) === 1){
                                     document.getElementById("free_bid_options").innerHTML="";
-                                    document.getElementById("free_bid_options").innerHTML='<input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid">'+
-                                                                                        '<label class="form-check-label" for="exampleCheck1">Use free bid for  1 roll</label>';
+                                    document.getElementById("free_bid_options").innerHTML='<div class="pl-4"><input type="checkbox" class="form-check-input" id="select_free_bid" name="select_free_bid">'+
+                                                                                        '<label class="form-check-label" for="exampleCheck1">Use free bid for  1 roll</label></div>';
                                 }
                                 if(response.free_rolls === 0){
                                     document.getElementById("free_bid_options").innerHTML="";
@@ -315,14 +296,10 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
                         }
 
-
-
-
                         if(response.product.product_offer === 1){
 
                             var expired_date = response.product.product_expired_date;
                             var expired_date = expired_date+0+0+0;
-
 
                             // Get today's date and time
                             var now = new Date().getTime();
@@ -333,10 +310,8 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
 
                             var now = new Date().getTime();
 
-
                             // Find the distance between now and the count down date
                             var distance = expired_date - now;
-
 
                             // Time calculations for days, hours, minutes and seconds
                             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -344,11 +319,7 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-
                             var timer = days + "d " + hours + "h "+ minutes + "m " + seconds + "s ";
-
-
-
 
                                 if (distance < 0) {
                                     clearInterval(x);
@@ -358,34 +329,20 @@ integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+
                                 // console.log(timer);
 
                                 document.getElementById("product_offer_options").innerHTML="";
-                                    document.getElementById("product_offer_options").innerHTML='<h3>'+timer+'</h3>';
+                                document.getElementById("product_offer_options").innerHTML='<h3>'+timer+'</h3>';
 
 
                                 }, 1000);
 
                             } //end if expiredate > now
 
-
-
-
-
                         } //end fuction
-
-
-
-
-
-
-
-
-
 
 
                         showModal();
                         function showModal() {
                              $('#myModal').modal('show');
                         }
-
 
                     }
                 });
